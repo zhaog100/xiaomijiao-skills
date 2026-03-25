@@ -95,9 +95,11 @@
 - 系统 crontab 只看不改，外部系统资源不属于我
 - web_search API key 失效（401），需官家更新 Perplexity key
 - Context Manager healthcheck.sh 缺失→已修复为 seamless-switch.sh；脚本需 chmod +x
-- Quote Reader QQ 通道未实现，暂不可用
+- Quote Reader QQ 引用检测可用（`[reply:xxx]` 格式）
 - Agent ID 改名需同步：openclaw.json + agentDir + crontab + Gateway cron + QMD + 所有文件引用
-- QQ Bot 路由到 main agent，不是 xiaomijiao；需官家配合调整通道路由
+- QQ Bot 路由到 main agent（暂不改，改了影响小米辣）
+- 小米辣会升级/重命名 skills 目录（如 context-manager-v2 → miliger-context-manager），需跟踪
+- Python 包安装：用 `--break-system-packages` 或 `--user`，PEP 668 限制
 
 ---
 
