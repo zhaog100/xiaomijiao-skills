@@ -5,7 +5,7 @@
 # 功能：通过OpenClaw API监控真实上下文使用率，超过阈值自动发送通知
 
 # 环境修复（cron）
-export HOME="${HOME:-/root}"
+export HOME="${HOME:-/home/zhaog}"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 # 加载配置

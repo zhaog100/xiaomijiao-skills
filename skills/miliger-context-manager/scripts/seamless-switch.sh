@@ -5,7 +5,7 @@
 # 功能：上下文超过阈值时，自动保存记忆并创建新会话
 
 # 环境修复（cron）
-export HOME="${HOME:-/root}"
+export HOME="${HOME:-/home/zhaog}"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
 # 加载配置

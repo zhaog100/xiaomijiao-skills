@@ -495,5 +495,702 @@
     "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/156",
     "created_at": "2026-03-25T12:30:25.950820",
     "status": "claimed"
+  },
+  {
+    "key": "Uniswap/v4-core#1028",
+    "owner": "Uniswap",
+    "repo": "v4-core",
+    "number": 1028,
+    "title": "[SECURITY DISCLOSURE] Critical Vulnerability found in ERC6909.sol",
+    "body": "**Enterprise-Grade Bug Report**\r\n\r\n**Contract:** ERC6909\r\n**Version:** 0.8.0\r\n**Audited On:** 21 March 2026\r\n\r\n**Introduction:**\r\nThis audit was conducted on the provided Solmate-based ERC6909 contract implementation. The audit focused on identifying potential critical and high-severity security vulnerabilities.\r\n\r\n**Findings:**\r\n\r\n### Critical Severity\r\n\r\n1. **Reentrancy Vulnerability** in transferFrom function:\r\nThe `transferFrom` function uses a conditional statement to check if the sender has sufficient allowance to transfer the specified amount. However, this check is performed before updating the `balanceOf` and `allowance` mappings. This allows a malicious user to repeatedly call `transferFrom` in a loop, each time reducing the sender's allowance, ultimately causing a reentrancy attack.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, reentrancy-safe operations should be performed within a lock or using the OpenZeppelin reentrancy modifier.\r\n\r\n2. **Arithmetic Overflow Vulnerability** in balanceOf and allowance mappings:\r\nThe contract uses mappings to store balance and allowance data. However, the data type used for this mapping (uint256) may cause arithmetic overflows when the balances or allowance amounts approach the maximum limit of uint256.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, consider using data types with a larger maximum value or using libraries that handle arithmetic overflows safely, such as SafeMath or OpenZeppelin's SafeMath library.\r\n\r\n### High Severity\r\n\r\n1. **Missing Input Validation** in transfer and transferFrom functions:\r\nThe `transfer` and `transferFrom` functions lack proper input validation. Specifically, they do not check if the `receiver` address is not the zero address (0x0).\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, add input validation to check for zero addresses and other invalid conditions.\r\n\r\n2. **Incorrect Gas Optimizations in setOperator function:**\r\nThe `setOperator` function uses a mapping to store operator status, which can lead to excessive storage growth and associated gas costs over time.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, consider using a Merkle tree or other gas-efficient data structures to store operator status.\r\n\r\n3. **Missing Authorization Checks** in certain functions:\r\nFunctions like `approve` and `transfer` lack proper authorization checks.\r\n\r\n**Mitigation:**\r\nTo mitigate this vulnerability, add authorization checks to ensure that only authorized parties can execute these functions.\r\n\r\n**Recommendations:**\r\n\r\nTo address these vulnerabilities, consider the following recommendations:\r\n\r\n1. Apply reentrancy-safe operations within a lock or using the OpenZeppelin reentrancy modifier.\r\n2. Use data types with a larger maximum value or libraries that handle arithmetic overflows safely.\r\n3. Implement input validation for zero addresses and other invalid conditions in all functions.\r\n4. Consider using Merkle trees or other gas-efficient data structures to stor",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/Uniswap/v4-core/issues/1028",
+    "created_at": "2026-03-25T13:30:22.590679",
+    "status": "claimed"
+  },
+  {
+    "key": "gitcoinco/gitcoin_co_30#300",
+    "owner": "gitcoinco",
+    "repo": "gitcoin_co_30",
+    "number": 300,
+    "title": "Giveth — Decentralized Donations with Quadratic Funding & Streaming",
+    "body": "<!--\nIMPORTANT: This template is automatically parsed by a script to generate content files.\n- Fill in all metadata fields below — do NOT rename or remove the field labels (e.g. \"Short Description\", \"Tags\").\n- The bold field labels (e.g. **Short Description**) are used as keys during parsing. Changing them will break the automation.\n- You can use markdown formatting in the Description section and add images.\n-->\n\n## Metadata\n- **Slug**: giveth\n- **Short Description**: Giveth — a decentralized donations platform using Quadratic Funding, Superfluid streams, and contributor reward tokens to fund public goods and crypto-native projects.\n- **Tags**: `giveth, qf, superfluid, donations, public-goods`\n- **Featured**: false\n- **Authors**: GBOYEE\n\n## Banner Image\n![Banner](https://raw.githubusercontent.com/GBOYEE/gitcoin-assets/main/giveth/banner.png)\n\n## Description\n**Category**: App  \n**Status**: Active  \n**Website**: https://giveth.io  \n**Launch Date**: 2018 (platform), 2020 (QF rounds)  \n**Blockchains**: Ethereum, Polygon, Optimism, others via cross-chain bridges  \n**Social Links**: \n- Twitter: https://x.com/giveth\n- Discord: https://discord.gg/giveth\n- GitHub: https://github.com/Giveth\n- Docs: https://docs.giveth.io\n\n### Overview\nGiveth is a decentralized donations platform that combines Quadratic Funding (QF) with crypto-native features like streaming payments (Superfluid) and contributor reward tokens (GIV). It enables donors to fund public goods and projects while giving contributors ongoing incentives, creating a sustainable funding loop beyond one-time grants.\n\n### Key Features\n- **Quadratic Funding rounds**: Community‑driven matching pools amplify small donations.\n- **Superfluid integration**: Donors can stream funds continuously (e.g., monthly DAI streams) rather than one‑off.\n- **GIV rewards**: Contributors earn GIV tokens for verified contributions, which can be used to boost project matching or governance.\n- **Multi‑chain**: Deployments on Ethereum, Polygon, Optimism; low‑gas environments improve UX.\n- **Open source**: MIT‑licensed, community‑maintained contracts and UI.\n\n### How Giveth Differs from Gitcoin Grants\n- **Streaming donations**: Instead of a single contribution, donors commit a stream (e.g., 10 DAI/month) that accrues over time. This provides predictable funding for projects.\n- **Contributor rewards**: Donors receive GIV tokens, incentivizing repeat engagement and creating a “donor‑to‑governor” flywheel.\n- **Unified ecosystem**: Giveth runs its own QF rounds but also hosts external rounds (e.g., Gitcoin, Polygon) on the same platform.\n\n### Use Cases\n- **Public goods**: Open‑source tooling, climate projects, social impact.\n- **DAO funding**: Experimental rounds for DAO treasuries.\n- **Ecosystem grants**:partnered rounds with Polygon, Optimism, etc.\n- **Recurring support**: Projects can receive steady income via streams rather than lump sums.\n\n### Getting Started for Builders\n1. **Explore docs**: https://docs.giveth.io\n2. **Clone t",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/gitcoinco/gitcoin_co_30/issues/300",
+    "created_at": "2026-03-25T13:30:26.686866",
+    "status": "claimed"
+  },
+  {
+    "key": "andrewJermaine-ios/bug-bounty#1",
+    "owner": "andrewJermaine-ios",
+    "repo": "bug-bounty",
+    "number": 1,
+    "title": "chat functionality",
+    "body": "I want to be able to talk to the bug bounty bot to ask questions about its output. Maybe an /ask command?",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/andrewJermaine-ios/bug-bounty/issues/1",
+    "created_at": "2026-03-25T13:30:30.884600",
+    "status": "claimed"
+  },
+  {
+    "key": "Uniswap/v4-core#1022",
+    "owner": "Uniswap",
+    "repo": "v4-core",
+    "number": 1022,
+    "title": "[SECURITY DISCLOSURE] Critical Vulnerability found in ERC6909.sol",
+    "body": "**BUG REPORT**\r\n\r\n**Contract Name:** ERC6909\r\n**Severity:** HIGH\r\n**Report Date:** March 21, 2026\r\n\r\n**Summary:**\r\nThe ERC6909 contract is vulnerable to several high-severity bugs, including unguarded transfers, approval bypassing, and operator mismanagement. These vulnerabilities can be exploited by malicious users to drain assets, steal approvals, and manipulate operator status.\r\n\r\n**Vulnerabilities:**\r\n\r\n1. **Unprotected Transfer**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `transfer` function does not check if the sender has sufficient balance before performing the transfer. This allows an attacker to transfer more assets than they own, potentially draining the contract's assets.\r\n\t* **Exploit:** An attacker can call `transfer` with a malicious `amount` parameter, exceeding their own balance.\r\n\t* **Recommendation:** Add a balance check before performing the transfer: `require(balanceOf[msg.sender][id] >= amount, \"Insufficient balance\");`\r\n2. **Approval Bypass**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `transferFrom` function does not properly check the allowance when the sender is not the same as the message sender. This allows an attacker to bypass the approval mechanism and steal assets.\r\n\t* **Exploit:** An attacker can call `transferFrom` with a malicious `sender` parameter, bypassing the approval check.\r\n\t* **Recommendation:** Update the allowance check to account for the sender: `if (msg.sender != sender && !isOperator[sender][msg.sender]) { ... }` should be `if (msg.sender != sender && (allowance[sender][msg.sender][id] < amount || !isOperator[sender][msg.sender])) { ... }`\r\n3. **Operator Mismanagement**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `setOperator` function allows an operator to be set without proper authorization. This can lead to unauthorized access to assets.\r\n\t* **Exploit:** An attacker can call `setOperator` to grant themselves operator status without the owner's consent.\r\n\t* **Recommendation:** Add a check to ensure only the owner can set operators: `require(msg.sender == owner, \"Only the owner can set operators\");`\r\n4. **Reentrancy Vulnerability**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `transfer` and `transferFrom` functions emit events, which can lead to reentrancy attacks. An attacker can exploit this to drain assets.\r\n\t* **Exploit:** An attacker can create a contract that listens for the `Transfer` event and reenters the `transfer` or `transferFrom` function.\r\n\t* **Recommendation:** Use a reentrancy lock or a more secure pattern, such as the Checks-Effects-Interactions pattern.\r\n5. **Unsecured Internal Functions**\r\n\t* **Severity:** HIGH\r\n\t* **Description:** The `_mint` and `_burn` functions are not secured against external calls. This allows an attacker to manipulate asset balances.\r\n\t* **Exploit:** An attacker can call `_mint` or `_burn` directly to alter asset balances.\r\n\t* **Recommendation:** Make these functions internal or secure them against external calls.\r\n\r\n**Conclusion:**\r\nThe ER",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Uniswap/v4-core/issues/1022",
+    "created_at": "2026-03-25T13:30:33.964851",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#719",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 719,
+    "title": "Implement multisig approve_upgrade flow (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Implement multisig approve_upgrade flow (grainlify-core)\n\nDescription\n\nAuthorize signers to approve pending upgrade proposals until threshold rules are met.\n\nRequirements and context\n\nPrevent double-counting approvals; enforce signer set membership.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-approve-upgrade\n\nImplement changes\n\nWrite contract: grainlify-core/src/multisig.rs\nWrite tests: grainlify-core/src/test/upgrade_rollback_tests.rs\nAdd documentation: security notes on threshold and replay\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(grainlify-core): multisig approve_upgrade with coverage\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/719",
+    "created_at": "2026-03-25T13:30:37.854627",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#803",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 803,
+    "title": "Soroban escrow: identity module (soroban/contracts/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Soroban escrow: identity module (soroban/contracts/escrow)\n\nDescription\n\nidentity.rs and identity_test.rs for address binding rules.\n\nRequirements and context\n\nPrevent spoofed identities on claims.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/soroban-escrow-identity\n\nImplement changes\n\nWrite contract: soroban/contracts/escrow/src/identity.rs\nWrite tests: soroban/contracts/escrow/src/identity_test.rs\nAdd documentation: identity guarantees\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(soroban-escrow): identity module tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/803",
+    "created_at": "2026-03-25T13:52:57.402214",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#800",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 800,
+    "title": "View facade: register and deregister (view-facade)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: View facade: register and deregister (view-facade)\n\nDescription\n\nAdmin-only register(address, kind, version) and deregister(address); verify auth.\n\nRequirements and context\n\nRegistry list append/remove stability.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/view-facade-register\n\nImplement changes\n\nWrite contract: view-facade/src/lib.rs\nWrite tests: view-facade/src/test.rs\nAdd documentation: ContractKind enum\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(view-facade): register and deregister tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/800",
+    "created_at": "2026-03-25T13:53:00.884517",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#32",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 32,
+    "title": "Add bounty recommendations by label and skill",
+    "body": "Contributors should discover issues that match their interests more easily. Should add simple recommendation logic based on labels or categories.\n\nImplementation:\n\nCreate a lightweight recommendation strategy using labels or repo tags  \nSurface recommended bounties near the main board or profile page  \nExplain why a bounty is recommended  \nKeep logic simple and transparent\n\nAcceptance Criteria:\n\nUsers can see recommended bounties  \nRecommendations are based on visible criteria  \nUI explains recommendation reasons  \nFeature does not replace normal browsing",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/32",
+    "created_at": "2026-03-25T14:30:17.995662",
+    "status": "claimed"
+  },
+  {
+    "key": "Axionvera/axionvera-sdk#2",
+    "owner": "Axionvera",
+    "repo": "axionvera-sdk",
+    "number": 2,
+    "title": "Issue 202: chore: Define Standardized GitHub PR and Issue Templates",
+    "body": "## Description\nTo manage external contributions effectively during the bounty program, we need strict templates for bug reports, feature requests, and pull requests to ensure maintainers get all necessary context upfront.\n\n## Requirements\n- [ ] Create `.github/ISSUE_TEMPLATE/bug_report.md` requiring Node version, SDK version, and a minimum reproducible example.\n- [ ] Create `.github/ISSUE_TEMPLATE/feature_request.md` focusing on the proposed API signature and use case.\n- [ ] Create `.github/PULL_REQUEST_TEMPLATE.md` with a mandatory checklist (tests passed, docs updated, linted).",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Axionvera/axionvera-sdk/issues/2",
+    "created_at": "2026-03-25T15:30:15.500969",
+    "status": "claimed"
+  },
+  {
+    "key": "ua6248634-cell/Shaurya-OS#1",
+    "owner": "ua6248634-cell",
+    "repo": "Shaurya-OS",
+    "number": 1,
+    "title": "pentest",
+    "body": "shaurya os, shaurya os v1.0, shaurya os download,\nsecurity os, cyber warfare os, penetration testing os,\nhacking os, kali linux alternative, debian security os\n\n╔══════════════════════════════════════════════════════════════════════════════╗\n║           SHAURYA OS v1.0 — COMPLETE DESCRIPTION PACK                      ║\n║           Created by: Usman Ahmad                                           ║\n║           Contact: ua6248634@gmail.com                                      ║\n╚══════════════════════════════════════════════════════════════════════════════╝\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n  SECTION 1: MAIN DESCRIPTION (Website / GitHub / Gumroad)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSHAURYA OS v1.0\n\"Courage in Every Byte\"\nCreated by Usman Ahmad\n\n━━ WHAT IS SHAURYA OS? ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nShaurya OS v1.0 is a professional-grade cyber warfare and\nintelligence security operating system built on Debian 12\nBookworm. Named after the Sanskrit word for \"courage\" and\n\"bravery\", Shaurya OS is built for security professionals,\nethical hackers, red teamers, penetration testers, and\ncyber intelligence researchers.\n\nWith 10,000+ pre-installed security tools, 500+ AI agents,\nand an automated exploitation engine — Shaurya OS is ready\nto deploy from the very first boot. No setup. No configuration.\nJust power on and start working.\n\n━━ KEY HIGHLIGHTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n⚔️  Named after bravery — built for warriors of cyberspace\n🌊  Beautiful Cyan/Blue theme — like the ocean, deep and powerful\n🔵  10,000+ pre-installed tools across every security category\n🤖  500+ AI agents — AutoGPT, CrewAI, LangChain, Ollama\n🎯  Auto-Pwn Engine — one command, full attack chain\n🌐  Web Control Panel — browser-based at localhost:8008\n📱  Android Security Toolkit — MobSF, Frida, JADX, Drozer\n🔬  Digital Forensics — Autopsy, Volatility3, Yara, Capa\n☁️  Cloud Security — AWS, Azure, GCP attack tools\n🔧  Self-Healing System — daily auto-repair at 3AM\n🛡️  Built on Debian 12 Bookworm — stable and secure base\n👤  Created by Usman Ahmad\n\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n  SECTION 2: TOOL CATEGORIES\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSHAURYA OS v1.0 — Complete Tool Arsenal\n\n1. PENETRATION TESTING & EXPLOITATION (400+ tools)\n   ► Metasploit Framework — 2,000+ exploits\n   ► Armitage GUI — Visual Metasploit interface\n   ► Havoc C2 — Modern command and control\n   ► Sliver — Cross-platform C2 framework\n   ► Empire — PowerShell post-exploitation\n   ► BloodHound — Active Directory attack paths\n   ► Certipy — AD CS certificate attacks\n   ► Impacket — Windows protocol exploitation\n   ► CrackMapExec — SMB/WinRM enumeration\n   ► Nuclei — 10,000+ CVE templates\n\n2. WEB APPLICATION SECURITY (200+ tools)\n   ► SQLMap — Automatic SQL injection tool\n   ► XSStrike — Advanced XSS detection suite\n   ► dalfox — Fast XSS parameter scanner\n   ► BeEF XSS — Browser e",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/ua6248634-cell/Shaurya-OS/issues/1",
+    "created_at": "2026-03-25T16:30:14.151652",
+    "status": "claimed"
+  },
+  {
+    "key": "himmelblau-idm/himmelblau#1206",
+    "owner": "himmelblau-idm",
+    "repo": "himmelblau",
+    "number": 1206,
+    "title": "Resume from standby locks user out",
+    "body": "### Description\n\nDistri: RHEL 10\n\nAfter a resume, when network gets disconnected, a logged in User can no longer unlock the lock screen. I even cannot switch consoles via ctrl + alt +f# to maybe fix it.\nAt work, with working network, I can ssh into the system, restart himmelblau and unlock again - this takes about 10+ minutes all in all. The initial ssh login until the password prompt shows up takes about 2 minutes, then the sudo systemctl restart himmelblaud himmelblaud-tasks takes another 2 minutes for the password prompt (unix offline user) and then another 2 minutes until the service is actually restarted. During this, the unlock prompt resets twice. After this I need to press enter again and finally the PIN prompt is shown and I can unlock the system.\nAt home, when I use VPN the same thing happens. But this time, since the VPN doesn't reset properly, the network is in a state where I cannot use ssh. Since I cannot switch console  anymore, all I can do is hard reset the system.\n\nBoth situations are obviously not ideal and I should always be able to access the system again.\n\nHimmelblau should recover from this by resetting itself in some form  - and in the case of my VPN problem or another network problem fall back to offline login.\n\n\nEvent timeline:\n12:58:00 wake up - no PIN prompt\n12:59:04 ssh connection start\n13:00:40 ssh connected\n13:00:45 sudo systemctl restart himmelblaud himmelblaud-tasks\n13:06:13 sudo password prompt\n13:09:27 himmelblau restarted - hit enter to remove old pam error and PIN prompt is here\n\nThere are also some selinux errors left, not sure if they matter, regular usage works\n\nSELinux hindert /usr/sbin/NetworkManager daran, mit write-Zugriff auf Verzeichnis nss-himmelblau zuzugreifen.\nSELinux hindert /usr/bin/getent daran, mit connectto-Zugriff auf unix_stream_socket /run/himmelblaud/socket zuzugreifen.\nSELinux hindert /opt/cisco/secureclient/bin/vpnagentd daran, mit connectto-Zugriff auf unix_stream_socket /run/himmelblaud/socket zuzugreifen.\n\nmaybe some more, but maybe a separate issue\n\n### Steps to Reproduce\n\n* suspend or standby machine\n* wake up again\n* no login text in plasma lock screen or gnome lock screen\n\nshould instead prompt for PIN or entra id password\n\n### Relevant log output\n\n```shell\nwill attach separately - is a bit longer\n```\n\n### Version\n\n3.0.0\n\n### Code of Conduct\n\n- [x] I agree to follow this project's Code of Conduct\n---\n\n### 💡 Help Make It Happen!\n\nWant to see this issue resolved faster? Fund its implementation through our **Backer's Bounty** program, where you choose which issues get priority!\n\n[![Donate to Our Collective](https://opencollective.com/himmelblau/donate/button.png?color=blue)](https://himmelblau-idm.org/backers.html#backers-bounty)\n\nFor US tax exempt donations:\n\n[![Donate US Tax Exempt](https://www.spi-inc.org/images/paypal_btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8GYKFLX9UNCH2)\n\nYour support helps drive Himmelblau’s evolution!",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/himmelblau-idm/himmelblau/issues/1206",
+    "created_at": "2026-03-25T16:30:17.430484",
+    "status": "claimed"
+  },
+  {
+    "key": "RyderFreeman4Logos/cli-sub-agent#472",
+    "owner": "RyderFreeman4Logos",
+    "repo": "cli-sub-agent",
+    "number": 472,
+    "title": "bug: ephemeral sessions break gemini-cli file access (wrong working directory)",
+    "body": "## Problem\n\nWhen using `--ephemeral` with `--tool gemini-cli`, the spawned gemini-cli session cannot find any project files because the working directory is set to a temporary CSA session directory instead of the project root.\n\n### Reproduction\n\n```bash\ncat <<'PROMPT' | csa run --sa-mode true --force-ignore-tier-setting --tool gemini-cli --idle-timeout 300 --ephemeral\nRead crates/mandate-core/crates/mandate-bounty/fixtures/bounty.toml and report its contents.\nPROMPT\n```\n\n### Observed Behavior\n\nGemini-cli spends all its time trying to locate files:\n\n```\n[stdout] I will list the directory contents of the project to confirm the file paths\n[stdout] I will list the directory contents of the `mandate-monorepo` path\n[stdout] I will search for the relevant files by name to find their exact location\n[stdout] I will check the current working directory\n[stdout] I will list the `/home/obj/project` directory\n[stdout] I will use `find` to locate the `mandate-dev-drafts` directory\n```\n\nIt never finds the files because `pwd` is a CSA temp directory, not the project root.\n\n### Expected Behavior\n\nEven in `--ephemeral` mode, the tool should be able to access project files. Options:\n1. Pass `--cd <project-root>` to the tool\n2. Set `cwd` in the tool invocation to the project root\n3. Inject the project root path in the prompt context\n\n### Environment\n\n- CSA version: `csa 0.1.167 (v0.1.15-274-g1828e8b)`\n- Tool: gemini-cli\n- Flag: `--ephemeral`\n- All 3 parallel ephemeral gemini-cli sessions exhibited the same behavior\n\n### Impact\n\n- `--ephemeral` mode is effectively unusable with gemini-cli for any task requiring file access\n- Non-ephemeral sessions work correctly (gemini-cli can find files via the project's working directory)\n\n### Workaround\n\nDon't use `--ephemeral` for gemini-cli sessions that need file access.",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/RyderFreeman4Logos/cli-sub-agent/issues/472",
+    "created_at": "2026-03-25T16:30:21.123019",
+    "status": "claimed"
+  },
+  {
+    "key": "MindFlowInteractive/quest-contract#130",
+    "owner": "MindFlowInteractive",
+    "repo": "quest-contract",
+    "number": 130,
+    "title": "Puzzle Crowdfund and Community Bounty Contract",
+    "body": "\n**Location:** `contracts/puzzle_crowdfund`\n**Estimated Time:** 7 hours\n**Difficulty:** Hard\n\n### Description\nAllow the community to pool funds to create a shared bounty for solving a specific puzzle. Any player can contribute to a crowdfund campaign. When the target amount is reached, the bounty activates. The first player to solve the puzzle claims the full pooled reward. Unfunded campaigns can be refunded.\n\n### Tasks\n- [ ] Design `CrowdfundCampaign` struct: `puzzle_id`, `target_amount`, `raised`, `status`, `contributors: Map<Address, i128>`, `winner`\n- [ ] Implement `create_campaign(puzzle_id, target_amount, deadline)` — initializes new campaign\n- [ ] Implement `contribute(campaign_id, amount)` — adds to `raised`; stores contributor share\n- [ ] Campaign auto-activates when `raised >= target_amount`\n- [ ] Implement `claim_bounty(campaign_id, solution_hash)` — first valid solver takes all raised funds\n- [ ] Implement `refund(campaign_id)` — callable if deadline passed without reaching target; returns pro-rata shares\n- [ ] `get_campaign(campaign_id)` — returns full status, raised amount, contributor list\n- [ ] Emit `CampaignActivated`, `BountyClaimed(campaign_id, winner, amount)`, `CampaignRefunded` events\n- [ ] Write tests: contribute, auto-activate, claim, refund after deadline, double-claim rejection\n\n### Acceptance Criteria\n- Campaigns fund and activate correctly\n- Winner takes full pooled amount\n- Refunds distributed pro-rata\n- Deadline enforced for inactive campaigns\n- Contract deployed to testnet",
+    "score": 60,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/MindFlowInteractive/quest-contract/issues/130",
+    "created_at": "2026-03-25T17:30:29.952471",
+    "status": "claimed"
+  },
+  {
+    "key": "labs-solo/aegis-arena#3",
+    "owner": "labs-solo",
+    "repo": "aegis-arena",
+    "number": 3,
+    "title": "Audit 3: audit of the docs folder",
+    "body": "## Audit Scope\n\n### Files Reviewed\n\n| File | Status |\n|------|--------|\n| `README.md` | Reviewed |\n| `TECHNICAL.md` | Reviewed |\n| `docs/JUDGES.md` | Reviewed |\n| `docs/specs/ARCHITECTURE.md` | Reviewed |\n| `docs/specs/ARENA_CONTRACT.md` | Reviewed |\n| `docs/specs/BOUNTY_BONDS.md` | Reviewed |\n| `docs/specs/AGENTS.md` | Reviewed |\n| `docs/specs/SCORING.md` | Reviewed |\n| `docs/specs/BORROW_FLOW.md` | Reviewed |\n| `docs/specs/SDK.md` | Reviewed |\n| `docs/roadmap/SEER_BETS.md` | Reviewed |\n| `docs/guides/POSITION_MANAGER_LOOKUP.md` | Reviewed |\n\n### Files Not Yet Reviewed\n\n- `docs/specs/DEPLOYMENT.md`\n- `docs/specs/X402.md`\n- `docs/guides/SETUP.md`\n- `docs/guides/RUNNING_GAME.md`\n- `docs/guides/ADDING_AGENTS.md`\n- `src/` (TypeScript SDK and server implementation)\n\n---\n\n## Findings\n\n---\n\n### DOC-01 — TECHNICAL.md describes a completely different contract API to what exists\n\n**Severity:** Critical\n**File:** `TECHNICAL.md`\n**Lines:** 228–244\n\n**Description:**\n`TECHNICAL.md` documents the following Arena.sol functions in its key contract reference table:\n\n| Function | Purpose |\n|----------|---------|\n| `registerAgent(address, bytes32 strategy)` | Register an agent |\n| `recordScore(address, uint256)` | Update agent score |\n| `claimRoundReward(uint256 roundId)` | Agents claim prize |\n| `endRound(uint256 roundId)` | Settle scores |\n\nNone of these functions exist. The actual contract has `register(address[])`, `startRound()`, `executeBatch()`, and `settle()`. These are not naming differences — they represent fundamentally different designs. `claimRoundReward` implies agents pull their own prizes on-chain. `settle()` means the owner pushes prizes. The access model, the economic flow, and the agent interaction pattern differ entirely.\n\n`TECHNICAL.md`'s Bounty.sol table (line 237–243) is equally misaligned: it documents `claimBounty(uint256 bountyId, bytes calldata proof)` (wrong signature — no proof param) and `rejectBounty(uint256 bountyId)` (this function does not exist anywhere in the codebase).\n\nThis document appears to describe an earlier design that was never built. Anyone building against `TECHNICAL.md` as a reference would implement against interfaces that do not exist.\n\n**Recommended resolution:**\n`TECHNICAL.md` should be fully rewritten to reflect the actual deployed contracts. Until then it should carry a prominent deprecation warning at the top.\n\n---\n\n### DOC-02 — Judge-facing documents make materially false claims about verification\n\n**Severity:** Critical\n**Files:** `TECHNICAL.md#L222`, `docs/JUDGES.md#L15`, `docs/JUDGES.md#L266`\n\n**Description:**\nMultiple judge-facing documents assert properties the contracts do not have.\n\n`TECHNICAL.md` line 222:\n> *\"No off-chain verification. No human judges. The contract checks the pool's swaps log directly.\"*\n\n`verifyAndPay()` is owner-only, accepts owner-supplied bytes, and never reads a pool or transaction log. Verification is entirely off-chain and owner-controlled.\n\n`docs/JUDGES.md` line 15:\n> *\"No sim",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/labs-solo/aegis-arena/issues/3",
+    "created_at": "2026-03-25T17:30:34.150903",
+    "status": "claimed"
+  },
+  {
+    "key": "rsoreq-mend/AutoGPT#57",
+    "owner": "rsoreq-mend",
+    "repo": "AutoGPT",
+    "number": 57,
+    "title": "litellm-1.17.9-py3-none-any.whl: 11 vulnerabilities (highest severity is: 9.8) [master]",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>litellm-1.17.9-py3-none-any.whl</strong></summary>\n\nLibrary to easily interface with LLM API providers\n\n**Library home page:** [ https://files.pythonhosted.org/packages/76/f8/a61579cb4084fce469e380807c1e2990ed68099b36125e20e4822de60893/litellm-1.17.9-py3-none-any.whl ](https://files.pythonhosted.org/packages/76/f8/a61579cb4084fce469e380807c1e2990ed68099b36125e20e4822de60893/litellm-1.17.9-py3-none-any.whl)\n\n\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2024-2952 ](https://www.mend.io/vulnerability-database/CVE-2024-2952) | 🟣 Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.34.42 | ✅ | |\n| [ CVE-2024-5751 ](https://www.mend.io/vulnerability-database/CVE-2024-5751) | 🟣 Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.40.16 | ✅ | |\n| [ CVE-2024-4888 ](https://www.mend.io/vulnerability-database/CVE-2024-4888) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.35.18 | ✅ | |\n| [ CVE-2025-0628 ](https://www.mend.io/vulnerability-database/CVE-2025-0628) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.61.15,https://github.com/BerriAI/litellm.git - v1.61.15-nightly | ✅ | |\n| [ CVE-2024-6587 ](https://www.mend.io/vulnerability-database/CVE-2024-6587) | 🔴 High | 7.5 | Not Defined | 88.4% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.44.8 | ✅ | |\n| [ CVE-2024-8984 ](https://www.mend.io/vulnerability-database/CVE-2024-8984) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.56.2 | ✅ | |\n| [ CVE-2024-9606 ](https://www.mend.io/vulnerability-database/CVE-2024-9606) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.44.12,https://github.com/berriai/litellm.git - v1.44.12,litellm - 1.44.12 | ✅ | |\n| [ CVE-2025-0330 ](https://www.mend.io/vulnerability-database/CVE-2025-0330) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.56.6,https://github.com/BerriAI/litellm.git - v1.56.6 | ✅ | |\n| [ CVE-2024-4264 ](https://www.mend.io/vulnerability-database/CVE-2024-4264) | 🔴 High | 7.2 | Not Defined | 3.3% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.44.16 | ✅ | |\n| [ CVE-2024-4889 ](https://www.mend.io/vulnerability-database/CVE-2024-4889) | 🔴 High | 7.2 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | no_fix | ✅ | |\n| [ CVE-2024-5225 ](https://www.mend.io/vulnerability-database/CVE-2024-5225) | 🔴 High | 7.2 | Not Defined | < 1% | litellm-1.17.9-py3-none-any.whl | Direct | litellm - 1.40.0 | ✅ | |\n\n\n# Details\n\n\n<details>\n  <summary>\n 🟣CVE-2024-2952\n  </summary>\n\n### Vulnerable",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/rsoreq-mend/AutoGPT/issues/57",
+    "created_at": "2026-03-25T17:30:49.603129",
+    "status": "claimed"
+  },
+  {
+    "key": "rsoreq-mend/AutoGPT#61",
+    "owner": "rsoreq-mend",
+    "repo": "AutoGPT",
+    "number": 61,
+    "title": "autogpt-forge-0.2.0: 22 vulnerabilities (highest severity is: 9.8) [master]",
+    "body": "<details>\n  <summary>📂 Vulnerable Library - <strong>autogpt-forge-0.2.0</strong></summary>\n\n\n\n\n\n\n\n\n\n\n</details>\n\n\n# Findings\n| Finding | Severity | 🎯 CVSS | Exploit Maturity | EPSS | Library | Type | Fixed in | Remediation Available | **Reachability** |\n| ------------- | ------------- | ---- | --- | ----- | ----- | ----- | --- | --- | --- |\n| [ CVE-2024-2952 ](https://www.mend.io/vulnerability-database/CVE-2024-2952) | 🟣 Critical | 9.8 | Not Defined | 1.4000001% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-5751 ](https://www.mend.io/vulnerability-database/CVE-2024-5751) | 🟣 Critical | 9.8 | Not Defined | 5.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2026-0994 ](https://www.mend.io/vulnerability-database/CVE-2026-0994) | 🔴 High | 8.6 | Not Defined | < 1% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-4888 ](https://www.mend.io/vulnerability-database/CVE-2024-4888) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-0628 ](https://www.mend.io/vulnerability-database/CVE-2025-0628) | 🔴 High | 8.1 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-6587 ](https://www.mend.io/vulnerability-database/CVE-2024-6587) | 🔴 High | 7.5 | Not Defined | 88.4% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-8984 ](https://www.mend.io/vulnerability-database/CVE-2024-8984) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2024-9606 ](https://www.mend.io/vulnerability-database/CVE-2024-9606) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-0330 ](https://www.mend.io/vulnerability-database/CVE-2025-0330) | 🔴 High | 7.5 | Not Defined | < 1% | litellm-1.17.13-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-4565 ](https://www.mend.io/vulnerability-database/CVE-2025-4565) | 🔴 High | 7.5 | Not Defined | < 1% | protobuf-4.25.2-cp310-abi3-win32.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-47273 ](https://www.mend.io/vulnerability-database/CVE-2025-47273) | 🔴 High | 7.5 | Not Defined | < 1% | setuptools-70.1.1-py3-none-any.whl | Transitive | N/A | ❌ | |\n| [ CVE-2025-55197 ](https://www.mend.io/vulnerability-database/CVE-2025-55197) | 🔴 High | 7.5 | Not Defined | < 1% | pypdf-3.17.4-py3-none-any.whl | Direct | https://github.com/py-pdf/pypdf.git - 6.0.0,pypdf - 6.0.0,pypdf - 6.0.0 | ✅ | |\n| [ CVE-2025-62707 ](https://www.mend.io/vulnerability-database/CVE-2025-62707) | 🔴 High | 7.5 | Not Defined | < 1% | pypdf-3.17.4-py3-none-any.whl | Direct | pypdf - 6.1.3,https://github.com/py-pdf/pypdf.git - 6.1.3 | ✅ | |\n| [ CVE-2025-62708 ](https://www.mend.io/vulnerability-database/CVE-2025-62708) | 🔴 High | 7.5 | Not Defined | < 1% | pypdf-3.17.4-py3-none-any.whl | Direct | https://github.com/py-pdf/pypdf.git - 6.1.3,pypdf - 6.1.3 | ✅ | |\n| [ C",
+    "score": 40,
+    "labels": [],
+    "html_url": "https://github.com/rsoreq-mend/AutoGPT/issues/61",
+    "created_at": "2026-03-25T17:30:54.831564",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#189",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 189,
+    "title": "[Idea Bounty] Nutrition Card: Prefill serving with last-used amount and compute nutrition facts based on weight",
+    "body": "## Feature Request\nIt's tedious to manually re-enter the serving/weight every time using the Nutrition Card. It should prefill the serving input with the last-used value (per food), and when the user edits the serving weight (e.g. grams), the nutrition facts line items should auto-compute corresponding macros for arbitrary fractional servings.\n\n**Example:**\n- If serving = 28g, and I enter 42g, the app should show protein, calories, etc. for 1.5 servings.\n- If I log 100g cottage cheese today, tomorrow when I select it, the weight field should be prefilled with 100g (but still editable).\n- Editing the amount should automatically recalc the nutrition facts displayed in the card instead of requiring a fixed unit.\n\n---\n- Use this issue as an end-to-end test for idea-credit + auto-queue, goal is fully automatic payout with NO maintainer approval required.\n\n## Acceptance Criteria\n- [ ] Nutrition Card's serving/weight field is prefilled with the last-used (per food, per user)\n- [ ] Changing the weight/serving dynamically updates nutrition macros (calories, protein, etc.)\n- [ ] If weight differs from 1.0 serving, all facts update proportionally\n- [ ] Still allows manual override for edge cases\n\n## Labels\nbounty: 1 BNUT, idea-adopted, idea-credit: @TheJollyLaMa\n\n---\nThis is an automated test of the idea-bounty/credit Copilot loop.",
+    "score": 30,
+    "labels": [
+      "bounty: 1 BNUT",
+      "V2.1.0",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/189",
+    "created_at": "2026-03-25T18:00:11.810628",
+    "status": "claimed"
+  },
+  {
+    "key": "term-structure/termmax-contract-v2#22",
+    "owner": "term-structure",
+    "repo": "termmax-contract-v2",
+    "number": 22,
+    "title": "DoS issue in liquidation",
+    "body": "Hello, I have submitted a high level issue into immunefi.\nThe immunefi team didn't understand the point and closed it.\nI think this issue is valuable to the TermMax protocol.\nWould you please take a coffe time to check my issue report?\nIf the issue is valueable, I think I can get some bounty.\nBest regards,",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/term-structure/termmax-contract-v2/issues/22",
+    "created_at": "2026-03-25T18:00:15.804419",
+    "status": "claimed"
+  },
+  {
+    "key": "mlflow/mlflow#21966",
+    "owner": "mlflow",
+    "repo": "mlflow",
+    "number": 21966,
+    "title": "BUG] Security Vulnerability - Path Traversal in _get_artifact_repo via fragment bypass",
+    "body": "<!-- issue-warning -->\n> [!WARNING]\n> Before submitting a PR, please make sure that:\n> - A maintainer has triaged this issue and applied the `ready` label\n> - This issue has no assignee\n> - No duplicate PR exists\n>\n> PRs not meeting these requirements may be automatically closed.\n\n### Issues Policy acknowledgement\n\n- [x] I have read and agree to submit bug reports in accordance with the [issues policy](https://www.github.com/mlflow/mlflow/blob/master/ISSUE_POLICY.md)\n\n### Where did you encounter this bug?\n\nLocal machine\n\n### MLflow version\n\n2.11.0 / latest\n\n### System information\n\nLinux/Windows (Local tracking server environment)\n\n\n\n### Describe the problem\n\nI have discovered a Critical Path Traversal (CVSS 10.0) that allows arbitrary file read from the host system. Following the MLflow Security Policy, I have sent the full technical analysis and the working Python PoC to mlflow-oss-maintainers@googlegroups.com to ensure coordinated disclosure.\n\n### Tracking information\n\nSent via email to mlflow-oss-maintainers@googlegroups.com for security reasons.\n\n\n### Code to reproduce issue\n\nTechnical details and a working Python Proof of Concept (PoC) have been sent privately via email to mlflow-oss-maintainers@googlegroups.com to comply with the project's Security Policy and ensure coordinated disclosure. Please refer to the email for the reproduction script.\n\n\n### Stack trace\n\nAs this is a security vulnerability report, the relevant logs and the output of the exploit have been included in the private email sent to mlflow-oss-maintainers@googlegroups.com. This is to avoid exposing sensitive internal path structures or system information publicly.\n\n### Other info / logs\n\nThis vulnerability was previously reported via Huntr (Bounty ID: b2c77f26) on Feb 11th, 2026. However, due to the project's updated policy regarding external bounty platforms, I am now disclosing it directly through this official channel. All relevant tracking server logs and the full exploit evidence have been attached to the private email sent to the maintainers.\n\n### What component(s) does this bug affect?\n\n- [x] `area/tracking`: Tracking Service, tracking client APIs, autologging\n- [ ] `area/model-registry`: Model Registry service, APIs, and the fluent client calls for Model Registry\n- [ ] `area/scoring`: MLflow model serving, deployment tools, Spark UDFs\n- [ ] `area/evaluation`: MLflow model evaluation features, evaluation metrics, and evaluation workflows\n- [ ] `area/prompt`: MLflow prompt engineering features, prompt templates, and prompt management\n- [ ] `area/tracing`: MLflow Tracing features, tracing APIs, and LLM tracing functionality\n- [ ] `area/gateway`: MLflow AI Gateway client APIs, server, and third-party integrations\n- [ ] `area/projects`: MLproject format, project running backends\n- [ ] `area/uiux`: Front-end, user experience, plotting\n- [ ] `area/docs`: MLflow documentation pages",
+    "score": 15,
+    "labels": [
+      "bug",
+      "area/tracking"
+    ],
+    "html_url": "https://github.com/mlflow/mlflow/issues/21966",
+    "created_at": "2026-03-25T18:00:19.176312",
+    "status": "claimed"
+  },
+  {
+    "key": "SPLURT-Station/S.P.L.U.R.T-tg#907",
+    "owner": "SPLURT-Station",
+    "repo": "S.P.L.U.R.T-tg",
+    "number": 907,
+    "title": "[BOUNTY] Suggestion #543",
+    "body": "### About the Bounty\n\n## Original issue text:\n\n**Suggestion:**\nAllow cursekin (werewolf species) to wear clothes in their beast form. There is no reason why they should unable to wear *anything*. Not even a bag, an ID, their radio, harness, nothing. This is a repeat of an earlier suggestion from last year that has 15 upvotes and 1 downvote that has NEVER been looked at. If approved I will personally go in and remedy this myself.\n\n**Reason:**\n[BOUNTY] Player bounty: $10 | Sure.\n\n**Results:**\n15x <:In_help:1056296636348899408>\n1x <:In_harm:1056296637909192794>\n\n\n### Suggestion Reference\n\n**Suggested by:** gobgobber\nhttps://discord.com/channels/908082639704064051/1404686278351655055/1486299073014140961\n\n### Contact Information\n\nContact `mos_ley` and in discord for payment information.\n\nContact `gobgobber` in discord for information about the requirements.\n\n### Payment Details\n\nPayment methods:\n- PayPal (Willcario)",
+    "score": 95,
+    "labels": [
+      "bounty"
+    ],
+    "html_url": "https://github.com/SPLURT-Station/S.P.L.U.R.T-tg/issues/907",
+    "created_at": "2026-03-25T18:30:21.638230",
+    "status": "claimed"
+  },
+  {
+    "key": "tronprotocol/java-tron#6599",
+    "owner": "tronprotocol",
+    "repo": "java-tron",
+    "number": 6599,
+    "title": "[CRITICAL] DelegateResourceProcessor Precision Loss - CVSS 9.3",
+    "body": "# 🚨 CRITICAL VULNERABILITY: DelegateResourceProcessor Precision Loss\n**CVSS v3.1: 9.3 (CRITICAL)** `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H`\n\n## 🎯 Vulnerability Summary\nHigh-severity **economic attack** in TRON Stake 2.0. Floating point truncation bypasses `frozenV2BalanceForEnergy` validation, allowing **resource theft**.\n\n## 📁 Affected Code\nactuator/src/main/java/org/tron/core/vm/nativecontract/DelegateResourceProcessor.java:79\n\nlong energyUsage = (long) (ownerCapsule.getEnergyUsage() * TRX_PRECISION *\n((double)(repo.getTotalEnergyWeight()) / dynamicStore.getTotalEnergyCurrentLimit()));\n\n**Root Cause:** `0.999999 ratio → truncates to 0!` [vuln_proof.txt]\n\n## 💥 Attack Flow\ntotalEnergyWeight/totalEnergyCurrentLimit = 0.999999999\n\nenergyUsage = (long)0 → frozenV2Balance - 0 >= delegateBalance ✓\n\nFREE ENERGY delegated despite insufficient balance\n\nVictim loses TRX-equivalent resources ($15-20/TRX)\n\n\n## 🔬 Proof of Concept\n**Mainnet Evidence:** 50+ live `DelegateResourceContract` txns [paste.txt]\n**Code Proof:** Line 79 truncation [vuln_proof.txt]\n\n**Live Test:**\n```bash\ncurl -X POST https://api.trongrid.io/wallet/delegateresource \\\n-d '{\"owner_address\":\"YOUR_ADDR\",\"receiver_address\":\"TARGET\",\"balance\":1000000000,\"resource\":\"ENERGY\"}'\n\nRecommended Fix\n\n// Integer math - NO floating point!\nlong ratio = (repo.getTotalEnergyWeight() * TRX_PRECISION) / \n             dynamicStore.getTotalEnergyCurrentLimit();\nlong energyUsage = (ownerCapsule.getEnergyUsage() * ratio) / TRX_PRECISION;\n\nAttachments\nvuln_proof.txt - Vulnerable code extract\n\n🎖️ Bounty Request\nTRON DAO Bug Bounty Program - Advanced Eco\n\n[vuln_proof.txt](https://github.com/user-attachments/files/26237458/vuln_proof.txt)\n\nfnomic Attack ($10k+) [web:614]\n\nReporter: Chetan Biranje\nContact: Chetanchandrakantbiranje@gmail.com\n\n@TronProtocol @justinsuntron @Tronfoundation\n#TRON #Stake2 #BugBounty #Security",
+    "score": 45,
+    "labels": [],
+    "html_url": "https://github.com/tronprotocol/java-tron/issues/6599",
+    "created_at": "2026-03-25T18:30:26.758024",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#192",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 192,
+    "title": "[Idea Bounty] Raw Intake log: newest-first and nutrition card popover on hover",
+    "body": "## Overview\n\nWe want to improve the usability of the Raw Intake side panel log and further test the automated idea-credit workflow!\n\n### 1. Log Order Change\n- The log at the bottom of the Raw Intake side panel currently lists the newest entry as the **last** row in the table, which can be inconvenient when tracking recent logs.\n- Instead, **reverse the log order so the most recent entry is always at the top**.\n- This will allow us to easily check if new logs are being recorded and displayed correctly.\n\n### 2. Nutrition Card Hover Preview for Log Rows\n- When hovering any entry in the log table, a **Nutrition Card should pop up** showing the macro/calorie information (just for 1 serving) corresponding to that log.\n- This card should use the same look-and-feel as the usual Nutrition Card but only display the values for 1 serving.\n- We only need the popover preview, not an interactive or editable instance.\n- This helps users verify what nutrients that specific log row represented at a glance.\n\n#### Use this issue to verify the automated bounty/idea-credit workflow works hands-off with no owner intervention.\n\n---\n## Acceptance Criteria\n- [ ] Raw Intake log displays the newest entry at the **top** of the table\n- [ ] Hovering over a log entry displays its Nutrition Card (1 serving only) as a popover\n\n---\n## Labels\nbounty: 1 BNUT, idea-adopted, idea-credit: @TheJollyLaMa\n\nThis is a test case for full Copilot workflow automation.",
+    "score": 40,
+    "labels": [
+      "bounty: 1 BNUT",
+      "V2.1.0",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/192",
+    "created_at": "2026-03-25T18:30:30.647851",
+    "status": "claimed"
+  },
+  {
+    "key": "one-covenant/crusades#65",
+    "owner": "one-covenant",
+    "repo": "crusades",
+    "number": 65,
+    "title": "Automated exploit detection with adaptive burn switch and researcher bounty",
+    "body": "## Summary\nImplement automated exploit detection that triggers protocol burn mode and rewards security researchers who disclose vulnerabilities responsibly.\n\n## Motivation\nRecent exploit (`v17_commit_7817608_208` - async overlap manipulation) required manual intervention to activate burn mode. Miners are incentivized to probe the scanner; validators need automated defense that responds faster than human oversight.\n\n## Proposed Mechanism\n\n### 1. Automated Exploit Detection (Cron-based)\n- **Frequency**: 15-minute intervals\n- **Process**: \n  - Scan recent submissions for exploit patterns\n  - Analyze AST for forbidden constructions (lazy loading, timer tampering, deferred computation)\n  - Cross-reference against known exploit signatures\n  - If confidence high → auto-trigger burn mode\n\n### 2. Adaptive Burn Switch\n- When exploit detected, validator automatically sets 100% burn rate\n- Halts all emissions until patch deployed\n- Logs detailed forensics (submission ID, exploit class, detection timestamp)\n\n### 3. Researcher Bounty Program\n- **Disclosure Reward**: TAO bounty for researchers who report exploits *responsibly* (before submitting to leaderboard)\n- **Detection vs Exploitation**: \n  - Reporter shares proof-of-concept privately → receives bounty\n  - Reporter exploits on mainnet → disqualified, no bounty\n- **Bounty Amount**: TBD (suggested: 1-3 TAO for moderate severity, higher for critical)\n\n## Implementation Notes\n- Requires binding Ozymandias/discord analysis to validator governance layer\n- Cron scanner must have authority to signal blockchain state changes\n- Bounty distribution requires wallet integration or manual payout workflow\n\n## Related\n- Recent exploit report: [Discord thread](https://discord.com/channels/799672011265015819/1222226314824777853/1486147330507018310)\n- Scanner rules: `src/crusades/core/security_defs.py`\n\n---\n*This issue formalizes the defense-in-depth strategy discussed with researchers who disclosed today's exploit.*",
+    "score": 40,
+    "labels": [
+      "source:discord"
+    ],
+    "html_url": "https://github.com/one-covenant/crusades/issues/65",
+    "created_at": "2026-03-25T18:30:34.438844",
+    "status": "claimed"
+  },
+  {
+    "key": "kosiorkosa47/SockFuzzerAppleSillicon#38",
+    "owner": "kosiorkosa47",
+    "repo": "SockFuzzerAppleSillicon",
+    "number": 38,
+    "title": "Build crash-to-PoC automatic translator",
+    "body": "## Motivation\nWhen a crash is found, manually translating the protobuf test case into a C userspace PoC is tedious and error-prone. Automation accelerates bug bounty submission.\n\n## Implementation Plan\n1. Parse crash protobuf binary into Session message\n2. Translate each Command into equivalent userspace C syscall\n3. Map socket domains, addresses, options to real values\n4. Generate standalone C file that reproduces the bug\n5. Add verify step: compile and run PoC against real kernel (with safety checks)\n\n## Acceptance Criteria\n- [ ] poc_generator.py takes crash file, outputs .c PoC\n- [ ] Generated PoC compiles on macOS without modification\n- [ ] Includes proper error handling and cleanup\n- [ ] Header comments document the crash context",
+    "score": 20,
+    "labels": [
+      "priority: medium",
+      "type: enhancement",
+      "area: fuzzer-core"
+    ],
+    "html_url": "https://github.com/kosiorkosa47/SockFuzzerAppleSillicon/issues/38",
+    "created_at": "2026-03-25T18:30:38.022025",
+    "status": "claimed"
+  },
+  {
+    "key": "himmelblau-idm/himmelblau#1221",
+    "owner": "himmelblau-idm",
+    "repo": "himmelblau",
+    "number": 1221,
+    "title": "FIDO Login doesn't work, if user has cross device capable passkey too",
+    "body": "### Description\n\nDepending on the combination of authentication methods of a user, himmelblau doesn't allow a login with a Yubikey as passkey. On my account, I have the following authentication methods (via https://mysignins.microsoft.com/security-info):\n\n<img width=\"1632\" height=\"625\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/40e70f1b-c6c7-4962-9022-9d9805b77702\" />\n\nWhen logging in with Himmelblau, I am never given the option to authenticate with a Passkey, even though himmelblau would have the option for this. I am instead forwarded to the \"Entra ID Password\" screen. When I enter my password, I am shown a device code flow.\n\nAs soon as I remove the last option (Passkey via Microsoft Authenticator), the login works fine and I can login via Yubikey.\n\nI believe that this is due to how `fido_is_a_passkey` is determined in libhimmelblau: as soon as for a user `has_cross_device_capable_passkey` is true, the FIDO logins are skipped.\n\nI attempted to fix this issue via\nhttps://gitlab.com/samba-team/libhimmelblau/-/merge_requests/144\nand \nhttps://github.com/himmelblau-idm/himmelblau/pull/1220\n\n### Steps to Reproduce\n\n1. Configure two different passkey methods on a user: a cross-device-capable one and a non-cross-device-capable one\n2. Attempt to login via passkey -> fails\n3. Remove the cross-device-capable one\n4. Attempt to login via passkey -> succeeds\n\n### Relevant log output\n\n```shell\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 INFO     pam authenticate step [ 2.32ms | 10.60% / 100.00% ]\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 INFO     ┕━ unix_user_online_auth_step [ 2.07ms | 89.35% / 89.40% ] service: \"gdm-password\" | no_hello_pin: false\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 DEBUG       ┝━ delayed_init [ 1.11µs | 0.05% ]\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 DEBUG       ┝━ 🐛 [debug]: request_auth_config_internal() client_id=29d9ed98-a469-4536-ade2-f981bc1d605e redirect_uri=msauth://Microsoft.AAD.BrokerPlugin scope=openid profile  resource=0000000a-0000-0000-c000-000000000000 caller_app_redirect_uri=companyportal://com.microsoft.CompanyPortal\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 DEBUG       ┝━ 🐛 [debug]: reuse idle connection for (\"https\", login.microsoftonline.com)\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 DEBUG       ┝━ 🐛 [debug]: reuse idle connection for (\"https\", login.microsoftonline.com)\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 DEBUG       ┝━ 🐛 [debug]: reuse idle connection for (\"https\", login.microsoftonline.com)\nMär 06 14:13:58 tc-bc24112bae29 himmelblaud[773436]: 1b7e52f5-ba3d-40a1-88ff-1c71f6bec274 INFO        ┝━ ｉ [info]: No usable MFA methods found (FIDO was passkey)\nMär 06 14:",
+    "score": 50,
+    "labels": [],
+    "html_url": "https://github.com/himmelblau-idm/himmelblau/issues/1221",
+    "created_at": "2026-03-25T19:30:07.882347",
+    "status": "claimed"
+  },
+  {
+    "key": "mautic/mautic#15992",
+    "owner": "mautic",
+    "repo": "mautic",
+    "number": 15992,
+    "title": "Leads API does not return the owned contacts (uses createdBy instead of contact owner)",
+    "body": "### Mautic Series\n\n6.0.x series\n\n### Mautic installed version\n\n6.0.8\n\n### Way of installing\n\nI downloaded a release from https://www.mautic.org/mautic-releases\n\n### PHP version\n\n8\n\n### What browsers are you seeing the problem on?\n\n_No response_\n\n### What happened?\n\n`GET /api/contacts` applies the wrong restriction for users who only have `lead:leads:viewown`.\n\nWhen a user does **not** have `lead:leads:viewother`, the API list endpoint limits results using the contact creator (`createdBy`) instead of the contact owner. A user can therefore fail to see contacts they own if those contacts were created by someone else.\n\n### How can we reproduce this issue?\n\n## Steps to reproduce \n1. Create a user with `lead:leads:viewown` and **without** `lead:leads:viewother` permissions.\n2. Create a contact with:   - `owner` = that user  \n   - `createdBy` = a different user  \n3. Call `GET /api/contacts` authenticated as the restricted user.\n\n## Expected behavior\n\nThe owned contact appears in the list (same idea as “my contacts” / owner-based access).\n\n## Actual behavior\n\nThe contact is not returned. Granting `lead:leads:viewother` makes it appear, which confirms the list is being narrowed incorrectly for `viewown`.\n\n## Why this is inconsistent\n\n- Entity-level checks use `Lead::getPermissionUser()` (`owner` first, then `createdBy` if no owner).\n- The contact UI treats “mine” as owner-based.\n- The API collection endpoint was filtering by `createdBy` only.\n\n## Impact\n\nIntegrations and API clients that rely on `/api/contacts` for owner-scoped access return incomplete or empty results for valid `viewown` users.\n\n## Suggested direction\n\nDefine “own” for contacts in the API list path using ownership (e.g. `owner_id`), or align it explicitly with `getPermissionUser()` (e.g. owner match, or unowned + created by current user), instead of `createdBy` alone.\n\nAivie is working on this fix.\n\n### Relevant log output\n\n```shell\n\n```\n\n### Code of Conduct\n\n- [x] I confirm that I have read and agree to follow this project's Code of Conduct\n\n<br /><hr>\nCare about this issue? Want to get it resolved sooner? If you are a <a href='https://www.mautic.org/become-a-member-of-mautic'>member of Mautic</a>, you can add some funds to the <a href='https://opencollective.com/mautic/projects/bounties'>Bounties Project</a> so that the person who completes this task can claim those funds once it is merged by a member of the core team! Read the docs <a href='https://contribute.mautic.org/product-team/mautic-bounty-programme'>here.</a>",
+    "score": 50,
+    "labels": [
+      "bug",
+      "needs-triage"
+    ],
+    "html_url": "https://github.com/mautic/mautic/issues/15992",
+    "created_at": "2026-03-25T19:30:11.204547",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#795",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 795,
+    "title": "Bounty escrow: invariants module (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: invariants module (bounty_escrow/escrow)\n\nDescription\n\ninvariants.rs cross-checks global escrow properties.\n\nRequirements and context\n\nProperty tests in test_bounty_escrow.rs as applicable.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-invariants\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/invariants.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_bounty_escrow.rs\nAdd documentation: invariant catalog\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): invariant module coverage\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/795",
+    "created_at": "2026-03-25T20:30:13.297502",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#194",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 194,
+    "title": "[Idea Bounty] Make DV% clickable to customize daily value targets + nutrients list",
+    "body": "## Overview\n\nWe want to make the Raw Intake card more personal and flexible:\n- Users should be able to **click the DV% label** for any nutrient (protein, sugar, etc) to open a panel to customize their own daily value goal for that nutrient (e.g. adjust protein goal up, sugar max up/down, etc).\n- Allow DV% table to be personalized:\n  - Users can **remove nutrients** they don't want to track daily\n  - And **add back in** tracks as desired (from a master list)\n\n## Details & Acceptance Criteria\n- [ ] Clicking on any nutrient's DV% opens a dialog where the user can set a custom target or %\n- [ ] Raw Intake card and table update calculations & displayed values based on the new custom goal\n- [ ] User can hide/show nutrients from their daily intake table\n- [ ] Customizations persist (localStorage OK)\n- [ ] Defaults still match US FDA/WHO\n- [ ] Advanced: allow import/export of custom goals for sharing between users (optional)\n\n---\n## Labels\nbounty: 1 BNUT, idea-adopted, idea-credit: @TheJollyLaMa\n\n---\nThis is a test of the automated Copilot + idea-credit workflow.\n",
+    "score": 35,
+    "labels": [
+      "bounty: 1 BNUT",
+      "V2.1.0",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/194",
+    "created_at": "2026-03-25T20:30:16.924367",
+    "status": "claimed"
+  },
+  {
+    "key": "devasignhq/mobile-app#30",
+    "owner": "devasignhq",
+    "repo": "mobile-app",
+    "number": 30,
+    "title": "Implement submission review endpoints (approve/reject)",
+    "body": "Build POST /submissions/:id/approve and /submissions/:id/reject for bounty creators. Approve triggers payment flow. Reject requires rejection_reason and transitions submission status.",
+    "score": 15,
+    "labels": [
+      "api",
+      "submissions",
+      "💵 Bounty"
+    ],
+    "html_url": "https://github.com/devasignhq/mobile-app/issues/30",
+    "created_at": "2026-03-25T20:30:20.648426",
+    "status": "claimed"
+  },
+  {
+    "key": "onflow/FRW-monorepo#1318",
+    "owner": "onflow",
+    "repo": "FRW-monorepo",
+    "number": 1318,
+    "title": "[Security] Critical vulnerability in backup encryption — requesting private disclosure channel",
+    "body": "Hi Flow Wallet team,\n\nI'm a security researcher. During a review of the Flow Reference Wallet Chrome extension (currently distributed on Chrome Web Store), I identified multiple critical cryptographic vulnerabilities in the Google Drive backup encryption implementation.\n\nThese issues allow offline extraction and brute-force decryption of wallet private keys from cloud backups with minimal computational cost.\n\n**Severity:** 2× Critical, 1× High\n**Affected component:** Backup encryption (Google Drive cloud backup feature)\n**Status:** Verified with working PoC against the production Chrome Web Store build (v2.9.4)\n\nI do NOT want to disclose details publicly. The HackenProof bug bounty program for Flow Wallet is currently closed (83 days until reopening), and this repository has no SECURITY.md or private vulnerability reporting enabled.\n\nCould you please provide a secure channel (email, private advisory, or similar) so I can share the full report and proof-of-concept?\n\nThank you.\n\n@zzggo @lmcmz @caosbad",
+    "score": 15,
+    "labels": [],
+    "html_url": "https://github.com/onflow/FRW-monorepo/issues/1318",
+    "created_at": "2026-03-25T20:30:24.500930",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#45",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 45,
+    "title": "API Service - Missing Database Integration",
+    "body": "\n**Severity:** Critical  \n**Component:** `services/api/src/main.rs`  \n**Description:** The API service currently returns mock data instead of querying the PostgreSQL database. All endpoints (`create_bounty`, `list_bounties`, etc.) need to be connected to actual database operations using SQLx.  \n**Impact:** No data persistence, making the API non-functional for production use.  \n**Solution:** Implement database connection pool and replace mock responses with actual SQL queries.\n\n",
+    "score": 55,
+    "labels": [],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/45",
+    "created_at": "2026-03-25T21:30:19.982284",
+    "status": "claimed"
+  },
+  {
+    "key": "MetroLogic/fluxapay_contract#54",
+    "owner": "MetroLogic",
+    "repo": "fluxapay_contract",
+    "number": 54,
+    "title": "[Docs] Add SECURITY.md with vulnerability disclosure policy and contract audit status",
+    "body": "### Overview\nFluxaPay contracts will handle real USDC. A public security policy sets expectations for responsible disclosure and communicates audit status to the community.\n\n### Technical Requirements\n- [ ] Create `SECURITY.md` with: contact email for disclosures, response SLA, scope (in/out of scope), bug bounty info (if any).\n- [ ] Document current audit status (not audited / in progress / audited by X on date).\n- [ ] Link to the security policy from `README.md`.\n- [ ] Add a `CODEOWNERS` file assigning security-sensitive files (`access_control.rs`, `lib.rs`) to a security reviewer.",
+    "score": 50,
+    "labels": [
+      "documentation",
+      "Steller wave",
+      "smart-contract",
+      "security"
+    ],
+    "html_url": "https://github.com/MetroLogic/fluxapay_contract/issues/54",
+    "created_at": "2026-03-25T21:30:23.599808",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#33",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 33,
+    "title": "Add notification stubs for bounty lifecycle updates",
+    "body": "Contributors and maintainers should eventually be notified when bounty status changes. Should add notification hooks or stubs.\n\nImplementation:\n\nCreate a notification service interface in the backend  \nTrigger it on reserve, submit, release, and refund actions  \nStart with console or webhook stubs instead of full email delivery  \nKeep future extension in mind\n\nAcceptance Criteria:\n\nNotification service hooks exist  \nLifecycle actions trigger notification events  \nCurrent implementation is easy to extend later  \nCore app behavior works even if notifications fail",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/33",
+    "created_at": "2026-03-25T22:30:25.788029",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#100",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 100,
+    "title": "Bounty Contract - No Access Control for Completion",
+    "body": "\n**Severity:** Critical  \n**Component:** `contracts/bounty/src/lib.rs` - `complete_bounty()`  \n**Description:** Only the bounty creator can mark a bounty as completed. The selected freelancer should also be able to submit completion for creator approval.  \n**Impact:** Freelancers cannot signal work completion, requiring off-chain coordination.  \n**Solution:** Add freelancer completion submission with creator approval workflow.\n",
+    "score": 65,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/100",
+    "created_at": "2026-03-25T22:30:29.954195",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#94",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 94,
+    "title": "Indexer Service - Completely Unimplemented",
+    "body": "\n\n**Severity:** Critical  \n**Component:** `services/indexer/src/main.rs`  \n**Description:** The blockchain indexer is a placeholder. No event listening, parsing, or database synchronization is implemented.  \n**Impact:** Frontend cannot receive real-time updates about bounty status changes, applications, or payments.  \n**Solution:** Implement Soroban event listener using Stellar SDK and sync events to PostgreSQL.\n",
+    "score": 55,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/94",
+    "created_at": "2026-03-25T22:30:37.172602",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#93",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 93,
+    "title": "Notifications Service - Completely Unimplemented",
+    "body": "\n\n**Severity:** High  \n**Component:** `services/notifications/src/main.rs`  \n**Description:** The notification service is a placeholder. No email, SMS, or push notification functionality exists.  \n**Impact:** Users don't receive updates about bounty applications, selections, or payments.  \n**Solution:** Implement notification service with email (SMTP), SMS (Twilio), and push notification support.\n",
+    "score": 50,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/93",
+    "created_at": "2026-03-25T22:30:40.596506",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#73",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 73,
+    "title": "API Service - No File Upload Support",
+    "body": "\n**Severity:** Medium  \n**Component:** `services/api/`  \n**Description:** No endpoints for uploading freelancer avatars, project images, or bounty attachments.  \n**Impact:** Users cannot upload profile pictures or project portfolios.  \n**Solution:** Add multipart form data handling and file storage (S3 or local).",
+    "score": 50,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/73",
+    "created_at": "2026-03-25T22:30:43.871662",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2852",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2852,
+    "title": "buffs/debuffs for stats and masteries [bounty: 60 XTR]",
+    "body": "Browsing units within dash view shouldn't have the unit stats and masteries in card B displayed with red or green colors, just with white, unless the unit is materialized/alive and those states/masteries have been buffed (green) or debuffed (red).\nCurrently, those stats and masteries don't seem to properly update to the real values when changing between units!\n\nAlso, hovering a stat or mastery should show a tooltip listing the things that changed it.\nThis should visually be tied in with the dark transparent background shown on hover.\nThis functionality has been before in the game but it eventually broke due to regression.",
+    "score": 40,
+    "labels": [
+      "coding",
+      "visuals",
+      "priority",
+      "input",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2852",
+    "created_at": "2026-03-25T23:00:19.889782",
+    "status": "claimed"
+  },
+  {
+    "key": "FreezingMoon/AncientBeast#2850",
+    "owner": "FreezingMoon",
+    "repo": "AncientBeast",
+    "number": 2850,
+    "title": "Goey Body upgrade revamp [bounty: 30 XTR]",
+    "body": "Gumble's upgraded passive, Goey Body, can be a little confusing, as it leaves a trap on death that *might* or *might not* affect allies, being it hard to check or remember at times.\n\nThe upgrade should allow Gumble to simply leap over units during moving phase (walking at least 2 hexagons).",
+    "score": 40,
+    "labels": [
+      "coding",
+      "abilities",
+      "bounty"
+    ],
+    "html_url": "https://github.com/FreezingMoon/AncientBeast/issues/2850",
+    "created_at": "2026-03-25T23:00:23.694493",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#91",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 91,
+    "title": "API Service - Missing Database Migrations",
+    "body": "\n\n**Severity:** Critical  \n**Component:** `backend/`  \n**Description:** No database migration files exist. The schema mentioned in README (users, bounties, applications, escrow_accounts tables) is not defined anywhere.  \n**Impact:** Database cannot be initialized or upgraded systematically.  \n**Solution:** Create SQLx migration files for all required tables with proper indexes and constraints.\n",
+    "score": 40,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/91",
+    "created_at": "2026-03-25T23:00:28.366536",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#98",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 98,
+    "title": "API Service - Missing Authentication Middleware",
+    "body": "\n**Severity:** Critical  \n**Component:** `services/api/src/main.rs`  \n**Description:** No authentication or authorization checks are implemented. All endpoints are publicly accessible without any security validation.  \n**Impact:** Anyone can create, modify, or delete bounties and freelancer profiles without authentication.  \n**Solution:** Implement JWT-based authentication middleware and protect sensitive endpoints.\n",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/98",
+    "created_at": "2026-03-25T23:00:32.218899",
+    "status": "claimed"
+  },
+  {
+    "key": "yosemite01/stellar-creator-portfolio#72",
+    "owner": "yosemite01",
+    "repo": "stellar-creator-portfolio",
+    "number": 72,
+    "title": "API Service - Missing Search Functionality",
+    "body": "**Severity:** Medium  \n**Component:** `services/api/src/main.rs` - `list_bounties`, `list_freelancers`  \n**Description:** No full-text search capability for finding bounties or freelancers by keywords.  \n**Impact:** Users cannot efficiently discover relevant bounties or talent.  \n**Solution:** Implement PostgreSQL full-text search or integrate Elasticsearch.\n\n",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/72",
+    "created_at": "2026-03-25T23:00:36.224641",
+    "status": "claimed"
+  },
+  {
+    "key": "rubrical-works/gh-pmu#788",
+    "owner": "rubrical-works",
+    "repo": "gh-pmu",
+    "number": 788,
+    "title": "[Enhancement]: Add SECURITY.md security policy",
+    "body": "## Enhancement\n\n**Description:**\nAdd a `SECURITY.md` security policy to the repository. This provides a clear channel for responsible vulnerability disclosure and documents the project's security practices.\n\n**Motivation:**\nThe project now has gosec and CodeQL scanning in CI. A security policy completes the picture by telling users and researchers how to report vulnerabilities and what to expect.\n\n**Proposed Solution:**\nCreate `SECURITY.md` in the repository root covering:\n\n1. **Supported Versions** — table showing which releases receive security patches (latest minor release only)\n2. **Reporting a Vulnerability** — use GitHub Private Vulnerability Reporting (Settings > Security > Private vulnerability reporting). No email setup required.\n3. **Response Timeline** — acknowledge within 48 hours, target patch within 30 days\n4. **Security Measures** — document existing tooling: gosec scanning, CodeQL analysis, `go vet`, golangci-lint\n5. **Scope** — define what constitutes a vulnerability for a CLI tool:\n   - Command injection via crafted input\n   - Token or credential leakage\n   - Config file permission issues\n   - Dependency vulnerabilities\n   - Out of scope: issues requiring local access beyond normal CLI usage\n\n**Scope:**\n- **In scope:** Create SECURITY.md, enable GitHub Private Vulnerability Reporting if not already enabled\n- **Out of scope:** Bug bounty programs, PGP key setup, third-party disclosure platforms\n\n**Acceptance Criteria:**\n- [ ] `SECURITY.md` exists in repository root\n- [ ] Supported versions table is accurate\n- [ ] Reporting channel uses GitHub Private Vulnerability Reporting\n- [ ] Response timelines are documented\n- [ ] Existing security tooling is listed\n- [ ] Vulnerability scope is defined for a CLI tool context\n",
+    "score": 55,
+    "labels": [
+      "enhancement"
+    ],
+    "html_url": "https://github.com/rubrical-works/gh-pmu/issues/788",
+    "created_at": "2026-03-25T23:02:32.974396",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#768",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 768,
+    "title": "Bounty escrow: blacklist and whitelist (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: blacklist and whitelist (bounty_escrow/escrow)\n\nDescription\n\nParticipant filters per test_blacklist_and_whitelist.rs.\n\nRequirements and context\n\nEmit ParticipantFilterModeChanged events.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-allow-deny\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_blacklist_and_whitelist.rs\nAdd documentation: filter modes\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): blacklist and whitelist tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/768",
+    "created_at": "2026-03-25T23:02:36.769150",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#770",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 770,
+    "title": "Bounty escrow: multi-region treasury (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: multi-region treasury (bounty_escrow/escrow)\n\nDescription\n\nTreasury routing per test_multi_region_treasury.rs.\n\nRequirements and context\n\nRegion flags must not break accounting invariants.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-treasury\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_multi_region_treasury.rs\nAdd documentation: treasury routing\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): multi-region treasury tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/770",
+    "created_at": "2026-03-25T23:02:41.901950",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#749",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 749,
+    "title": "Program escrow: token math safety (program-escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Program escrow: token math safety (program-escrow)\n\nDescription\n\nCentralize safe add/sub/mul for token amounts.\n\nRequirements and context\n\nExplicit panic messages for developer misuse in tests.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/program-escrow-token-math\n\nImplement changes\n\nWrite contract: program-escrow/src/token_math.rs\nWrite tests: token math unit tests\nAdd documentation: arithmetic invariants\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(program-escrow): token math safety\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/749",
+    "created_at": "2026-03-25T23:02:45.650352",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#732",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 732,
+    "title": "Upgrade rollback scenarios (grainlify-core)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Upgrade rollback scenarios (grainlify-core)\n\nDescription\n\nExpand upgrade_rollback_tests for multisig, partial approvals, and hash mismatch cases.\n\nRequirements and context\n\nDocument operational rollback using previous WASM hash.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/grainlify-core-rollback-scenarios\n\nImplement changes\n\nWrite tests: grainlify-core/src/test/upgrade_rollback_tests.rs\nAdd documentation: rollback runbook in comments\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\ntest(grainlify-core): expand upgrade rollback scenarios\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/732",
+    "created_at": "2026-03-25T23:02:49.369051",
+    "status": "claimed"
   }
 ]

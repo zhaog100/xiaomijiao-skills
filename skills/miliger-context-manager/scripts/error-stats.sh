@@ -5,7 +5,7 @@
 # 功能：统计错误、清理旧数据、生成报告
 
 # 环境修复
-export HOME="${HOME:-/root}"
+export HOME="${HOME:-/home/zhaog}"
 
 # 加载配置
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
