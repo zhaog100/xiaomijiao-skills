@@ -991,7 +991,8 @@
     ],
     "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/100",
     "created_at": "2026-03-25T22:30:29.954195",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/132"
   },
   {
     "key": "yosemite01/stellar-creator-portfolio#94",
@@ -1582,6 +1583,36 @@
     ],
     "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/198",
     "created_at": "2026-03-26T06:30:19.900901",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#793",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 793,
+    "title": "Bounty escrow: compatibility suite (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: compatibility suite (bounty_escrow/escrow)\n\nDescription\n\ntest_compatibility.rs ensures client expectations for ABI-stable entrypoints.\n\nRequirements and context\n\nDocument any breaking changes with migration.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-compat\n\nImplement changes\n\nWrite tests: bounty_escrow/contracts/escrow/src/test_compatibility.rs\nAdd documentation: compatibility guarantees\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\ntest(bounty-escrow): client compatibility suite\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 35,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/793",
+    "created_at": "2026-03-26T07:30:09.904625",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#756",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 756,
+    "title": "Program escrow: full lifecycle integration (program-escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Program escrow: full lifecycle integration (program-escrow)\n\nDescription\n\ntest_full_lifecycle.rs covers register → lock → payout → close paths.\n\nRequirements and context\n\nEnd-to-end invariants on balances and history.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/program-escrow-lifecycle-e2e\n\nImplement changes\n\nWrite tests: program-escrow/src/test_full_lifecycle.rs\nAdd documentation: lifecycle diagram in lib.rs\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\ntest(program-escrow): full lifecycle integration coverage\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/756",
+    "created_at": "2026-03-26T07:30:12.644637",
     "status": "claimed"
   }
 ]
