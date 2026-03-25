@@ -975,7 +975,8 @@
     ],
     "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/33",
     "created_at": "2026-03-25T22:30:25.788029",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/ritik4ever/stellar-bounty-board/pull/44"
   },
   {
     "key": "yosemite01/stellar-creator-portfolio#100",
