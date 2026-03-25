@@ -1,7 +1,7 @@
 # 🧠 MEMORY.md（小米椒 · 长期记忆）
 
-**版本**: v1.3
-**最后更新**: 2026-03-25 15:10
+**版本**: v2.0
+**最后更新**: 2026-03-25 17:55
 **维护**: 小米椒 🌶️‍🔥
 
 ---
@@ -12,16 +12,15 @@
 |------|------|
 | 阶段 | 起步期（Day 2） |
 | 平台 | 小红书（主力） |
-| 路径 | 1688一件代发 → 小红书种草 → 闲鱼成�� |
+| 路径 | 1688一件代发 → 小红书种草 → 闲鱼成交 |
 | 目标 | 月入 ¥15,000-43,000 |
-| 进度 | 热点→选品→初稿→优化 流程已跑通，待首篇发布 |
+| 进度 | P0文案v2完成、P1框架完成，待首篇发布 |
 | 卡点 | 等官家确认1688供应商+产品图素材 |
 
 ---
 
-## 📚 爆款规律
+## 📚 爆款规律（小红书）
 
-### 小红书
 - **标题公式**：核心卖点+人群+场景+数字+情绪词
 - **内容结构**：首图痛点→产品实测→使用技巧→福利引导→互动引导
 - **关键词**：标题1-2个核心词，正文5-8次
@@ -34,8 +33,7 @@
 
 ## ⚠️ 避坑指南
 
-- ❌ 极限词（"最""第一"）
-- ❌ 过度修图 / 网图（限流）
+- ❌ 极限词（"最""第一"）/ 过度修图 / 网图
 - ❌ 养生类用"治疗""治愈"（改用"缓解""舒适"）
 - ❌ 消费逝者/灾难蹭热点
 - ✅ 商业笔记标注"品牌合作"
@@ -64,7 +62,6 @@
 2. 贴合度≥60%才追，<60%放弃
 3. 找热点与产品的情感连接点，不硬蹭
 4. 24h时效窗口，超时不追
-5. 养生/职场/生活品质→高贴合；娱乐八卦/金融→低贴合
 
 ---
 
@@ -82,6 +79,7 @@
 ---
 
 ## 📝 沟通规则
+
 详见 `COMMS.md`
 - 官家说"善/对/可" → 回"喏，官家！"
 - 官家问"在？" → "官家，我在这儿，随时待命！"
@@ -92,12 +90,14 @@
 ## 📝 运营教训
 
 ### 2026-03-25
-- 1688/小红书页面JS渲染无法web_fetch，选品需品类逻辑推导或官家提供链接
-- 微信Bot：npx下载≠安装成功，需确认 `openclaw plugins list` 有微信通道
-- GitHub推送：网络不稳时用HTTP/1.1+GIT_LFS_SKIP_PUSH=1；推送前确认目标仓库正确
-- 系统crontab只看不改，误删后立即恢复，外部系统资源不属于我
-- web_search API key 失效（401），热点搜索需官家更新 Perplexity API key
-- 官家说"善"要回"喏，官家！"，不废话不多余确认
+- 1688/小红书 JS 渲染无法 web_fetch，选品需品类逻辑推导
+- GitHub 推送：网络不稳用 HTTP/1.1 + GIT_LFS_SKIP_PUSH=1；推送前确认目标仓库
+- 系统 crontab 只看不改，外部系统资源不属于我
+- web_search API key 失效（401），需官家更新 Perplexity key
+- Context Manager healthcheck.sh 缺失→已修复为 seamless-switch.sh；脚本需 chmod +x
+- Quote Reader QQ 通道未实现，暂不可用
+- Agent ID 改名需同步：openclaw.json + agentDir + crontab + Gateway cron + QMD + 所有文件引用
+- QQ Bot 路由到 main agent，不是 xiaomijiao；需官家配合调整通道路由
 
 ---
 
@@ -105,27 +105,32 @@
 
 | 项目 | 值 |
 |------|-----|
-| 实例 | openclaw-media（Ubuntu 24.04, 192.168.204.129） |
-| 通道 | QQ Bot（已上线）、微信Bot（待安装） |
+| Agent ID | `xiaomijiao` |
+| 实例 | Ubuntu 24.04, 192.168.204.129 |
+| 通道 | QQ Bot（路由到 main）、微信Bot（待安装） |
 | 模型 | qwen3.5-plus（百炼） |
-| 工作区 | `agents/xiaomila-media/` |
-| Git | `xiaomila` → xiaomila-skills.git（Token有repo+workflow+delete_repo） |
-| QMD | `/home/zhaog/.openclaw-media/.config/qmd/qmd.db` |
+| 工作区 | `agents/xiaomijiao/` |
+| Git remote | `xiaomila` → xiaomila-skills.git |
+| Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
+| QMD 集合 | `xiaomijiao`（19个文档） |
 
 ## ⏰ 定时任务
 
-**规矩：系统crontab只看不改**
+### Gateway Cron（AI 驱动，完整回顾）
+| 任务 | 时间 | Agent |
+|------|------|-------|
+| daily-review:midday | 每天 12:00 | xiaomijiao |
+| daily-review:night | 每天 23:50 | xiaomijiao |
 
-| 任务 | 时间 | 命令 |
+### Shell Crontab（辅助脚本）
+| 任务 | 时间 | 脚本 |
 |------|------|------|
-| QMD知识库更新 | 06:10 | `qmd-update` |
-| 午间运营回顾 | 12:10 | `morning-review` |
-| 每日回顾+Git推送 | 23:30 | `daily-review` |
-| 每周运营总结 | 周五18:10 | `weekly-report` |
-| 错误统计 | 每小时:10 | `error-stats` |
-| 日志清理 | 02:10 | `cleanup` |
+| QMD 更新 | 06:10 | `xiaomijiao-cron.sh qmd-update` |
+| 周报 | 周五 18:10 | `xiaomijiao-cron.sh weekly-report` |
+| 错误统计 | 每小时:10 | `xiaomijiao-cron.sh error-stats` |
+| 日志清理 | 02:10 | `xiaomijiao-cron.sh cleanup` |
 
-脚本：`scripts/xiaomila-cron.sh`，所有任务错开小米辣10分钟
+**规矩：系统 crontab 只看不改**
 
 ---
 

@@ -16,7 +16,7 @@
 set -euo pipefail
 
 WORKSPACE="/home/zhaog/.openclaw/workspace"
-MEDIA_DIR="$WORKSPACE/agents/xiaomila-media"
+MEDIA_DIR="$WORKSPACE/agents/xiaomijiao"
 MEMORY_DIR="$MEDIA_DIR/memory"
 INTEL_DIR="$MEDIA_DIR/intel"
 LOG_DIR="$MEDIA_DIR/logs"
@@ -51,9 +51,9 @@ do_qmd_update() {
 do_git_push() {
     local MSG="$1"
     cd "$WORKSPACE"
-    git add agents/xiaomila-media/ >> "$LOG_DIR/git.log" 2>&1 || true
+    git add agents/xiaomijiao/ >> "$LOG_DIR/git.log" 2>&1 || true
 
-    if git diff --cached --quiet -- agents/xiaomila-media/ 2>/dev/null; then
+    if git diff --cached --quiet -- agents/xiaomijiao/ 2>/dev/null; then
         log "ℹ️ 无新变更需提交"
     else
         git commit -m "$MSG" >> "$LOG_DIR/git.log" 2>&1
@@ -81,13 +81,13 @@ do_check_todo() {
 # ============ 公共：统计文件变更 ============
 do_check_changes() {
     cd "$WORKSPACE"
-    INTEL_CHANGES=$(git diff --name-only HEAD -- agents/xiaomila-media/intel/ 2>/dev/null | wc -l)
-    MEMORY_CHANGES=$(git diff --name-only HEAD -- agents/xiaomila-media/memory/ 2>/dev/null | wc -l)
-    CONFIG_CHANGES=$(git diff --name-only HEAD -- agents/xiaomila-media/*.md 2>/dev/null | wc -l)
+    INTEL_CHANGES=$(git diff --name-only HEAD -- agents/xiaomijiao/intel/ 2>/dev/null | wc -l)
+    MEMORY_CHANGES=$(git diff --name-only HEAD -- agents/xiaomijiao/memory/ 2>/dev/null | wc -l)
+    CONFIG_CHANGES=$(git diff --name-only HEAD -- agents/xiaomijiao/*.md 2>/dev/null | wc -l)
     log "变更统计: intel/${INTEL_CHANGES} memory/${MEMORY_CHANGES} config/${CONFIG_CHANGES}"
     
     # 列出具体变更文件
-    git diff --name-only HEAD -- agents/xiaomila-media/ 2>/dev/null | while read f; do
+    git diff --name-only HEAD -- agents/xiaomijiao/ 2>/dev/null | while read f; do
         log "  📄 $f"
     done
 }
@@ -145,7 +145,7 @@ cmd_morning_review() {
     do_check_todo
     
     # 4. Git 提交+推送
-    do_git_push "docs(xiaomila-media): 午间回顾 - $TODAY"
+    do_git_push "docs(xiaomijiao): 午间回顾 - $TODAY"
     
     # 5. QMD 向量更新
     do_qmd_update
@@ -168,7 +168,7 @@ cmd_daily_review() {
     do_check_todo
     
     # 4. Git 提交+推送
-    do_git_push "docs(xiaomila-media): 每日回顾 - $TODAY"
+    do_git_push "docs(xiaomijiao): 每日回顾 - $TODAY"
     
     # 5. QMD 向量更新
     do_qmd_update
@@ -187,7 +187,7 @@ cmd_weekly_report() {
     cd "$WORKSPACE"
     
     # 统计本周数据
-    WEEK_COMMITS=$(git log --since="$WEEK_START" --oneline -- agents/xiaomila-media/ 2>/dev/null | wc -l)
+    WEEK_COMMITS=$(git log --since="$WEEK_START" --oneline -- agents/xiaomijiao/ 2>/dev/null | wc -l)
     WEEK_FILES=$(find "$INTEL_DIR" -name "*.md" -newer "$MEMORY_DIR" -mtime -7 2>/dev/null | wc -l)
     WEEK_MEMORY=$(ls -1 "$MEMORY_DIR"/${WEEK_START}*.md "$MEMORY_DIR"/$(date -d '1 day ago' +%Y-%m-%d)*.md "$MEMORY_DIR"/$TODAY.md 2>/dev/null | sort -u | wc -l)
     
@@ -201,7 +201,7 @@ cmd_weekly_report() {
 
 ## 本周 Git 活动
 \`\`\`
-$(git log --since="$WEEK_START" --oneline -- agents/xiaomila-media/ 2>/dev/null | head -20)
+$(git log --since="$WEEK_START" --oneline -- agents/xiaomijiao/ 2>/dev/null | head -20)
 \`\`\`
 
 ## 下周计划
@@ -214,7 +214,7 @@ EOF
     log "✅ 周报已生成: $REPORT_FILE"
     
     # 周报也走一遍 Git+QMD
-    do_git_push "docs(xiaomila-media): 周报 - $WEEK_START ~ $WEEK_END"
+    do_git_push "docs(xiaomijiao): 周报 - $WEEK_START ~ $WEEK_END"
     do_qmd_update
     
     log "===== 每周运营总结完成 ====="
