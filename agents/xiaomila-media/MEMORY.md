@@ -94,8 +94,10 @@
 ### 2026-03-25
 - 1688/小红书页面JS渲染无法web_fetch，选品需品类逻辑推导或官家提供链接
 - 微信Bot：npx下载≠安装成功，需确认 `openclaw plugins list` 有微信通道
-- GitHub推送：网络不稳时用HTTP/1.1+跳过LFS；系统crontab只看不改
-- 误删crontab教训：外部系统资源不属于我，绝不擅自修改
+- GitHub推送：网络不稳时用HTTP/1.1+GIT_LFS_SKIP_PUSH=1；推送前确认目标仓库正确
+- 系统crontab只看不改，误删后立即恢复，外部系统资源不属于我
+- web_search API key 失效（401），热点搜索需官家更新 Perplexity API key
+- 官家说"善"要回"喏，官家！"，不废话不多余确认
 
 ---
 
