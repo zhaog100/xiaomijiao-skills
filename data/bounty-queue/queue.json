@@ -1192,5 +1192,395 @@
     "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/732",
     "created_at": "2026-03-25T23:02:49.369051",
     "status": "claimed"
+  },
+  {
+    "key": "jose-compu/opencircom-foundry-boilerplate#1",
+    "owner": "jose-compu",
+    "repo": "opencircom-foundry-boilerplate",
+    "number": 1,
+    "title": "Bug Bounty and Feature Request Program",
+    "body": "# Bug Bounty and Feature Request Program\n\n> **Status:** Work in Progress - Not Confirmed Yet\n> This document is under development and subject to change. Terms and conditions are not finalized.\n\n## Program Overview\n\nWe value contributions from the community. This bounty program incentivizes developers to identify and resolve bugs, implement features, and improve our codebase.\n\n## Eligibility\n\n- Open to all contributors worldwide\n- Employees and their direct family members are not eligible\n- One submission per person per issue\n- Contributors must follow the project's Code of Conduct\n\n## Bounty Tiers\n\n### Critical Severity\n- **Reward:** $500 - $2,500\n- **Criteria:** Security vulnerabilities, data loss, complete feature breakdown\n- **Examples:** SQL injection, authentication bypass, data corruption\n\n### High Severity\n- **Reward:** $250 - $500\n- **Criteria:** Significant functionality impairment, performance degradation\n- **Examples:** Major bugs affecting core features, memory leaks\n\n### Medium Severity\n- **Reward:** $50 - $250\n- **Criteria:** Partial feature failure, inconsistent behavior, usability issues\n- **Examples:** Edge case bugs, UI inconsistencies, minor performance issues\n\n### Low Severity\n- **Reward:** $10 - $50\n- **Criteria:** Minor bugs, documentation improvements, code quality enhancements\n- **Examples:** Typos, broken links, code style improvements\n\n### Feature Implementation\n- **Reward:** Negotiable based on scope\n- **Criteria:** New features aligned with project roadmap\n- **Process:** Discuss scope in issue before starting work\n\n## Submission Process\n\n1. Check existing issues to avoid duplicates\n2. Create a detailed issue with reproduction steps\n3. Include environment details (OS, version, dependencies)\n4. For security issues, report privately to security@example.com\n5. Include a pull request with a proposed fix (optional but recommended)\n6. Maintainers will review and assess bounty eligibility\n\n## Payment Terms\n\n- Payouts processed within 30 days of merge\n- Minimum bounty: $10\n- Payment via bank transfer, PayPal, or project-specific arrangement\n- Taxes are the responsibility of the recipient\n\n## Guidelines\n\n- Do not publicly disclose vulnerabilities before they're fixed\n- Provide clear, reproducible reports\n- Be respectful in all communications\n- One bounty per issue (no duplicate payments)\n- Bounty amount determined at maintainers' discretion\n\n## Important Notes\n\n- This program is offered at our discretion and may be modified\n- Bounties are non-negotiable after payout\n- Quality of submission affects bounty amount\n- Automated or low-effort submissions may be declined\n\n---\n\nFor questions, contact: bounty@example.com",
+    "score": 70,
+    "labels": [],
+    "html_url": "https://github.com/jose-compu/opencircom-foundry-boilerplate/issues/1",
+    "created_at": "2026-03-26T00:30:30.099983",
+    "status": "claimed"
+  },
+  {
+    "key": "jose-compu/opencircom-hardhat-boilerplate#1",
+    "owner": "jose-compu",
+    "repo": "opencircom-hardhat-boilerplate",
+    "number": 1,
+    "title": "Bug Bounty & Feature Request Program",
+    "body": "# Bug Bounty & Feature Request Program\n\n> **Status:** Work in Progress - Not Confirmed Yet\n> This document is under development and subject to change. Terms and conditions are not finalized.\n\n## Program Overview\n\nWe value contributions from the community. This bounty program incentivizes developers to identify and resolve bugs, implement features, and improve our codebase.\n\n## Eligibility\n\n- Open to all contributors worldwide\n- Employees and their direct family members are not eligible\n- One submission per person per issue\n- Contributors must follow the project's Code of Conduct\n\n## Bounty Tiers\n\n### Critical Severity\n- **Reward:** $500 - $2,500\n- **Criteria:** Security vulnerabilities, data loss, complete feature breakdown\n- **Examples:** SQL injection, authentication bypass, data corruption\n\n### High Severity\n- **Reward:** $250 - $500\n- **Criteria:** Significant functionality impairment, performance degradation\n- **Examples:** Major bugs affecting core features, memory leaks\n\n### Medium Severity\n- **Reward:** $50 - $250\n- **Criteria:** Partial feature failure, inconsistent behavior, usability issues\n- **Examples:** Edge case bugs, UI inconsistencies, minor performance issues\n\n### Low Severity\n- **Reward:** $10 - $50\n- **Criteria:** Minor bugs, documentation improvements, code quality enhancements\n- **Examples:** Typos, broken links, code style improvements\n\n### Feature Implementation\n- **Reward:** Negotiable based on scope\n- **Criteria:** New features aligned with project roadmap\n- **Process:** Discuss scope in issue before starting work\n\n## Submission Process\n\n1. Check existing issues to avoid duplicates\n2. Create a detailed issue with reproduction steps\n3. Include environment details (OS, version, dependencies)\n4. For security issues, report privately to security@example.com\n5. Include a pull request with a proposed fix (optional but recommended)\n6. Maintainers will review and assess bounty eligibility\n\n## Payment Terms\n\n- Payouts processed within 30 days of merge\n- Minimum bounty: $10\n- Payment via bank transfer, PayPal, or project-specific arrangement\n- Taxes are the responsibility of the recipient\n\n## Guidelines\n\n- Do not publicly disclose vulnerabilities before they're fixed\n- Provide clear, reproducible reports\n- Be respectful in all communications\n- One bounty per issue (no duplicate payments)\n- Bounty amount determined at maintainers' discretion\n\n## Important Notes\n\n- This program is offered at our discretion and may be modified\n- Bounties are non-negotiable after payout\n- Quality of submission affects bounty amount\n- Automated or low-effort submissions may be declined\n\n---\n\nFor questions, contact: bounty@example.com",
+    "score": 70,
+    "labels": [],
+    "html_url": "https://github.com/jose-compu/opencircom-hardhat-boilerplate/issues/1",
+    "created_at": "2026-03-26T00:30:33.723146",
+    "status": "claimed"
+  },
+  {
+    "key": "jose-compu/opencircom#1",
+    "owner": "jose-compu",
+    "repo": "opencircom",
+    "number": 1,
+    "title": "Bug Bounty & Feature Request Program",
+    "body": "# Bug Bounty & Feature Request Program\n\n> **Status:** Work in Progress - Not Confirmed Yet\n> This document is under development and subject to change. Terms and conditions are not finalized.\n\n## Program Overview\n\nWe value contributions from the community. This bounty program incentivizes developers to identify and resolve bugs, implement features, and improve our codebase.\n\n## Eligibility\n\n- Open to all contributors worldwide\n- Employees and their direct family members are not eligible\n- One submission per person per issue\n- Contributors must follow the project's Code of Conduct\n\n## Bounty Tiers\n\n### Critical Severity\n- **Reward:** $500 - $2,500\n- **Criteria:** Security vulnerabilities, data loss, complete feature breakdown\n- **Examples:** SQL injection, authentication bypass, data corruption\n\n### High Severity\n- **Reward:** $250 - $500\n- **Criteria:** Significant functionality impairment, performance degradation\n- **Examples:** Major bugs affecting core features, memory leaks\n\n### Medium Severity\n- **Reward:** $50 - $250\n- **Criteria:** Partial feature failure, inconsistent behavior, usability issues\n- **Examples:** Edge case bugs, UI inconsistencies, minor performance issues\n\n### Low Severity\n- **Reward:** $10 - $50\n- **Criteria:** Minor bugs, documentation improvements, code quality enhancements\n- **Examples:** Typos, broken links, code style improvements\n\n### Feature Implementation\n- **Reward:** Negotiable based on scope\n- **Criteria:** New features aligned with project roadmap\n- **Process:** Discuss scope in issue before starting work\n\n## Submission Process\n\n1. Check existing issues to avoid duplicates\n2. Create a detailed issue with reproduction steps\n3. Include environment details (OS, version, dependencies)\n4. For security issues, report privately to security@example.com\n5. Include a pull request with a proposed fix (optional but recommended)\n6. Maintainers will review and assess bounty eligibility\n\n## Payment Terms\n\n- Payouts processed within 30 days of merge\n- Minimum bounty: $10\n- Payment via bank transfer, PayPal, or project-specific arrangement\n- Taxes are the responsibility of the recipient\n\n## Guidelines\n\n- Do not publicly disclose vulnerabilities before they're fixed\n- Provide clear, reproducible reports\n- Be respectful in all communications\n- One bounty per issue (no duplicate payments)\n- Bounty amount determined at maintainers' discretion\n\n## Important Notes\n\n- This program is offered at our discretion and may be modified\n- Bounties are non-negotiable after payout\n- Quality of submission affects bounty amount\n- Automated or low-effort submissions may be declined\n\n---\n\nFor questions, contact: bounty@example.com",
+    "score": 70,
+    "labels": [],
+    "html_url": "https://github.com/jose-compu/opencircom/issues/1",
+    "created_at": "2026-03-26T00:30:37.475899",
+    "status": "claimed"
+  },
+  {
+    "key": "jose-compu/QuorumTrust#29",
+    "owner": "jose-compu",
+    "repo": "QuorumTrust",
+    "number": 29,
+    "title": "Bug Bounty & Feature Request Program",
+    "body": "# Bug Bounty & Feature Request Program\n\n> **Status:** Work in Progress - Not Confirmed Yet\n> This document is under development and subject to change. Terms and conditions are not finalized.\n\n## Program Overview\n\nWe value contributions from the community. This bounty program incentivizes developers to identify and resolve bugs, implement features, and improve our codebase.\n\n## Eligibility\n\n- Open to all contributors worldwide\n- Employees and their direct family members are not eligible\n- One submission per person per issue\n- Contributors must follow the project's Code of Conduct\n\n## Bounty Tiers\n\n### Critical Severity\n- **Reward:** $500 - $2,500\n- **Criteria:** Security vulnerabilities, data loss, complete feature breakdown\n- **Examples:** SQL injection, authentication bypass, data corruption\n\n### High Severity\n- **Reward:** $250 - $500\n- **Criteria:** Significant functionality impairment, performance degradation\n- **Examples:** Major bugs affecting core features, memory leaks\n\n### Medium Severity\n- **Reward:** $50 - $250\n- **Criteria:** Partial feature failure, inconsistent behavior, usability issues\n- **Examples:** Edge case bugs, UI inconsistencies, minor performance issues\n\n### Low Severity\n- **Reward:** $10 - $50\n- **Criteria:** Minor bugs, documentation improvements, code quality enhancements\n- **Examples:** Typos, broken links, code style improvements\n\n### Feature Implementation\n- **Reward:** Negotiable based on scope\n- **Criteria:** New features aligned with project roadmap\n- **Process:** Discuss scope in issue before starting work\n\n## Submission Process\n\n1. Check existing issues to avoid duplicates\n2. Create a detailed issue with reproduction steps\n3. Include environment details (OS, version, dependencies)\n4. For security issues, report privately to security@example.com\n5. Include a pull request with a proposed fix (optional but recommended)\n6. Maintainers will review and assess bounty eligibility\n\n## Payment Terms\n\n- Payouts processed within 30 days of merge\n- Minimum bounty: $10\n- Payment via bank transfer, PayPal, or project-specific arrangement\n- Taxes are the responsibility of the recipient\n\n## Guidelines\n\n- Do not publicly disclose vulnerabilities before they're fixed\n- Provide clear, reproducible reports\n- Be respectful in all communications\n- One bounty per issue (no duplicate payments)\n- Bounty amount determined at maintainers' discretion\n\n## Important Notes\n\n- This program is offered at our discretion and may be modified\n- Bounties are non-negotiable after payout\n- Quality of submission affects bounty amount\n- Automated or low-effort submissions may be declined\n\n---\n\nFor questions, contact: bounty@example.com",
+    "score": 70,
+    "labels": [],
+    "html_url": "https://github.com/jose-compu/QuorumTrust/issues/29",
+    "created_at": "2026-03-26T00:30:40.812384",
+    "status": "claimed"
+  },
+  {
+    "key": "sunlabuiuc/PyHealth#911",
+    "owner": "sunlabuiuc",
+    "repo": "PyHealth",
+    "number": 911,
+    "title": "Add SepsisPredictionEICU and SepsisPredictionMIMIC4 tasks — pre-ICU window, Sepsis-3 proxy labeling",
+    "body": "## Summary\n\nPyHealth currently has no sepsis prediction task. This issue proposes adding two \nnew task definitions:\n\n- `SepsisPredictionEICU` — eICU Collaborative Research Database\n- `SepsisPredictionMIMIC4` — MIMIC-IV\n\nBoth tasks target **pre-ICU / early ICU** detection windows, filling a confirmed \ngap identified in a PROSPERO-registered systematic review (CRD420251164609) covering \n14 studies (53,795 participants): nearly all existing sepsis ML models are trained \non in-ICU data with no standardized reproducible benchmark.\n\n## Clinical Motivation\n\nSepsis is defined by the Sepsis-3 consensus (Singer et al., JAMA 2016) as \nlife-threatening organ dysfunction caused by dysregulated host response to infection. \nEarly detection — before ICU admission or within the first hours — is where clinical \nimpact is highest and where published ML models show the widest performance variance \n(AUROC 0.72–0.94 across studies), largely due to inconsistent cohort definitions \nand labeling strategies.\n\nA reproducible PyHealth task enforces a consistent:\n- **Observation window** (configurable: default 6h from first available data)\n- **Prediction gap** (configurable: 0–12h before onset)\n- **Sepsis label derivation** (Sepsis-3 proxy: ICD codes + SOFA ≥ 2 or \n  `apacheadmissiondx` for eICU)\n\n## Proposed Implementation\n\n### `SepsisPredictionEICU`\n```python\ninput_schema = {\n    \"vitals\": \"time_series\",     # HR, RR, MAP, SpO2, Temp from vitalPeriodic\n    \"labs\": \"sequence\",          # WBC, lactate, creatinine from lab table\n    \"conditions\": \"sequence\",    # apacheadmissiondx / pasthistory\n    \"demographics\": \"static\",    # age, gender, admissionweight\n}\noutput_schema = {\n    \"sepsis_label\": \"binary\",\n}\n```\n\nLabel derivation from eICU:\n- Positive: `apacheadmissiondx` containing sepsis/septic shock keywords **or** \n  ICD codes in `diagnosis` table (995.91, 995.92, A41.x)\n- Negative: non-infectious admission diagnoses\n- Excluded: ambiguous/missing diagnosis records\n\n### `SepsisPredictionMIMIC4`\n```python\ninput_schema = {\n    \"vitals\": \"time_series\",     # chartevents: HR, RR, MAP, SpO2, GCS\n    \"labs\": \"sequence\",          # labevents: WBC, creatinine, bilirubin, lactate\n    \"conditions\": \"sequence\",    # diagnoses_icd (ICD-10)\n    \"demographics\": \"static\",    # age, gender, admission_type\n}\noutput_schema = {\n    \"sepsis_label\": \"binary\",\n}\n```\n\nLabel derivation from MIMIC-IV:\n- Use `sepsis3` flag from `mimiciv_derived.sepsis3` (already in MIMIC-IV derived \n  tables) where available\n- Fallback: ICD-10 codes A40.x, A41.x in `diagnoses_icd`\n\n## Deliverables\n\n- [ ] `pyhealth/tasks/sepsis_prediction_eicu.py`\n- [ ] `pyhealth/tasks/sepsis_prediction_mimic4.py`\n- [ ] Export in `pyhealth/tasks/__init__.py`\n- [ ] Unit tests in `tests/tasks/`\n- [ ] Example notebook in `examples/sepsis_prediction/`\n- [ ] Docstring with clinical references\n\n## References\n\n- Singer M et al. The Third International Consensus Definitions for Sepsis and \n  Septic Shock (Sepsis-3). JAMA. 2016;315(8):801–81",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/sunlabuiuc/PyHealth/issues/911",
+    "created_at": "2026-03-26T00:30:44.754616",
+    "status": "claimed"
+  },
+  {
+    "key": "devasignhq/mobile-app#119",
+    "owner": "devasignhq",
+    "repo": "mobile-app",
+    "number": 119,
+    "title": "Implement PR URL validation for submissions",
+    "body": "When a developer submits work, validate the PR URL exists on GitHub, belongs to the correct repository (matching bounty's repo_owner/repo_name), and is authored by the submitting user.",
+    "score": 20,
+    "labels": [
+      "github",
+      "validation"
+    ],
+    "html_url": "https://github.com/devasignhq/mobile-app/issues/119",
+    "created_at": "2026-03-26T01:00:19.275393",
+    "status": "claimed"
+  },
+  {
+    "key": "devasignhq/mobile-app#121",
+    "owner": "devasignhq",
+    "repo": "mobile-app",
+    "number": 121,
+    "title": "Set up Socket.io WebSocket server with JWT auth",
+    "body": "Initialize Socket.io on the HTTP server with CORS config. Implement auth middleware that validates JWT from handshake, extracts user ID, and joins user to active bounty rooms.",
+    "score": 20,
+    "labels": [
+      "auth",
+      "websocket"
+    ],
+    "html_url": "https://github.com/devasignhq/mobile-app/issues/121",
+    "created_at": "2026-03-26T01:00:23.062933",
+    "status": "claimed"
+  },
+  {
+    "key": "devasignhq/mobile-app#122",
+    "owner": "devasignhq",
+    "repo": "mobile-app",
+    "number": 122,
+    "title": "Implement message sending and broadcasting",
+    "body": "Handle message:send events: persist message to PostgreSQL, broadcast message:new to the bounty room, and trigger push notification for offline recipients.",
+    "score": 20,
+    "labels": [
+      "websocket",
+      "messaging"
+    ],
+    "html_url": "https://github.com/devasignhq/mobile-app/issues/122",
+    "created_at": "2026-03-26T01:00:26.590463",
+    "status": "claimed"
+  },
+  {
+    "key": "devasignhq/mobile-app#113",
+    "owner": "devasignhq",
+    "repo": "mobile-app",
+    "number": 113,
+    "title": "Implement GET /wallet/transactions — transaction history",
+    "body": "Return paginated transaction history with type (earning/withdrawal), amount, bounty reference, Stellar tx hash, status, and timestamp.",
+    "score": 15,
+    "labels": [
+      "api",
+      "wallet",
+      "💵 Bounty"
+    ],
+    "html_url": "https://github.com/devasignhq/mobile-app/issues/113",
+    "created_at": "2026-03-26T01:00:30.396913",
+    "status": "claimed"
+  },
+  {
+    "key": "paritytech/polkadot-sdk#11195",
+    "owner": "paritytech",
+    "repo": "polkadot-sdk",
+    "number": 11195,
+    "title": "Incorrect Beneficiary Address in Child Bounty Payout, Funds Sent to Treasury-Derived Intermediary Account",
+    "body": "The error originated during the preparation of the second Child Bounty reimbursement transaction. While constructing the call, due to user oversight, the intermediary treasury-derived address from the previous successful transaction was reused instead of the intended DeFi Bounty address.\n\nThis mistake was not detected during multisig signing because:\n- Due to the sunset and deprecation of existing multisig tooling (e.g., Mimir, Multix), the transaction was executed directly through Polkadot.js.\n- The Polkadot.js UI truncates beneficiary addresses in the call preview.\n- Only the first portion of the address was visible.\n- The truncated address portion matched exactly between the intended beneficiary and the treasury-derived intermediary account `13UVJyLnbVp9RBZYFwH...`\n- The differing part of the address was not immediately visible in the signing interface.\n\nAs a result, the multisig approved and executed the transaction with the incorrect beneficiary.\n\n---\n\n**Transaction Flow**\n\n- The first payment for the Polkadot Hub ETH RPC service (OpsLayer, 1-year contract) was executed as Child Bounty 72 under Bounty 31:\n[https://polkadot.subsquare.io/treasury/child-bounties/31_72?tab=timeline](https://polkadot.subsquare.io/treasury/child-bounties/31_72?tab=timeline)\n\nThe execution followed the standard Treasury flow:\n\n1. Funds were released from the Bounty 31 account:\n   [https://assethub-polkadot.subscan.io/account/13UVJyLnbVp9RBZYFwHYxa9vkLFAKkVW2R84Sq5poXZoCcN2](https://assethub-polkadot.subscan.io/account/13UVJyLnbVp9RBZYFwHYxa9vkLFAKkVW2R84Sq5poXZoCcN2)\n\n2. The payout first transferred funds to a **treasury-derived intermediary account**:\n   [https://assethub-polkadot.subscan.io/account/13UVJyLnbVp9RBZYFwHZ1tU5R4cAiBkUozfbaAvmb1YZvszc?tab=transfer](https://assethub-polkadot.subscan.io/account/13UVJyLnbVp9RBZYFwHZ1tU5R4cAiBkUozfbaAvmb1YZvszc?tab=transfer)\n\n3. Within the same block, the funds were forwarded to the intended final beneficiary — the **DeFi Bounty account**:\n   [https://assethub-polkadot.subscan.io/account/13UVJyLnbVp9RBZYFwHYxaAqqaywnygJs1K8H73FXaR6esrd](https://assethub-polkadot.subscan.io/account/13UVJyLnbVp9RBZYFwHYxaAqqaywnygJs1K8H73FXaR6esrd)\n\nThis confirms that the two-step Treasury mechanism (Bounty → Treasury intermediary → Final beneficiary) functioned correctly in the first transaction.\n\n---\n\n**The Error**\n\nIn the second CB, due to user error, the final beneficiary address was incorrectly set.\n\nInstead of specifying the DeFi Bounty account, the **previous intermediary treasury address** was mistakenly used as the final beneficiary.\n\nAs a result:\n\n* Funds were transferred from Bounty 31\n* They were sent to the same **treasury-derived intermediary account**\n* The funds are now sitting in the intermediary account.\n\nThe erroneous extrinsic can be seen here:\n[https://assethub-polkadot.subscan.io/extrinsic/12676181-2](https://assethub-polkadot.subscan.io/extrinsic/12676181-2)\n\n\n\n---\n\nThis is a specific case involving a **generated, key",
+    "score": 65,
+    "labels": [
+      "I10-unconfirmed"
+    ],
+    "html_url": "https://github.com/paritytech/polkadot-sdk/issues/11195",
+    "created_at": "2026-03-26T01:30:19.897613",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#195",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 195,
+    "title": "[Bug] Payroll panel: 'This issue has already been paid on-chain.' error blocks batch settlement",
+    "body": "## Problem\n\nIn the Payroll panel, we're seeing the following blocking error when attempting to settle a batch with open bounties:\n\n```\n⚠️ This issue has already been paid on-chain.\n```\n\nThis prevents completion of the payout batch until we investigate and resolve the data issue. Likely cause: legacy or messy BNUT data in `payroll-queue.json` or `contributor-accounts.json` from past experiments with the idea-credit split bot logic (duplicate or stale entries; already paid batch hashes; etc).\n\n## Steps to Reproduce\n1. Go to the Payroll admin panel\n2. Try to settle the next open payout batch\n3. Error appears and settlement is blocked\n\n## Acceptance Criteria\n- [ ] Investigate why the payout batch contains issues marked as already paid on-chain\n- [ ] Correct data hygiene for payout queue and contributor accounts files\n- [ ] Ensure no duplicate batch hashes/paid issues block future settlement\n- [ ] Document the fix so similar data problems are easy to debug in future\n\n---\n**This is a critical blocker for payroll ops!**\n\nbounty: 1 BNUT, idea-adopted, idea-credit: @TheJollyLaMa\n\n---\n(Feel free to include a short root-cause writeup once found, for future maintainers!)",
+    "score": 50,
+    "labels": [
+      "bug",
+      "bounty: 1 BNUT",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/195",
+    "created_at": "2026-03-26T01:30:23.738327",
+    "status": "claimed"
+  },
+  {
+    "key": "devasignhq/mobile-app#31",
+    "owner": "devasignhq",
+    "repo": "mobile-app",
+    "number": 31,
+    "title": "Implement dispute resolution endpoint",
+    "body": "Build POST /disputes/:id/resolve for admin/creator resolution. If resolved_developer: trigger automatic payout. If resolved_creator: reopen bounty for new assignment.",
+    "score": 50,
+    "labels": [
+      "api",
+      "disputes",
+      "💵 Bounty"
+    ],
+    "html_url": "https://github.com/devasignhq/mobile-app/issues/31",
+    "created_at": "2026-03-26T01:30:27.614158",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#31",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 31,
+    "title": "Add local demo reset endpoint for development",
+    "body": "Testing the full bounty lifecycle repeatedly is slower without reset tooling. Should add a development-only way to reset demo data.\n\nImplementation:\n\nAdd a protected or development-only reset endpoint  \nRestore sample bounty data  \nPrevent accidental use in production  \nDocument when and how to use it\n\nAcceptance Criteria:\n\nDevelopers can reset sample data quickly  \nReset is disabled or protected outside development  \nSample data restores correctly  \nDocumentation explains the behavior",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/31",
+    "created_at": "2026-03-26T01:30:31.768691",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#782",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 782,
+    "title": "Bounty escrow: reentrancy guard (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: reentrancy guard (bounty_escrow/escrow)\n\nDescription\n\nreentrancy_guard.rs standalone and integration tests.\n\nRequirements and context\n\nAlign with bounty cross-contract calls.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-reentrancy\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/reentrancy_guard.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_reentrancy_guard.rs\nAdd documentation: reentrancy assumptions\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): reentrancy guard tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/782",
+    "created_at": "2026-03-26T01:30:36.059477",
+    "status": "claimed"
+  },
+  {
+    "key": "ritik4ever/stellar-bounty-board#28",
+    "owner": "ritik4ever",
+    "repo": "stellar-bounty-board",
+    "number": 28,
+    "title": "Add retry and backoff for frontend API failures",
+    "body": "Temporary backend failures should not feel like a broken app. Should add retry logic for selected frontend requests.\n\nImplementation:\n\nRetry safe read requests like bounty list fetches  \nUse simple exponential backoff  \nDo not retry unsafe write actions automatically  \nShow retry-aware error messaging\n\nAcceptance Criteria:\n\nList fetches retry automatically on temporary failures  \nWrite actions do not accidentally duplicate requests  \nUsers see helpful errors after retries fail  \nNo major regression in app responsiveness",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/ritik4ever/stellar-bounty-board/issues/28",
+    "created_at": "2026-03-26T02:00:10.038657",
+    "status": "claimed"
+  },
+  {
+    "key": "dotnet/sdk#52732",
+    "owner": "dotnet",
+    "repo": "sdk",
+    "number": 52732,
+    "title": "OCI Metadata Labels Broken When Using Hyperlinks",
+    "body": "<!--\nPlease keep in mind that the GitHub issue tracker is not intended as a general support forum, but for reporting **non-security** bugs and feature requests.\n\nIf you believe you have an issue that affects the SECURITY of the platform, please do NOT create an issue and instead email your issue details to secure@microsoft.com. Your report may be eligible for our [bug bounty](https://www.microsoft.com/en-us/msrc/bounty-dot-net-core) but ONLY if it is reported through email.\nFor other types of questions, consider using [StackOverflow](https://stackoverflow.com).\n\n-->\n\n### Describe the bug\nHey @baronfel,\n\nPlease refer to [this discussion](https://github.com/dotnet/sdk/discussions/52087): when using the .NET SDK Container Building Tools and using hyperlinks, this breaks the OCI metadata labels.\n\nFor example, please see this image manifest of a container image built using the .NET SDK Container Building Tools:\n```json\n{\n  // remainder left out for brevity\n  \"labels\": {\n    \"org.opencontainers.image.source\": \"https\",\n    \"com.docker.extension.changelog\": \"https\",\n    \"org.opencontainers.image.url\": \"https\",\n    \"org.opencontainers.image.licenses\": \"https\",\n    \"org.opencontainers.image.documentation\": \"https\",\n    \"com.docker.extension.publisher-url\": \"https\",\n  }\n}\n```\n\nBut I properly ensured via some MSBuild output on GitHub Actions that the necessary properties are present:\n```\nGITHUB_REPOSITORY_OWNER: 'mu88'\nGITHUB_SERVER_URL: 'https://github.com'\nGITHUB_REPOSITORY: 'mu88/RaspiFanController'\nGITHUB_SHA: '0780e22d89107421e164448d2f249d8a8c5e27ff'\nContainerAuthors: 'mu88'\nContainerDocumentationUrl: 'https://github.com/mu88/RaspiFanController/blob/0780e22d89107421e164448d2f249d8a8c5e27ff/README.md'\nContainerInformationUrl: 'https://github.com/mu88/pkgs/container/RaspiFanController'\nContainerLicenseExpression: 'https://github.com/mu88/blob/0780e22d89107421e164448d2f249d8a8c5e27ff/LICENSE.md'\nContainerRepository: 'mu88/RaspiFanController'\nContainerTitle: 'mu88/RaspiFanController'\nContainerVendor: 'mu88'\nContainerVersion: '0780e22d89107421e164448d2f249d8a8c5e27ff'\n```\n\n### To Reproduce\n<!--\nWe ❤ code! Point us to a minimalistic repro project hosted in a GitHub repo, Gist snippet, or other means to see the isolated behavior.\n\nWe may close this issue if:\n- the repro project you share with us is complex. We can't investigate custom projects, so don't point us to such, please.\n- if we will not be able to repro the behavior you're reporting\n-->\n1. Create a new .NET project.\n2. Publish a **multi-arch** Docker image via `dotnet publish /t:PublishContainer /p:RuntimeIdentifiers=linux-x64;linux-arm64 /p:ContainerDocumentationUrl=https://dot.net`.\n3. Inspect the OCI metadata labels of the built image - you will see that the hyperlink is broken and only contains `https`.\n\n### Exceptions (if any)\n<!-- \nInclude the exception you get when facing this issue\n-->\nNo exceptions\n\n### Further technical details\n<details><summary>details of dotnet --info</summary>\n<p>\n.NET S",
+    "score": 55,
+    "labels": [
+      "untriaged",
+      "Area-Containers"
+    ],
+    "html_url": "https://github.com/dotnet/sdk/issues/52732",
+    "created_at": "2026-03-26T02:30:20.657929",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#765",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 765,
+    "title": "Bounty escrow: deprecation and migration target (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: deprecation and migration target (bounty_escrow/escrow)\n\nDescription\n\nset_deprecated with migration target; test_deprecation.rs.\n\nRequirements and context\n\nOld entrypoints fail clearly when deprecated.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-deprecation\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_deprecation.rs\nAdd documentation: deprecation policy\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): deprecation flow tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/765",
+    "created_at": "2026-03-26T02:30:24.095228",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#772",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 772,
+    "title": "Bounty escrow: fee routing (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: fee routing (bounty_escrow/escrow)\n\nDescription\n\nRoute fees to configured recipients; test_fee_routing.rs.\n\nRequirements and context\n\nNo duplicate fee collection on retries.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-fee-routing\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_fee_routing.rs\nAdd documentation: fee routing table\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): fee routing tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/772",
+    "created_at": "2026-03-26T02:30:36.863866",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#777",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 777,
+    "title": "Bounty escrow: renew and rollover (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: renew and rollover (bounty_escrow/escrow)\n\nDescription\n\ntest_renew_rollover.rs extends bounty lifetime without losing funds.\n\nRequirements and context\n\nClear state transitions on rollover.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-renew\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_renew_rollover.rs\nAdd documentation: renewal policy\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): renew and rollover tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/777",
+    "created_at": "2026-03-26T02:30:40.553244",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#796",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 796,
+    "title": "Bounty escrow: pause matrix (bounty_escrow/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Bounty escrow: pause matrix (bounty_escrow/escrow)\n\nDescription\n\ntest_pause.rs for global and granular pauses.\n\nRequirements and context\n\nEmergency withdraw paths if defined require extra scrutiny.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/bounty-escrow-pause\n\nImplement changes\n\nWrite contract: bounty_escrow/contracts/escrow/src/lib.rs\nWrite tests: bounty_escrow/contracts/escrow/src/test_pause.rs\nAdd documentation: pause behavior\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(bounty-escrow): pause matrix tests\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/796",
+    "created_at": "2026-03-26T02:30:44.178931",
+    "status": "claimed"
+  },
+  {
+    "key": "WattCoin-Org/wattcoin#149",
+    "owner": "WattCoin-Org",
+    "repo": "wattcoin",
+    "number": 149,
+    "title": "[AGENT TASK: 1,000 WATT] README badges and shields.io integration",
+    "body": "## Task\n\nAdd professional badges to the public WattCoin repo README.\n\n## Requirements\n\n- **Badges to add** (using shields.io):\n  - Build status (or \"Active\" static badge)\n  - License (MIT or as applicable)\n  - Solana badge\n  - Token standard (Token-2022)\n  - Python version\n  - Open bounties count (dynamic if possible via API, static otherwise)\n  - Contributors count\n  - Discord link badge\n  - Website link badge (wattcoin.org)\n- **Placement**: Top of README.md, after title\n- **Style**: Consistent badge style (flat, flat-square, or for-the-badge)\n- **No broken links**: All badges must resolve correctly\n\n## Deliverable\n\nPR updating `README.md` with badge section.\n\n**Payout Wallet**: Include your Solana wallet address in submission.",
+    "score": 20,
+    "labels": [
+      "agent-task"
+    ],
+    "html_url": "https://github.com/WattCoin-Org/wattcoin/issues/149",
+    "created_at": "2026-03-26T03:00:20.460178",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#755",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 755,
+    "title": "Program escrow: serialization compatibility (program-escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Program escrow: serialization compatibility (program-escrow)\n\nDescription\n\nserialization_goldens for stored structs.\n\nRequirements and context\n\nUpgrade-safe schema evolution.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/program-escrow-serialization\n\nImplement changes\n\nWrite contract: program-escrow/src/serialization_goldens.rs\nWrite tests: program-escrow/src/test_serialization_compatibility.rs\nAdd documentation: compatibility notes\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\ntest(program-escrow): serialization goldens\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 20,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/755",
+    "created_at": "2026-03-26T03:00:29.945620",
+    "status": "claimed"
+  },
+  {
+    "key": "Jagadeeshftw/grainlify#802",
+    "owner": "Jagadeeshftw",
+    "repo": "grainlify",
+    "number": 802,
+    "title": "Soroban escrow: parity with contracts workspace (soroban/contracts/escrow)",
+    "body": "<!-- ghit#filepath: /Users/jagadeesh/personal/projects/drips/grainlify/contracts -->\n\nGreat issue: Soroban escrow: parity with contracts workspace (soroban/contracts/escrow)\n\nDescription\n\nAlign soroban/contracts/escrow with bounty_escrow behaviors for refund/release parity.\n\nRequirements and context\n\nSnapshot tests under test_snapshots must stay in sync when logic changes.\n\nMust be secure, tested, and documented\nShould be efficient and easy to review\n\nSuggested execution\n\nFork the repo and create a branch\ngit checkout -b feature/soroban-escrow-parity\n\nImplement changes\n\nWrite contract: soroban/contracts/escrow/src/lib.rs\nWrite tests: soroban/contracts/escrow/src/test.rs\nAdd documentation: parity notes vs contracts/bounty_escrow\n\nInclude Rust doc comments (///) on public items equivalent to NatSpec-style documentation\nValidate security assumptions\n\nTest and commit\n\nRun tests: from `contracts/` directory run `cargo test` (scope with `-p grainlify-core`, `-p program-escrow`, `-p bounty-escrow`, `-p view-facade` as appropriate). For Soroban crates under `soroban/contracts/`, run `cargo test` from that package workspace.\nCover edge cases\nInclude test output summary and security notes in the PR\n\nExample commit message\n\nfeat(soroban-escrow): parity tests and docs\n\nGuidelines\n\nMinimum 95 percent test coverage for new or materially changed contract code\nClear documentation (module-level docs and targeted README sections where new surface area is introduced)\nTimeframe: 96 hours",
+    "score": 15,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/802",
+    "created_at": "2026-03-26T03:00:33.137272",
+    "status": "claimed"
+  },
+  {
+    "key": "Stellar-Fluid/fluid#257",
+    "owner": "Stellar-Fluid",
+    "repo": "fluid",
+    "number": 257,
+    "title": "Bounty Program Integration (Gitcoin / Immunefi)",
+    "body": "Description:\nSet up a bounty program on Gitcoin (development) and Immunefi (security) for the Fluid project.\n\nRequirements and Context:\nBounties attract skilled contributors and security researchers who might not otherwise engage with the project.\n\nAcceptance Criteria:\n- [ ] 5 development bounties posted on Gitcoin for good-first-issue level tasks\n- [ ] Security bug bounty published on Immunefi with defined rewards\n- [ ] Bounty details linked from README and CONTRIBUTING.md\n- [ ] Reward funding from a public treasury wallet\n\nDeliverables:\n- [ ] Implementation of the above criteria\n- [ ] Tests or proof of correct behaviour\n\n**NOTE:** This issue will NOT be reviewed or approved without evidence (screenshot, log, or test output) demonstrating the feature works as described.\n\nSuggested Execution:\n1. Create a Gitcoin grants page\n2. Post the first 5 bounties\n3. Configure the Immunefi security bug bounty program\n\nGuidelines:\n- Follow the existing project coding conventions\n- All new environment variables must be documented in `.env.example`\n- Phase: Phase 15: Community\n\nExample Commit Message:\n```\ncommunity: gitcoin development and immunefi security bounties\n```",
+    "score": 35,
+    "labels": [],
+    "html_url": "https://github.com/Stellar-Fluid/fluid/issues/257",
+    "created_at": "2026-03-26T05:30:08.438193",
+    "status": "claimed"
+  },
+  {
+    "key": "RPiList/specials#2387",
+    "owner": "RPiList",
+    "repo": "specials",
+    "number": 2387,
+    "title": "Spam-Domänen",
+    "body": "Hallo,\n\nhier wieder eine Sammlung an Spam-Domänen\n\nredvine673443.uaon.digital\nuaon.digital\nsmp-auth.de\ntahrkontroll.se\njapaneseknivesguide.com\ndfkajfakf.joeyandalygetmarried.com\njoeyandalygetmarried.com\nrexen.top\njn74.golfykeep.com\nmadamevally.com\nyh213.droptis-s.com\najg505zec681fq4xdbwk.pinsterra-pin.com\npinsterra-pin.com\npeppermint.yxzenomem.digital\nyxzenomem.digital\npudding.eohnessbrasb.digital\neohnessbrasb.digital\nwww.sometime.fit\nsometime.fit\ntropica.nhvanizeprecol.digital\nnhvanizeprecol.digital\ngoodnplenty1392996.oaoishebdomary.digital\noaoishebdomary.digital\nmartime.top\nilpipo.com\ndfkajfakf.joeyandalygetmarried.com\njoeyandalygetmarried.com\nlowen-aktion.de\nmghu3lffdn.bylinker.com\nofficiisckipg.frondell.info\nfrondell.info\nqyb8nnjaal545sz.pinvanta-pin.com\npinvanta-pin.com\napplepie602419.paoraxispharmacogenetic.digital\npaoraxispharmacogenetic.digital\nanariel.click\nprayst.com\ntrx08.getlove.it.com\ngetlove.it.com\nit.com\njames1992page.blogspot.com\nrecinot.org\nsamanek.eu\nmoscato.nhtershipchorol.digital\nnhtershipchorol.digital\nvishenka.yhanaspim.digital\nyhanaspim.digital\nsunsetclear.watch\nrohlife.com\nredvelvet.oihdunfa.digital\npij371.hoopsdominance.com\noihdunfa.digital\nbounty.eexzusnesssuisb.digital\neexzusnesssuisb.digital\neclass.tpompspc.edu.hk\ntpompspc.edu.hk\nwww.whatthen.ink\nwhatthen.ink\nhatchling.paohppedbenz.digital\npaohppedbenz.digital\nviiss.top\ntopmea.com\naktionkindergarten.de\njib-leipzig.de\nftgrabski.pl\nperimeter-schutz.de\ngmsgroup-wesel.de\ndaystom.com\nspk-sid.app\nlasmb.de\nmccup.de\nmmdsl.de\nsabyo.de\nrioxx.de\nlmcco.de\nmeine-sid.app\numfli.de\nbkcmy.de\nmpclo.de\nobaso.de\ndrcut.de\nklumo.de\nsparkasse.lol\nanacaprifoods.com\nbkzsmyq.sparkasse.lol\nefwrbpszrayr.sparkasse.lol\nggmpsdlv.sparkasse.lol\ngicrpp.sparkasse.lol\nhbnnouozprhn.sparkasse.lol\nidwinlr.sparkasse.lol\nijbi.org.in\ningyhtfl.sparkasse.lol\nkyyhm.sparkasse.lol\nlampes-et-tubes.info\nodqnworh.sparkasse.lol\npetite-boston-investor-hundred.trycloudflare.com\nqszjdcvi.sparkasse.lol\nrjnnwwetdfwf.sparkasse.lol\nstknpngorm.sparkasse.lol\nthemotorvenue.com\ntlvnkpjusz.sparkasse.lol\nwihyjtjp.sparkasse.lol\nwnruplbrtrg.sparkasse.lol\nwww.apartments-michalis.gr\napartments-michalis.gr\nwww.azenhas.com\nazenhas.com\nwww.brac.com\nbrac.com\nwww.caudlefamily.com\ncaudlefamily.com\nwww.hakgojae.com\nhakgojae.com\nwww.harukim.net\nharukim.net\nwww.ksvhessen.de\nksvhessen.de\nwww.pows-of-japan.net\npows-of-japan.net\nwww.snard.com\nsnard.com\nzbadzm.sparkasse.lol\n",
+    "score": 25,
+    "labels": [],
+    "html_url": "https://github.com/RPiList/specials/issues/2387",
+    "created_at": "2026-03-26T06:30:07.460351",
+    "status": "claimed"
+  },
+  {
+    "key": "TheJollyLaMa/BigNuten_Vanilla#198",
+    "owner": "TheJollyLaMa",
+    "repo": "BigNuten_Vanilla",
+    "number": 198,
+    "title": "WebLLM Genie Chat: Contextual AI Assistant Embedded in Side Panels (v3)",
+    "body": "## Overview\nBuild a new feature for v3.0.0 that places a small genie icon in the inside upper corner of each side panel. Clicking the genie expands an attached chat window powered by WebLLM, providing contextual assistance using the user's BigNuten data (e.g., logged exercises, diet, supplement lists, past workouts).\n\n## Details\n- **Genie Icon:**\n  - Shown in inside upper corner of side panels when open if AI chat is enabled.\n  - Clicking expands a chat window attached to the edge of the current side panel.\n  - Genie icon and chat visually distinct from main panel UI; should not overlap main content.\n\n- **WebLLM Chat Integration:**\n  - Runs a quantized LLM clientside (WebLLM).\n  - On first enable, downloads the model and stores it for future fast startup.\n  - Chat window uses context from user's own BigNuten data:\n    - Exercise history (esp. last 3 months)\n    - Diet/supplement logs\n    - Any custom or recommended values\n  - Example usages:\n    - \"What should my daily values be given my logged exercises?\"\n    - \"Any recommendations for my diet or supplements list?\"\n    - \"Be my workout assistant—what have I not worked lately?\"\n\n- **UI/UX:**\n  - Add a toggle switch to the Settings tab (upper right in header) to enable/disable the AI assistant. When off, genie icon/chat does not show and the model is not loaded.\n  - Genie/chat UI clean, approachable, and fits BigNuten's look/feel.\n  - Open/close state of chat persists per side panel.\n\n- **Technical Notes:**\n  - Respect all BigNuten privacy best practices—data stays local, nothing cloud-uploaded.\n  - Consider code splitting/lazy-load for WebLLM model/code.\n  - Support efficient context-passing to WebLLM (data scoping, window size, etc.).\n  - Must work well on both desktop and mobile viewports.\n\n## Bounty/Labels\n- idea-credit: @TheJollyLaMa\n- bounty: 4 BNUT\n- V3.0.0\n\n---\n**Credit:** Feature concept by @TheJollyLaMa. Please weigh in with comments/questions below!",
+    "score": 20,
+    "labels": [
+      "bounty: 4 BNUT",
+      "V3.0.0",
+      "idea-adopted",
+      "idea-credit: @TheJollyLaMa"
+    ],
+    "html_url": "https://github.com/TheJollyLaMa/BigNuten_Vanilla/issues/198",
+    "created_at": "2026-03-26T06:30:19.900901",
+    "status": "claimed"
   }
 ]
