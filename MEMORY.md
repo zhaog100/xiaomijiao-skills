@@ -89,7 +89,21 @@ _精心维护的记忆，提炼后的精华_
 
 ### Git & ClawHub
 
-- **推送规则** — 个人→xiaomili，公共→origin
+- **双仓库推送规则**（2026-03-26 官家指令）⭐⭐⭐⭐⭐:
+  | Remote | URL | 提交内容 |
+  |--------|-----|----------|
+  | **origin** | `https://github.com/zhaog100/openclaw-skills.git` | 仅技能相关 (`skills/` 目录、`SKILL.md`、技能脚本) |
+  | **xiaomijiao** | `git@github.com:zhaog100/xiaomijiao-skills.git` | 其他所有 (memory/docs/intel/配置/日志/数据) |
+  - **口诀**: 技能推 origin，其他推 xiaomijiao
+  - **原则**: 同一文件不同时提交到两个仓库
+  - **小米椒工作区**: `agents/xiaomijiao/` + `intel/` + `memory/` + 运营相关文件
+  - **操作示例**:
+    ```bash
+    # 技能更新 → origin
+    git add skills/xxx/ && git commit -m "feat: xxx" && git push origin main
+    # 个人工作区 → xiaomijiao
+    git add intel/ memory/ *.md && git commit -m "chore: xxx" && git push xiaomijiao main
+    ```
 - **ClawHub slug** — 被占用时用 sjykj-前缀
 - **ClawHub 限流** — 每小时 5 个新 slug
 

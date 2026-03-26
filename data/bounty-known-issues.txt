@@ -171,6 +171,7 @@ LederWorks/veiled-market#9424
 LiveHelperChat/livehelperchat#1505
 MM0x02/RSS-Push#452
 MM0x02/RSS-Push#453
+MM0x02/RSS-Push#455
 MetroLogic/fluxapay_contract#54
 MiguelDotL/ai-bug-bounty#10
 MiguelDotL/ai-bug-bounty#12
@@ -360,6 +361,7 @@ cashubtc/nutshell#932
 cashubtc/nutshell#933
 chainreactors/picker#1186
 chainreactors/picker#1187
+chainreactors/picker#1189
 chatmcp/mcpso##1
 citizenfx/fivem#3874
 clanker-devco/clanker-sdk#126
@@ -515,6 +517,7 @@ rsoreq-mend/tensorflow#20
 rubrical-works/gh-pmu#788
 ruohong2018/ruohong2018.github.io#1137
 ruohong2018/ruohong2018.github.io#1138
+ruohong2018/ruohong2018.github.io#1140
 rust-lang/leadership-council#273
 s0md3v/XSStrike#438
 sharmas1ddharth/PICK_pytorch#13
@@ -529,6 +532,7 @@ sunlabuiuc/PyHealth#911
 tenstorrent/tt-metal#40494
 term-structure/termmax-contract-v2#22
 tgstation/tgstation#95484
+thevibeworks/claude-reads-hn#623
 tomazzi14/github-genlayer#1
 ton-society/grants-and-bounties#1200
 ton-society/grants-and-bounties#1216
