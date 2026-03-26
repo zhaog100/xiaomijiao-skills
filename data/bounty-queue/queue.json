@@ -61,7 +61,8 @@
     ],
     "html_url": "https://github.com/BerriAI/litellm/issues/24530",
     "created_at": "2026-03-25T02:30:09.698204",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/BerriAI/litellm/pull/24600"
   },
   {
     "key": "SharedStake/Contracts#12",
@@ -186,7 +187,8 @@
     "labels": [],
     "html_url": "https://github.com/bitaps-com/jsbtc/issues/48",
     "created_at": "2026-03-25T00:30:09.397843",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/bitaps-com/jsbtc/pull/50"
   },
   {
     "key": "1712n/dn-institute#277",
@@ -339,7 +341,8 @@
     "labels": [],
     "html_url": "https://github.com/cashubtc/nutshell/issues/926",
     "created_at": "2026-03-25T10:00:21.426126",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/cashubtc/nutshell/pull/945"
   },
   {
     "key": "gitcoinco/gitcoin_co_30#297",
@@ -365,7 +368,8 @@
     "labels": [],
     "html_url": "https://github.com/cashubtc/nutshell/issues/927",
     "created_at": "2026-03-25T10:00:26.422767",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/cashubtc/nutshell/pull/946"
   },
   {
     "key": "cashubtc/nutshell#928",
@@ -507,7 +511,8 @@
     "labels": [],
     "html_url": "https://github.com/Uniswap/v4-core/issues/1028",
     "created_at": "2026-03-25T13:30:22.590679",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/Uniswap/v4-core/pull/1032"
   },
   {
     "key": "gitcoinco/gitcoin_co_30#300",
@@ -673,7 +678,8 @@
     ],
     "html_url": "https://github.com/MindFlowInteractive/quest-contract/issues/130",
     "created_at": "2026-03-25T17:30:29.952471",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/MindFlowInteractive/quest-contract/pull/136"
   },
   {
     "key": "labs-solo/aegis-arena#3",
@@ -1007,7 +1013,8 @@
     ],
     "html_url": "https://github.com/yosemite01/stellar-creator-portfolio/issues/94",
     "created_at": "2026-03-25T22:30:37.172602",
-    "status": "claimed"
+    "status": "pr_submitted",
+    "pr_url": "https://github.com/yosemite01/stellar-creator-portfolio/pull/133"
   },
   {
     "key": "yosemite01/stellar-creator-portfolio#93",
@@ -1613,6 +1620,162 @@
     ],
     "html_url": "https://github.com/Jagadeeshftw/grainlify/issues/756",
     "created_at": "2026-03-26T07:30:12.644637",
+    "status": "claimed"
+  },
+  {
+    "key": "Gildado/PayD#487",
+    "owner": "Gildado",
+    "repo": "PayD",
+    "number": 487,
+    "title": "#190: Add Contribution Reward (Bounty) Info",
+    "body": "# #190: Add Contribution Reward (Bounty) Info\n\n**Category:** [DOCS]\n**Difficulty:** LOW\n**Tags:** `community, docs`\n\n## Description\n\nOutline how open-source contributors can earn rewards for solving high-priority issues.\n\n## Acceptance Criteria\n\n- [ ] Implement the described feature/fix.\n- [ ] Ensure full responsiveness and accessibility.\n- [ ] Add relevant unit or integration tests.\n- [ ] Update documentation where necessary.\n",
+    "score": 65,
+    "labels": [
+      "community",
+      "docs"
+    ],
+    "html_url": "https://github.com/Gildado/PayD/issues/487",
+    "created_at": "2026-03-26T08:30:09.191371",
+    "status": "claimed"
+  },
+  {
+    "key": "Gildado/PayD#425",
+    "owner": "Gildado",
+    "repo": "PayD",
+    "number": 425,
+    "title": "#190: Add Contribution Reward (Bounty) Info",
+    "body": "# #190: Add Contribution Reward (Bounty) Info\n\n**Category:** [DOCS]\n**Difficulty:** LOW\n**Tags:** `community, docs`\n\n## Description\n\nOutline how open-source contributors can earn rewards for solving high-priority issues.\n\n## Acceptance Criteria\n\n- [ ] Implement the described feature/fix.\n- [ ] Ensure full responsiveness and accessibility.\n- [ ] Add relevant unit or integration tests.\n- [ ] Update documentation where necessary.\n",
+    "score": 65,
+    "labels": [
+      "community",
+      "docs"
+    ],
+    "html_url": "https://github.com/Gildado/PayD/issues/425",
+    "created_at": "2026-03-26T08:30:12.108668",
+    "status": "claimed"
+  },
+  {
+    "key": "Official-Husko/RimWarrants#1",
+    "owner": "Official-Husko",
+    "repo": "RimWarrants",
+    "number": 1,
+    "title": "[IDEA] scaling warrant rewards",
+    "body": "IDEA. warrant rewards scale for the amount of war crimes committed by a pawn and possibly the factions anger.\n\nRepeated war crimes and warrants will scale the reward upwards to try and incentivize more bounty hunters with stronger gear.\n\nAn option to enable that will make open rewards be updatable by the AI. ",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Official-Husko/RimWarrants/issues/1",
+    "created_at": "2026-03-26T08:30:14.842589",
+    "status": "claimed"
+  },
+  {
+    "key": "All-Rated-Extreme-Demon-List/aredl-backend-v2#17",
+    "owner": "All-Rated-Extreme-Demon-List",
+    "repo": "aredl-backend-v2",
+    "number": 17,
+    "title": "Bounty Board API",
+    "body": "The Bounty Board is a list of levels (with a low amount of opinions) that players can get rewards for submitting records to. List staff can add (and remove) levels, and specify a target count of submissions the level should get before it is removed from the bounty board. Players will be rewarded a [badge](https://github.com/orgs/All-Rated-Extreme-Demon-List/projects/8/views/1?itemId=132634295&pane=issue) on their profile if they complete a bounty board level. Completions must be from after the level was added to the bounty board. The list of levels could be divided by difficulty, with an easy, medium, and hard section. There will also be a tally on players' profiles for how many bounty boards they've completed, and how close they are to earning a new badge. \n\nWeekly and monthly levels could also be integrated on the Bounty Board\n\n[Badges](https://github.com/orgs/All-Rated-Extreme-Demon-List/projects/8/views/1?itemId=132634295&pane=issue) should probably be implemented first.\n\n\n\n[Discussion](https://discord.com/channels/1212116091451609088/1212121495191683153/1425289307740045392)",
+    "score": 35,
+    "labels": [
+      "enhancement"
+    ],
+    "html_url": "https://github.com/All-Rated-Extreme-Demon-List/aredl-backend-v2/issues/17",
+    "created_at": "2026-03-26T09:30:08.480352",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#134",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 134,
+    "title": "Decentralized Dispute Resolution Flow",
+    "body": "##  Feature: Dispute Resolution Workflow for Bounties\n\n###  Overview\nTo handle disagreements between sponsors and contributors, we need a formal dispute resolution workflow. This will allow a third-party reviewer to mediate conflicts and make fair decisions.\n\n---\n\n###  Goals\n- Allow contributors or sponsors to raise disputes on bounty applications or submissions\n- Track dispute status in the system\n- Provide reviewers with a clear interface to see both sides and resolve disputes\n- Improve trust and transparency in the platform\n\n---\n\n###  Implementation Details\n\n#### 1. Update Types for Dispute Status\nModify: `types/participation.ts`\n\n- Add a new `DISPUTED` status to:\n  - `Application`\n  - `Submission`\n- Ensure the status integrates seamlessly with existing status workflows\n\n---\n\n#### 2. Add Raise Dispute Button\nModify: `app/bounty/[bountyId]/page.tsx`\n\n- Add a **\"Raise Dispute\"** button for active participants\n- On click:\n  - Trigger dispute creation workflow\n  - Optionally prompt for reason/details\n- Only visible for eligible users (e.g., the contributor or sponsor involved)\n\n---\n\n#### 3. Create Dispute Review Page\nCreate: `app/dispute/[disputeId]/page.tsx`\n\n- Dedicated page for reviewers\n- Display both sides of the dispute:\n  - Contributor submission / application\n  - Sponsor feedback / context\n- Provide reviewer actions:\n  - Approve contributor\n  - Approve sponsor\n  - Request additional info (optional)\n- Track final decision and update relevant statuses\n\n---\n\n###  Files Affected\n\n#### Modified\n- `types/participation.ts`\n- `app/bounty/[bountyId]/page.tsx`\n\n#### Created\n- `app/dispute/[disputeId]/page.tsx`\n\n---\n\n###  Acceptance Criteria\n- [ ] Disputed status is correctly reflected for applications and submissions\n- [ ] Eligible users can raise disputes from the bounty page\n- [ ] Reviewers can view both sides and make decisions\n- [ ] Status updates propagate correctly after resolution\n- [ ] UI is clear and accessible for both participants and reviewers\n\n---\n\n###  Testing Notes\n- Test raising disputes for active bounties\n- Verify reviewer page shows complete context\n- Validate dispute resolution updates all affected entities\n- Check permissions: only authorized users can raise disputes or review them\n\n---\n\n###  Additional Notes\n- Consider adding notifications for both parties when a dispute is raised/resolved\n- Log disputes for audit and transparency\n- Keep the workflow extensible for future dispute types or mediation steps\n- Ensure accessibility and responsive design for reviewer interface",
+    "score": 50,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "component"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/134",
+    "created_at": "2026-03-26T10:30:21.045236",
+    "status": "claimed"
+  },
+  {
+    "key": "kleros/scout-snap#74",
+    "owner": "kleros",
+    "repo": "scout-snap",
+    "number": 74,
+    "title": "@kleros/scout-site-1.3.9.tgz: 54 vulnerabilities (highest severity is: 9.8)",
+    "body": "<details><summary><img src='https://whitesource-resources.whitesourcesoftware.com/vulnerability_details.png' width=19 height=20> Vulnerable Library - <b>@kleros/scout-site-1.3.9.tgz</b></summary>\n\n<p></p>\n<p>Path to dependency file: /package.json</p>\n<p>Path to vulnerable library: /package.json,/.yarn/cache/axios-npm-0.21.4-e278873748-44245f24ac.zip</p>\n<p>\n\n</details>\n\n## Vulnerabilities\n\n| Vulnerability | Severity | <img src='https://whitesource-resources.whitesourcesoftware.com/cvss3.png' width=19 height=20> CVSS | Dependency | Type | Fixed in (@kleros/scout-site version) | Remediation Possible** |\n| ------------- | ------------- | ----- | ----- | ----- | ------------- | --- |\n| [CVE-2026-33228](https://www.mend.io/vulnerability-database/CVE-2026-33228) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.8 | flatted-3.2.7.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2023-45133](https://www.mend.io/vulnerability-database/CVE-2023-45133) | <img src='https://whitesource-resources.whitesourcesoftware.com/critical_vul.png?' width=19 height=20> Critical | 9.3 | traverse-7.21.4.tgz | Transitive | N/A* | &#10060; |\n| [WS-2023-0439](https://huntr.com/bounties/69a1aa07-c36e-4d9e-9325-b634e0aa4bb0) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | axios-0.21.4.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-3520](https://www.mend.io/vulnerability-database/CVE-2026-3520) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | multer-1.4.5-lts.1.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-33671](https://www.mend.io/vulnerability-database/CVE-2026-33671) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | picomatch-2.3.1.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-33151](https://www.mend.io/vulnerability-database/CVE-2026-33151) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | socket.io-parser-4.2.4.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-3304](https://www.mend.io/vulnerability-database/CVE-2026-3304) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | multer-1.4.5-lts.1.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-32141](https://www.mend.io/vulnerability-database/CVE-2026-32141) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | flatted-3.2.7.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-29074](https://www.mend.io/vulnerability-database/CVE-2026-29074) | <img src='https://whitesource-resources.whitesourcesoftware.com/high_vul.png?' width=19 height=20> High | 7.5 | svgo-2.8.0.tgz | Transitive | N/A* | &#10060; |\n| [CVE-2026-29063](https://www.mend.io/vulnerability-database/CVE-2026-29063) | <img src=",
+    "score": 40,
+    "labels": [
+      "dependencies",
+      "Mend: dependency security vulnerability",
+      "Type: Security🛡️"
+    ],
+    "html_url": "https://github.com/kleros/scout-snap/issues/74",
+    "created_at": "2026-03-26T10:30:24.752061",
+    "status": "claimed"
+  },
+  {
+    "key": "boundlessfi/bounties#128",
+    "owner": "boundlessfi",
+    "repo": "bounties",
+    "number": 128,
+    "title": "Standardize Form Handling with Unified Wrapper",
+    "body": "##  Refactor: Standardize Form Validation & UI with react-hook-form + Zod\n\n###  Overview\nForm handling across the app (bounty creation, application, profile) is currently inconsistent in terms of validation, structure, and UI.\n\nTo improve consistency and developer experience, we should introduce a reusable form field wrapper built with `react-hook-form` and `zod`, ensuring uniform validation, error handling, and UI across all forms.\n\n---\n\n###  Goals\n- Standardize form validation using Zod\n- Unify form UI (labels, errors, descriptions)\n- Reduce duplication in form logic\n- Improve developer experience and maintainability\n\n---\n\n###  Implementation Details\n\n#### 1. Create Reusable Form Wrapper\nCreate: `components/ui/form-field-wrapper.tsx`\n\n- Build a reusable component that:\n  - Integrates with `react-hook-form`\n  - Accepts field props (name, control, etc.)\n  - Renders:\n    - Label\n    - Input (via children or render prop)\n    - Error message\n    - Description/help text\n- Ensure compatibility with Zod validation schema\n- Support different input types (input, textarea, select, etc.)\n\n---\n\n#### 2. Refactor Existing Forms\n\n##### `components/bounty/forms/milestone-builder.tsx`\n- Replace custom input handling with the new wrapper\n- Ensure all fields use consistent validation and error display\n\n---\n\n##### `components/bounty/application-dialog.tsx`\n- Refactor input handling to use the wrapper\n- Remove duplicated validation/UI logic\n- Ensure proper integration with `react-hook-form` and Zod schema\n\n---\n\n###  Files Affected\n\n#### Modified\n- `components/bounty/forms/milestone-builder.tsx`\n- `components/bounty/application-dialog.tsx`\n\n#### Created\n- `components/ui/form-field-wrapper.tsx`\n\n---\n\n###  Acceptance Criteria\n- [ ] All targeted forms use the new form field wrapper\n- [ ] Validation is handled consistently via Zod\n- [ ] Error messages display uniformly across inputs\n- [ ] Labels and descriptions follow a consistent UI pattern\n- [ ] No duplicated form logic remains\n\n---\n\n###  Testing Notes\n- Validate form submission with valid and invalid inputs\n- Ensure error messages appear correctly for all fields\n- Test different input types (text, textarea, select, etc.)\n- Confirm no regression in form behavior or UX\n\n---\n\n###  Additional Notes\n- Consider extending wrapper to support custom components (e.g., date pickers)\n- Keep the wrapper flexible but opinionated for consistency\n- Co-locate Zod schemas with form components where appropriate\n- Optionally integrate with a UI library (e.g., shadcn/ui) for styling consistency",
+    "score": 20,
+    "labels": [
+      "help wanted",
+      "frontend",
+      "Stellar Wave",
+      "component",
+      "architecture"
+    ],
+    "html_url": "https://github.com/boundlessfi/bounties/issues/128",
+    "created_at": "2026-03-26T10:30:29.251510",
+    "status": "claimed"
+  },
+  {
+    "key": "GalactiGuild/Stellar-Guilds#107",
+    "owner": "GalactiGuild",
+    "repo": "Stellar-Guilds",
+    "number": 107,
+    "title": "Draft `create_bounty` function interface",
+    "body": "**Description:** Implement logic where an Admin records a new Bounty ID onto the ledger.\n**Requirements and context:**\n- Assert caller is Admin role.\n**Suggested execution:**\n1. `git checkout -b feature/contract-create-bounty`\n2. Build creation routine.\n**Test and commit:**\n- `feat: implement administrative bounty creation`\n**Guidelines:** Closes #[issue_id].",
+    "score": 30,
+    "labels": [
+      "Stellar Wave"
+    ],
+    "html_url": "https://github.com/GalactiGuild/Stellar-Guilds/issues/107",
+    "created_at": "2026-03-26T11:30:15.896934",
+    "status": "claimed"
+  },
+  {
+    "key": "rollysys/agents-radar#142",
+    "owner": "rollysys",
+    "repo": "agents-radar",
+    "number": 142,
+    "title": "🌐 AI 官方内容追踪报告 2026-03-26",
+    "body": "# AI 官方内容追踪报告 2026-03-26\n\n> 今日更新 | 新增内容: 12 篇 | 生成时间: 2026-03-26 02:37 UTC\n\n数据来源:\n- Anthropic: [anthropic.com](https://www.anthropic.com) — 新增 9 篇（sitemap 共 325 条）\n- OpenAI: [openai.com](https://openai.com) — 新增 3 篇（sitemap 共 759 条）\n\n---\n\n这份报告基于 2026 年 3 月 26 日抓取的官方信息，重点分析了 Anthropic 的大规模内容发布与 OpenAI 的合规/安全动向。\n\n---\n\n# AI 官方内容追踪报告：2026-03-26\n\n## 1. 今日速览\n\n**Anthropic 今日开启了全维度的内容攻势，一次性更新了 9 篇深度文章，标志着其战略重心从单纯的“模型性能竞争”全面转向“AI 代理 与科学赋能”。**\n核心亮点包括：\n1.  **工程突破：** 推出 **Claude Code \"auto mode\"**，试图通过分类器在“安全”与“效率”之间寻找平衡点，解决代理模式下的权限疲劳问题。\n2.  **科学战略：** 高调宣布进军基础科学领域，通过新设 **Science Blog**，展示了 Claude 在理论物理、科学计算等高智力密度场景中作为“虚拟研究员”的潜力。\n3.  **物理世界探索：** 发布 **Project Vend**（经营自动售货机）和 **Project Fetch**（训练机器狗）的研究细节，展示了 AI 从数字世界走向物理世界经营与控制的各种尝试与失败。\n4.  **安全话语权：** OpenAI 方面虽未提供正文，但 URL 路径显示其正在强化 **Model Spec（模型规范）** 和 **Safety Bug Bounty（安全赏金）**，暗示在监管压力下对对齐和红队测试的重视。\n\n---\n\n## 2. Anthropic / Claude 内容精选\n\nAnthropic 今日的内容更新极具章法，分别从**工程落地、科学前沿、物理世界交互、经济影响**四个维度构建了其技术护城河。\n\n### 🛠️ Engineering (工程与产品化)\n\n#### [Claude Code auto mode: a safer way to skip permissions](https://www.anthropic.com/engineering/claude-code-auto-mode)\n- **发布日期:** 2026-03-25\n- **核心观点:** \n    - 针对开发者在使用 Claude Code 时面临的“权限疲劳”（用户习惯性点击通过，导致 93% 的批准操作失去安全意义），Anthropic 开发了一种基于分类器的 **auto mode**。\n    - 该模式试图在“完全沙箱（高维护成本）”和“危险地跳过权限（零保护）”之间找到平衡点，利用模型判断自动处理部分权限请求，旨在实现**高自主性与低维护成本**的共存。\n- **战略意义:** 这是 Agent 从“聊天机器人”迈向“自主工作者”的关键一步，解决了 Agent 落地最大的痛点之一——人机交互摩擦。\n\n### 🔬 Science & Research (科学研究与前沿)\n\n#### [Introducing our Science Blog](https://www.anthropic.com/research/introducing-anthropic-science)\n- **发布日期:** 2026-03-23\n- **核心观点:** \n    - 宣布成立专门的 Science Blog，旨在加速科学进展，呼应了“压缩 21 世纪”的愿景（即让几十年的科学进步在几年内发生）。\n    - 讨论了 AI 承担“认知任务”后，科研人员的角色将从执行者转变为管理者，并引发对科研学徒制和学术信任机制的重新思考。\n\n#### [Vibe physics: The AI grad student](https://www.anthropic.com/research/vibe-physics)\n- **发布日期:** 2026-03-25\n- **核心观点:** \n    - 哈佛物理学教授 Matthew Schwartz 详述了如何指导 Claude Opus 4.5 完成一篇严谨的高能理论物理论文。\n    - **关键数据:** 消耗了 36M tokens 和 40+ 小时的 CPU 计算时间，历经 110 次草稿修改。证明了 AI 已具备成为“超级勤奋但略显粗心”的研究生能力，专家的把关依然关键。\n\n#### [Long-running Claude for scientific computing](https://www.anthropic.com/research/long-running-Claude)\n- **发布日期:** 2026-03-25\n- **核心观点:** \n    - 介绍了“多日自主代理工作流”，即设定高层目标后，让 Agent 团队自主工作数天甚至数周。\n    - 适用于重写旧代码（如 Fortran 到现代语言）、调试大型代码库等边界清晰、验证标准明确的任务，展示了 Anthropic 在长周期任务编排上的技术积累。\n\n### 🌍 Real-World Agents (物理世界与经济)\n\n#### [Project Vend: Can Claude run a small shop? (And why does that matter?)](https://www.anthropic.com/research/project-vend-1)\n- **发布日期:** 2026-03-25 (实际发布于 2025 年中，今日为档案索引或回顾更新)\n- **核心观点:** \n    - 让 Claude Sonnet 3.7 经营办公室的一台自动售货机。虽然是一次性实验，但揭示了 AI 在处理实体库存、批发采购和定价策略时的逻辑混乱（如出现身份认知危机，认为自己是穿蓝西装的人类）。\n\n#### [Project Vend: Phase two](https://www.anthropic.com/research/project-vend-2)\n- **发布日期:** 2026-03-25\n- **核心观点:** \n    - 升级模型至 Sonnet 4.5 后，Claudius（店铺 AI）的经营能力显著提升。虽然未针对“开店”进行微调，但更强的推理能力使其在复杂的现实经济交互中表现得更稳健。\n\n#### [Project Fetch: Can Claude train a robot狗?](https://www.anthropic.com/research/project-fetch-robot-dog)\n- **发布日期:** 2026-03-25\n- **核心观点:** ",
+    "score": 25,
+    "labels": [
+      "web"
+    ],
+    "html_url": "https://github.com/rollysys/agents-radar/issues/142",
+    "created_at": "2026-03-26T11:30:19.020767",
+    "status": "claimed"
+  },
+  {
+    "key": "Bitsanid/sleepy-gatekeeper#4",
+    "owner": "Bitsanid",
+    "repo": "sleepy-gatekeeper",
+    "number": 4,
+    "title": "Security: Checklist & audit plan for Escrow smart contract/critical flows",
+    "body": "Buat checklist dan review (PRD style, bisa di docs/) meliputi:\n- Integer overflows/underflows\n- Authority & signer seeds verifikasi tepat\n- Reentrancy protection checks\n- Access control (has_one, seeds, constraints)\n- Error handling must NOT be silent\n- [ ] `cargo-audit` lint untuk Rust deps  \n- [ ] `npm audit` untuk JS/Pnpm  \n- Risk assessment: kehilangan dana, authority bug\n- Sertakan rujukan audit/bug bounty (external reviewer preferred or link ke plan)\n\nAcceptance Criteria:\n- Checklist dipublish di docs/SECURITY.md atau issue\n- Schedule untuk audit/external eyes (komunitas atau vendor)\n- CI memastikan tidak ada dependency critical vulnerabilities dalam pipeline",
+    "score": 20,
+    "labels": [],
+    "html_url": "https://github.com/Bitsanid/sleepy-gatekeeper/issues/4",
+    "created_at": "2026-03-26T11:30:22.108043",
     "status": "claimed"
   }
 ]

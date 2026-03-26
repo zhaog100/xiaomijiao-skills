@@ -28,9 +28,11 @@ AReid987/aigency-v1.0.0#223
 AReid987/aigency-v1.0.0#224
 AcademySoftwareFoundation/OpenCue##2190
 Aleks-NFT/AgentVault#5
+All-Rated-Extreme-Demon-List/aredl-backend-v2#17
 Axionvera/axionvera-sdk#2
 BaiGanio/aperio#20
 BerriAI/litellm#24530
+Bitsanid/sleepy-gatekeeper#4
 BruceFeIix/picker#2333
 BruceFeIix/picker#2336
 Cap-go/capgo#1667
@@ -71,6 +73,7 @@ FreezingMoon/AncientBeast#2850
 FreezingMoon/AncientBeast#2852
 GSA/data.gov#5802
 GalactiGuild/Stellar-Guilds#103
+GalactiGuild/Stellar-Guilds#107
 GalactiGuild/Stellar-Guilds#109
 GalactiGuild/Stellar-Guilds#110
 GalactiGuild/Stellar-Guilds#121
@@ -79,6 +82,8 @@ GalactiGuild/Stellar-Guilds#123
 GalactiGuild/Stellar-Guilds#124
 GalactiGuild/Stellar-Guilds#139
 GalactiGuild/Stellar-Guilds#140
+Gildado/PayD#425
+Gildado/PayD#487
 Grant-Stream/Grant-Stream-Contracts#101
 Hexadian-Corporation/hhh-dataminer#5
 INDIGOAZUL/la-tanda-web#154
@@ -117,6 +122,7 @@ Jagadeeshftw/grainlify#751
 Jagadeeshftw/grainlify#752
 Jagadeeshftw/grainlify#753
 Jagadeeshftw/grainlify#755
+Jagadeeshftw/grainlify#756
 Jagadeeshftw/grainlify#757
 Jagadeeshftw/grainlify#759
 Jagadeeshftw/grainlify#760
@@ -142,6 +148,7 @@ Jagadeeshftw/grainlify#789
 Jagadeeshftw/grainlify#790
 Jagadeeshftw/grainlify#791
 Jagadeeshftw/grainlify#792
+Jagadeeshftw/grainlify#793
 Jagadeeshftw/grainlify#795
 Jagadeeshftw/grainlify#796
 Jagadeeshftw/grainlify#797
@@ -187,6 +194,7 @@ OWASP-BLT/BLT-Next##126
 OWASP-BLT/BLT-Next##127
 OWASP-BLT/BLT-Pool##94
 OWASP-BLT/BLT-SafeCloak##19
+Official-Husko/RimWarrants#1
 Opty-Fi/defi-adapters#7
 PX4/PX4-Autopilot#22464
 PlatformNetwork/bounty-challenge##34565
@@ -332,6 +340,8 @@ bitaps-com/jsbtc#48
 bolivian-peru/marketplace-service-template#281
 bolivian-peru/marketplace-service-template#284
 bolivian-peru/os-moda#2
+boundlessfi/bounties#128
+boundlessfi/bounties#134
 bountydotnew/bounty.new#193
 bountydotnew/bounty.new#231
 bountydotnew/bounty.new#237
@@ -437,6 +447,7 @@ jose-compu/opencircom-foundry-boilerplate#1
 jose-compu/opencircom-hardhat-boilerplate#1
 ke1rro/tt-wavelet#1
 kimcartoon/mydic#6648
+kleros/scout-snap#74
 kodaksax/Bounty-production#395
 kodaksax/Bounty-production#402
 kosiorkosa47/SockFuzzerAppleSillicon#38
@@ -494,6 +505,7 @@ ritik4ever/stellar-bounty-board#32
 ritik4ever/stellar-bounty-board#33
 ritik4ever/stellar-bounty-board#34
 ritik4ever/stellar-bounty-board#8
+rollysys/agents-radar#142
 rsoreq-mend/AutoGPT#57
 rsoreq-mend/AutoGPT#61
 rsoreq-mend/AutoPrompt#34
