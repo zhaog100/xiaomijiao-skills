@@ -2,7 +2,7 @@
 # =============================================================================
 # 小米椒 🌶️‍🔥 运营定时任务统一入口
 # =============================================================================
-# 用法: xiaomila-cron.sh <command>
+# 用法: xiaomijiao-cron.sh <command>
 # 命令:
 #   qmd-update     - 更新 QMD 知识库索引
 #   morning-review - 午间回顾（12:10）：查漏补缺+更新记忆+Git+QMD
@@ -24,7 +24,7 @@ TODAY=$(date +%Y-%m-%d)
 NOW=$(date '+%H:%M')
 COMMAND="${1:-help}"
 GITHUB_TOKEN="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"
-REMOTE_URL="https://zhaog100:${GITHUB_TOKEN}@github.com/zhaog100/xiaomila-skills.git"
+REMOTE_URL="https://zhaog100:${GITHUB_TOKEN}@github.com/zhaog100/xiaomijiao-skills.git"
 
 # PATH 确保能找到 qmd
 export PATH="/home/zhaog/.local/bin:/home/zhaog/.npm-global/bin:$PATH"
@@ -33,7 +33,7 @@ export QMD_FORCE_CPU=1
 mkdir -p "$LOG_DIR" "$MEMORY_DIR" "$INTEL_DIR"
 
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$COMMAND] $1" | tee -a "$LOG_DIR/xiaomila-cron.log"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] [$COMMAND] $1" | tee -a "$LOG_DIR/xiaomijiao-cron.log"
 }
 
 # ============ 公共：QMD 更新 ============
@@ -63,7 +63,7 @@ do_git_push() {
     # 推送到远程 main
     CURRENT_BRANCH=$(git branch --show-current 2>/dev/null || echo "bounty-1501")
     if GIT_LFS_SKIP_PUSH=1 git -c http.version=HTTP/1.1 push "$REMOTE_URL" "$CURRENT_BRANCH:main" >> "$LOG_DIR/git.log" 2>&1; then
-        log "✅ 已推送到 xiaomila-skills.git main"
+        log "✅ 已推送到 xiaomijiao-skills.git main"
     else
         log "⚠️ 推送失败（网络？），下次重试"
     fi
@@ -208,7 +208,7 @@ $(git log --since="$WEEK_START" --oneline -- agents/xiaomijiao/ 2>/dev/null | he
 _待填写_
 
 ---
-*自动生成 by xiaomila-cron.sh | $WEEK_END*
+*自动生成 by xiaomijiao-cron.sh | $WEEK_END*
 EOF
     
     log "✅ 周报已生成: $REPORT_FILE"
@@ -222,7 +222,7 @@ EOF
 
 # ============ 错误统计 ============
 cmd_error_stats() {
-    ERROR_LOG="$LOG_DIR/xiaomila-cron.log"
+    ERROR_LOG="$LOG_DIR/xiaomijiao-cron.log"
     [ ! -f "$ERROR_LOG" ] && return 0
     
     TODAY_ERRORS=$(grep "$TODAY" "$ERROR_LOG" 2>/dev/null | grep -c "⚠️\|❌\|ERROR\|失败" 2>/dev/null || echo "0")
@@ -241,7 +241,7 @@ cmd_help() {
     cat << 'EOF'
 小米椒 🌶️‍🔥 运营定时任务
 
-用法: xiaomila-cron.sh <command>
+用法: xiaomijiao-cron.sh <command>
 
 命令:
   qmd-update      更新 QMD 知识库索引

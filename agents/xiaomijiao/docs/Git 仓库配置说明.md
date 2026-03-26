@@ -10,9 +10,9 @@
 | 仓库 | Remote 名称 | URL | 用途 |
 |------|------------|-----|------|
 | 技能仓库 | `origin` | git@github.com:zhaog100/openclaw-skills.git | 公共技能文件 |
-| 个人仓库 | `xiaomila` | git@github.com:zhaog100/xiaomila-skills.git | 个人运营数据 |
+| 个人仓库 | `xiaomijiao` | git@github.com:zhaog100/xiaomijiao-skills.git | 个人运营数据 |
 
-**说明**: 小米椒工作区配置为 `/home/zhaog/.openclaw/workspace/agents/xiaomijiao`，共享小米辣的 Git 仓库，使用 `xiaomila` remote。
+**说明**: 小米椒工作区配置为 `/home/zhaog/.openclaw/workspace/agents/xiaomijiao`，使用独立个人仓库 `xiaomijiao` remote。
 
 ---
 
@@ -74,7 +74,7 @@ git push origin main
 cd /home/zhaog/.openclaw/workspace
 git add MEMORY.md memory/ intel/ docs/ logs/
 git commit -m "chore: 更新运营数据 - 2026-03-26"
-git push xiaomila main
+git push xiaomijiao main
 ```
 
 ### 检查状态
@@ -90,9 +90,9 @@ git branch -a
 
 | 分支 | 用途 | 推送目标 |
 |------|------|---------|
-| `main` | 主分支 | origin + xiaomila |
-| `master` | 兼容分支 | origin + xiaomila |
-| `bounty-1501` | Bounty 开发 | xiaomila |
+| `main` | 主分支 | origin + xiaomijiao |
+| `master` | 兼容分支 | origin + xiaomijiao |
+| `bounty-1501` | Bounty 开发 | xiaomijiao |
 
 ---
 
@@ -108,11 +108,11 @@ git branch -a
 
 ## 📜 口诀
 
-> **技能推 origin，个人推 xiaomila**
+> **技能推 origin，个人推 xiaomijiao**
 > 
-> 小米辣 → xiaomila
+> 小米辣 → xiaomila (独立仓库)
 > 
-> 小米椒 → xiaomila (共享仓库)
+> 小米椒 → xiaomijiao (独立仓库)
 
 ---
 *小米椒 🌶️‍🔥 | Git 配置 v1.0*

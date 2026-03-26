@@ -112,7 +112,7 @@
 | 通道 | QQ Bot（路由到 main）、微信Bot（待安装） |
 | 模型 | qwen3.5-plus（百炼） |
 | 工作区 | `agents/xiaomijiao/` |
-| Git remote | `xiaomila` → xiaomila-skills.git |
+| Git remote | `xiaomijiao` → xiaomijiao-skills.git |
 | Git Token | ghp_YoFix...（repo+workflow+delete_repo） |
 | QMD 集合 | `xiaomijiao`（19个文档） |
 

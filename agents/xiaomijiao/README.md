@@ -48,7 +48,7 @@ xiaomijiao/
 | Shell | 日志清理 | 02:10 |
 
 ## 🔗 外部资源
-- Git: `xiaomila` → github.com/zhaog100/xiaomila-skills.git（main 分支）
+- Git: `xiaomijiao` → github.com/zhaog100/xiaomijiao-skills.git（main 分支）
 - QMD: 集合 `xiaomijiao`（19个文档）
 
 ---
