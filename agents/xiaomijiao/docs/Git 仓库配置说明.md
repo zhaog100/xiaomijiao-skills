@@ -10,7 +10,9 @@
 | 仓库 | Remote 名称 | URL | 用途 |
 |------|------------|-----|------|
 | 技能仓库 | `origin` | git@github.com:zhaog100/openclaw-skills.git | 公共技能文件 |
-| 个人仓库 | `xiaomijiao` | git@github.com:zhaog100/xiaomijiao-skills.git | 个人运营数据 |
+| 个人仓库 | `xiaomila` | git@github.com:zhaog100/xiaomila-skills.git | 个人运营数据 |
+
+**说明**: 小米椒工作区配置为 `/home/zhaog/.openclaw/workspace/agents/xiaomijiao`，共享小米辣的 Git 仓库，使用 `xiaomila` remote。
 
 ---
 
@@ -72,7 +74,7 @@ git push origin main
 cd /home/zhaog/.openclaw/workspace
 git add MEMORY.md memory/ intel/ docs/ logs/
 git commit -m "chore: 更新运营数据 - 2026-03-26"
-git push xiaomijiao main
+git push xiaomila main
 ```
 
 ### 检查状态
@@ -88,9 +90,9 @@ git branch -a
 
 | 分支 | 用途 | 推送目标 |
 |------|------|---------|
-| `main` | 主分支 | origin + xiaomijiao |
-| `master` | 兼容分支 | origin + xiaomijiao |
-| `bounty-1501` | Bounty 开发 | xiaomijiao |
+| `main` | 主分支 | origin + xiaomila |
+| `master` | 兼容分支 | origin + xiaomila |
+| `bounty-1501` | Bounty 开发 | xiaomila |
 
 ---
 
@@ -98,7 +100,7 @@ git branch -a
 
 1. **同一文件不同时提交到两个仓库**
 2. **技能文件只推 origin**
-3. **个人数据只推 xiaomijiao**
+3. **个人数据只推 xiaomila**
 4. **推送前确认目标仓库**
 5. **网络不稳用**: `GIT_LFS_SKIP_PUSH=1`
 
@@ -106,11 +108,11 @@ git branch -a
 
 ## 📜 口诀
 
-> **技能推 origin，个人推自己**
+> **技能推 origin，个人推 xiaomila**
 > 
 > 小米辣 → xiaomila
 > 
-> 小米椒 → xiaomijiao
+> 小米椒 → xiaomila (共享仓库)
 
 ---
 *小米椒 🌶️‍🔥 | Git 配置 v1.0*
