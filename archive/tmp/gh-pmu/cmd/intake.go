@@ -1,0 +1,394 @@
+package cmd
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+	"text/tabwriter"
+
+	"github.com/rubrical-works/gh-pmu/internal/api"
+	"github.com/rubrical-works/gh-pmu/internal/config"
+	"github.com/spf13/cobra"
+)
+
+// intakeClient defines the interface for API methods used by intake functions.
+// This allows for easier testing with mock implementations.
+type intakeClient interface {
+	GetProject(owner string, number int) (*api.Project, error)
+	GetProjectItems(projectID string, filter *api.ProjectItemsFilter) ([]api.ProjectItem, error)
+	SearchRepositoryIssues(owner, repo string, filters api.SearchFilters, limit int) ([]api.Issue, error)
+	AddIssueToProject(projectID, issueID string) (string, error)
+	SetProjectItemField(projectID, itemID, fieldName, value string) error
+}
+
+type intakeOptions struct {
+	apply    string
+	dryRun   bool
+	json     bool
+	label    []string
+	assignee []string
+}
+
+func newIntakeCommand() *cobra.Command {
+	opts := &intakeOptions{}
+
+	cmd := &cobra.Command{
+		Use:   "intake",
+		Short: "Find issues not yet added to the project",
+		Long: `Find open issues in configured repositories that are not yet tracked in the project.
+
+This helps ensure all work is captured on your project board.
+Use --apply to automatically add discovered issues to the project.`,
+		Aliases: []string{"in"},
+		Example: `  # List untracked issues
+  gh pmu intake
+
+  # Filter by label
+  gh pmu intake --label bug --label urgent
+
+  # Filter by assignee
+  gh pmu intake --assignee username
+
+  # Preview what would be added
+  gh pmu intake --dry-run
+
+  # Add untracked issues to project (with defaults from config)
+  gh pmu intake --apply
+
+  # Add issues and set specific fields
+  gh pmu intake --apply status:backlog,priority:p1
+
+  # Output as JSON
+  gh pmu intake --json`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return runIntake(cmd, opts)
+		},
+	}
+
+	cmd.Flags().StringVarP(&opts.apply, "apply", "a", "", "Add untracked issues to project (optionally set fields: status:backlog,priority:p1)")
+	cmd.Flags().Lookup("apply").NoOptDefVal = " " // Allow --apply without a value (uses config defaults)
+	cmd.Flags().BoolVar(&opts.dryRun, "dry-run", false, "Show what would be added without making changes")
+	cmd.Flags().BoolVar(&opts.json, "json", false, "Output in JSON format")
+	cmd.Flags().StringArrayVarP(&opts.label, "label", "l", nil, "Filter issues by label (can be specified multiple times)")
+	cmd.Flags().StringArrayVar(&opts.assignee, "assignee", nil, "Filter issues by assignee (can be specified multiple times)")
+
+	return cmd
+}
+
+func runIntake(cmd *cobra.Command, opts *intakeOptions) error {
+	// Load configuration
+	cwd, err := os.Getwd()
+	if err != nil {
+		return fmt.Errorf("failed to get current directory: %w", err)
+	}
+
+	cfg, err := config.LoadFromDirectory(cwd)
+	if err != nil {
+		return fmt.Errorf("failed to load configuration: %w\nRun 'gh pmu init' to create a configuration file", err)
+	}
+
+	if err := cfg.Validate(); err != nil {
+		return fmt.Errorf("invalid configuration: %w", err)
+	}
+
+	if len(cfg.Repositories) == 0 {
+		return fmt.Errorf("no repositories configured in .gh-pmu.yml")
+	}
+
+	// Create API client
+	client, err := api.NewClient()
+	if err != nil {
+		return err
+	}
+
+	return runIntakeWithDeps(cmd, opts, cfg, client)
+}
+
+// runIntakeWithDeps is the testable implementation of runIntake
+func runIntakeWithDeps(cmd *cobra.Command, opts *intakeOptions, cfg *config.Config, client intakeClient) error {
+	// Get project
+	project, err := client.GetProject(cfg.Project.Owner, cfg.Project.Number)
+	if err != nil {
+		return fmt.Errorf("failed to get project: %w", err)
+	}
+
+	// Get issues currently in the project
+	// Optimization: when single repo configured, use repository filter to reduce data transfer
+	var filter *api.ProjectItemsFilter
+	if len(cfg.Repositories) == 1 {
+		filter = &api.ProjectItemsFilter{Repository: cfg.Repositories[0]}
+	}
+	projectItems, err := client.GetProjectItems(project.ID, filter)
+	if err != nil {
+		return fmt.Errorf("failed to get project items: %w", err)
+	}
+
+	// Build set of issue IDs already in project
+	trackedIssues := make(map[string]bool)
+	for _, item := range projectItems {
+		if item.Issue != nil {
+			trackedIssues[item.Issue.ID] = true
+		}
+	}
+
+	// Find untracked issues from each repository
+	var untrackedIssues []api.Issue
+	for _, repoFullName := range cfg.Repositories {
+		parts := strings.SplitN(repoFullName, "/", 2)
+		if len(parts) != 2 {
+			cmd.PrintErrf("Warning: invalid repository format %q, expected owner/repo\n", repoFullName)
+			continue
+		}
+		owner, repo := parts[0], parts[1]
+
+		// Build search filters - use Search API for server-side filtering
+		searchFilters := api.SearchFilters{
+			State:  "open",
+			Labels: opts.label, // Server-side label filtering when --label specified
+		}
+
+		// Get open issues from repository via Search API
+		issues, err := client.SearchRepositoryIssues(owner, repo, searchFilters, 0)
+		if err != nil {
+			cmd.PrintErrf("Warning: failed to get issues from %s: %v\n", repoFullName, err)
+			continue
+		}
+
+		// Filter to untracked issues
+		for _, issue := range issues {
+			if !trackedIssues[issue.ID] {
+				issue.Repository = api.Repository{Owner: owner, Name: repo}
+				untrackedIssues = append(untrackedIssues, issue)
+			}
+		}
+	}
+
+	// Note: Label filtering is now done server-side via SearchFilters.Labels
+
+	// Apply assignee filter if specified
+	if len(opts.assignee) > 0 {
+		untrackedIssues = filterIntakeByAssignee(untrackedIssues, opts.assignee)
+	}
+
+	// Handle output
+	if len(untrackedIssues) == 0 {
+		if !opts.json {
+			cmd.Println("All issues are already tracked in the project")
+		} else {
+			encoder := json.NewEncoder(cmd.OutOrStdout())
+			encoder.SetIndent("", "  ")
+			_ = encoder.Encode(map[string]interface{}{"issues": []interface{}{}, "count": 0})
+		}
+		return nil
+	}
+
+	// Dry run - just show what would be added
+	if opts.dryRun {
+		if opts.json {
+			return outputIntakeJSON(cmd, untrackedIssues, "dry-run")
+		}
+		cmd.Printf("Would add %d issue(s) to project:\n\n", len(untrackedIssues))
+		return outputIntakeTable(cmd, untrackedIssues)
+	}
+
+	// Apply - add issues to project
+	// Check if apply was specified (could be empty string "" for just --apply, or have key:value pairs)
+	applyFlagSet := cmd.Flags().Changed("apply")
+	if applyFlagSet {
+		// Parse key:value pairs from apply string
+		applyFields := parseApplyFields(opts.apply)
+
+		var added []api.Issue
+		var failed []api.Issue
+
+		for _, issue := range untrackedIssues {
+			itemID, err := client.AddIssueToProject(project.ID, issue.ID)
+			if err != nil {
+				cmd.PrintErrf("Failed to add #%d: %v\n", issue.Number, err)
+				failed = append(failed, issue)
+				continue
+			}
+
+			// Apply fields from --apply argument first, then fall back to config defaults
+			statusSet := false
+			prioritySet := false
+
+			// Apply fields from --apply key:value pairs
+			for field, value := range applyFields {
+				fieldLower := strings.ToLower(field)
+				if fieldLower == "status" {
+					statusValue := cfg.ResolveFieldValue("status", value)
+					if err := client.SetProjectItemField(project.ID, itemID, "Status", statusValue); err != nil {
+						cmd.PrintErrf("Warning: failed to set status on #%d: %v\n", issue.Number, err)
+					} else {
+						statusSet = true
+					}
+				} else if fieldLower == "priority" {
+					priorityValue := cfg.ResolveFieldValue("priority", value)
+					if err := client.SetProjectItemField(project.ID, itemID, "Priority", priorityValue); err != nil {
+						cmd.PrintErrf("Warning: failed to set priority on #%d: %v\n", issue.Number, err)
+					} else {
+						prioritySet = true
+					}
+				} else {
+					// Generic field
+					if err := client.SetProjectItemField(project.ID, itemID, field, value); err != nil {
+						cmd.PrintErrf("Warning: failed to set %s on #%d: %v\n", field, issue.Number, err)
+					}
+				}
+			}
+
+			// Fall back to config defaults if not set via --apply
+			if !statusSet && cfg.Defaults.Status != "" {
+				statusValue := cfg.ResolveFieldValue("status", cfg.Defaults.Status)
+				if err := client.SetProjectItemField(project.ID, itemID, "Status", statusValue); err != nil {
+					cmd.PrintErrf("Warning: failed to set status on #%d: %v\n", issue.Number, err)
+				}
+			}
+			if !prioritySet && cfg.Defaults.Priority != "" {
+				priorityValue := cfg.ResolveFieldValue("priority", cfg.Defaults.Priority)
+				if err := client.SetProjectItemField(project.ID, itemID, "Priority", priorityValue); err != nil {
+					cmd.PrintErrf("Warning: failed to set priority on #%d: %v\n", issue.Number, err)
+				}
+			}
+
+			added = append(added, issue)
+		}
+
+		if opts.json {
+			return outputIntakeJSON(cmd, added, "applied")
+		}
+
+		cmd.Printf("Added %d issue(s) to project", len(added))
+		if len(failed) > 0 {
+			cmd.Printf(" (%d failed)", len(failed))
+		}
+		cmd.Println()
+		return nil
+	}
+
+	// Default - just list untracked issues
+	if opts.json {
+		return outputIntakeJSON(cmd, untrackedIssues, "untracked")
+	}
+
+	cmd.Printf("Found %d untracked issue(s):\n\n", len(untrackedIssues))
+	if err := outputIntakeTable(cmd, untrackedIssues); err != nil {
+		return err
+	}
+	cmd.Println("\nUse --apply to add these issues to the project")
+	return nil
+}
+
+func outputIntakeTable(cmd *cobra.Command, issues []api.Issue) error {
+	w := tabwriter.NewWriter(cmd.OutOrStdout(), 0, 0, 2, ' ', 0)
+	fmt.Fprintln(w, "NUMBER\tTITLE\tREPOSITORY\tSTATE")
+
+	for _, issue := range issues {
+		title := issue.Title
+		if len(title) > 50 {
+			title = title[:47] + "..."
+		}
+		repoName := fmt.Sprintf("%s/%s", issue.Repository.Owner, issue.Repository.Name)
+		fmt.Fprintf(w, "#%d\t%s\t%s\t%s\n", issue.Number, title, repoName, issue.State)
+	}
+
+	return w.Flush()
+}
+
+type intakeJSONOutput struct {
+	Status string            `json:"status"`
+	Count  int               `json:"count"`
+	Issues []intakeJSONIssue `json:"issues"`
+}
+
+type intakeJSONIssue struct {
+	Number     int    `json:"number"`
+	Title      string `json:"title"`
+	State      string `json:"state"`
+	URL        string `json:"url"`
+	Repository string `json:"repository"`
+}
+
+func outputIntakeJSON(cmd *cobra.Command, issues []api.Issue, status string) error {
+	output := intakeJSONOutput{
+		Status: status,
+		Count:  len(issues),
+		Issues: make([]intakeJSONIssue, 0, len(issues)),
+	}
+
+	for _, issue := range issues {
+		output.Issues = append(output.Issues, intakeJSONIssue{
+			Number:     issue.Number,
+			Title:      issue.Title,
+			State:      issue.State,
+			URL:        issue.URL,
+			Repository: fmt.Sprintf("%s/%s", issue.Repository.Owner, issue.Repository.Name),
+		})
+	}
+
+	encoder := json.NewEncoder(cmd.OutOrStdout())
+	encoder.SetIndent("", "  ")
+	return encoder.Encode(output)
+}
+
+// filterIntakeByLabel filters issues to only those with at least one of the specified labels
+func filterIntakeByLabel(issues []api.Issue, labels []string) []api.Issue {
+	var filtered []api.Issue
+	for _, issue := range issues {
+		for _, filterLabel := range labels {
+			for _, issueLabel := range issue.Labels {
+				if strings.EqualFold(issueLabel.Name, filterLabel) {
+					filtered = append(filtered, issue)
+					goto nextIssue
+				}
+			}
+		}
+	nextIssue:
+	}
+	return filtered
+}
+
+// filterIntakeByAssignee filters issues to only those with at least one of the specified assignees
+func filterIntakeByAssignee(issues []api.Issue, assignees []string) []api.Issue {
+	var filtered []api.Issue
+	for _, issue := range issues {
+		for _, filterAssignee := range assignees {
+			for _, issueAssignee := range issue.Assignees {
+				if strings.EqualFold(issueAssignee.Login, filterAssignee) {
+					filtered = append(filtered, issue)
+					goto nextIssue
+				}
+			}
+		}
+	nextIssue:
+	}
+	return filtered
+}
+
+// parseApplyFields parses a comma-separated list of key:value pairs
+// Example: "status:backlog,priority:p1" -> {"status": "backlog", "priority": "p1"}
+func parseApplyFields(s string) map[string]string {
+	result := make(map[string]string)
+	if s == "" {
+		return result
+	}
+
+	pairs := strings.Split(s, ",")
+	for _, pair := range pairs {
+		pair = strings.TrimSpace(pair)
+		if pair == "" {
+			continue
+		}
+		parts := strings.SplitN(pair, ":", 2)
+		if len(parts) == 2 {
+			key := strings.TrimSpace(parts[0])
+			value := strings.TrimSpace(parts[1])
+			if key != "" && value != "" {
+				result[key] = value
+			}
+		}
+	}
+	return result
+}

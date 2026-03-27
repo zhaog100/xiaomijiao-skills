@@ -1,0 +1,20 @@
+[package]
+name = "bounty-escrow"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[features]
+default = []
+metadata_tagging = []
+
+[dependencies]
+soroban-sdk = { workspace = true }
+grainlify-core = { path = "../../../grainlify-core", default-features = false }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["alloc", "testutils"] }

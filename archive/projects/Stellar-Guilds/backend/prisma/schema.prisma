@@ -1,0 +1,275 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  MODERATOR
+  ADMIN
+  OWNER
+}
+
+enum GuildRole {
+  MEMBER
+  MODERATOR
+  ADMIN
+  OWNER
+}
+
+model Role {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  description String?
+  permissions Permission[]
+  users     User[]   @relation("UserRoles")
+
+  @@map("roles")
+}
+
+model Permission {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  description String?
+  roleId    String
+  role      Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@map("permissions")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  email             String   @unique
+  username          String   @unique
+  password          String
+  firstName         String
+  lastName          String
+  bio               String?
+  avatarUrl         String?
+  role              UserRole @default(USER)
+  isActive          Boolean  @default(true)
+  lastLoginAt       DateTime?
+  walletAddress     String?  @unique
+  refreshToken      String?
+  
+  // Profile fields
+  profileBio        String?
+  profileUrl        String?
+  discordHandle     String?
+  twitterHandle     String?
+
+  // Relations
+  ownedGuilds      Guild[]    @relation("UserOwnerGuilds")
+  joinedGuilds     GuildMembership[]
+  createdBounties  Bounty[]   @relation("UserCreatedBounties")
+  assignedBounties Bounty[]   @relation("UserAssignedBounties")
+  roles            Role[]     @relation("UserRoles")
+  
+  @@map("users")
+}
+
+model Guild {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  slug        String   @unique
+  description String?
+  avatarUrl   String?
+  bannerUrl   String?
+  ownerId     String
+  settings    Json?
+  memberCount Int      @default(1)
+  isActive    Boolean  @default(true)
+
+  // Relations
+  owner        User     @relation("UserOwnerGuilds", fields: [ownerId], references: [id])
+  memberships  GuildMembership[]
+  bounties     Bounty[] @relation("GuildBounties")
+
+  @@map("guilds")
+}
+
+model GuildMembership {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  joinedAt  DateTime?
+  status    MembershipStatus @default(APPROVED)
+  invitationToken String?
+  invitedById String?
+  invitationExpiresAt DateTime?
+  role      GuildRole @default(MEMBER)
+  userId    String
+  guildId   String
+  
+  // Relations
+  user  User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  guild Guild @relation(fields: [guildId], references: [id], onDelete: Cascade)
+
+  invitedBy User? @relation(fields: [invitedById], references: [id])
+
+  //  REVOKED
+  @@unique([userId, guildId])
+  @@map("guild_memberships")
+}
+
+enum MembershipStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Bounty {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  title        String
+  description  String
+  status       String   @default("OPEN") // OPEN, IN_PROGRESS, COMPLETED, CANCELLED
+  rewardAmount Decimal
+  rewardToken  String   @default("STELLAR")
+  deadline     DateTime?
+  creatorId    String
+  assigneeId   String?
+  guildId      String?
+  
+  // Relations
+  creator  User   @relation("UserCreatedBounties", fields: [creatorId], references: [id])
+  assignee User?  @relation("UserAssignedBounties", fields: [assigneeId], references: [id])
+  guild    Guild? @relation("GuildBounties", fields: [guildId], references: [id])
+
+  @@map("bounties")
+}
+
+model BountyApplication {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  bountyId   String
+  applicantId String
+  message    String?
+  attachments Json?
+  status     String   @default("PENDING") // PENDING, ACCEPTED, REJECTED, WITHDRAWN
+  reviewerId String?
+  reviewMessage String?
+
+  bounty   Bounty @relation(fields: [bountyId], references: [id], onDelete: Cascade)
+  applicant User  @relation(fields: [applicantId], references: [id])
+
+  @@map("bounty_applications")
+}
+
+model BountyMilestone {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  bountyId   String
+  title      String
+  description String?
+  amount     Decimal
+  dueDate    DateTime?
+  status     String   @default("PENDING") // PENDING, COMPLETE, APPROVED, REJECTED
+  completedAt DateTime?
+
+  bounty Bounty @relation(fields: [bountyId], references: [id], onDelete: Cascade)
+
+  @@map("bounty_milestones")
+}
+
+model BountyPayout {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  bountyId   String
+  toUserId   String
+  amount     Decimal
+  token      String   @default("STELLAR")
+  txRef      String?
+  status     String   @default("PENDING") // PENDING, SENT, FAILED
+  processedAt DateTime?
+
+  bounty Bounty @relation(fields: [bountyId], references: [id], onDelete: Cascade)
+  toUser User   @relation(fields: [toUserId], references: [id])
+
+  @@map("bounty_payouts")
+}
+
+// social / community tables
+
+model Follow {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  follower  User     @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followerId String
+  following User     @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+  followingId String
+
+  @@unique([followerId, followingId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  from      User     @relation("MessagesSent", fields: [fromId], references: [id], onDelete: Cascade)
+  fromId    String
+  to        User     @relation("MessagesReceived", fields: [toId], references: [id], onDelete: Cascade)
+  toId      String
+  body      String
+  encrypted Boolean  @default(false)
+  read      Boolean  @default(false)
+}
+
+model ForumThread {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  title     String
+  creator   User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  creatorId String
+  posts     ForumPost[]
+}
+
+model ForumPost {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  thread    ForumThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  threadId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  content   String
+  editedAt  DateTime?
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  message     String
+  read        Boolean  @default(false)
+  type        String?
+  metadata    Json?
+}
+
+model PrivacySettings {
+  id                         String   @id @default(cuid())
+  user                       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                     String   @unique
+  showActivityFeed           Boolean  @default(true)
+  allowMessagesFromNonFollowers Boolean @default(false)
+  showAchievements           Boolean  @default(true)
+}

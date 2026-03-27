@@ -1,0 +1,94 @@
+# gh-pmu Default Configuration
+# This file is embedded in the binary and used during `gh pmu init`
+
+# Labels to create in the repository
+labels:
+  - name: branch
+    description: Branch tracker issue
+    color: "0e8a16"
+  - name: epic
+    description: Parent issue with sub-issues
+    color: "3fb950"
+  - name: story
+    description: Child issue under an epic
+    color: "a2eeef"
+  - name: proposal
+    description: Idea awaiting implementation
+    color: "d4c5f9"
+  - name: prd
+    description: Product Requirements Document
+    color: "f9d0c4"
+  - name: bug
+    description: Something isn't working
+    color: "d73a4a"
+  - name: enhancement
+    description: New feature or request
+    color: "1d76db"
+  - name: qa-required
+    description: Requires QA validation
+    color: "fbca04"
+  - name: test-plan
+    description: Issue includes or requires test plan
+    color: "c5def5"
+  - name: security-required
+    description: Requires security review
+    color: "d93f0b"
+  - name: legal-required
+    description: Requires legal review
+    color: "5319e7"
+  - name: docs-required
+    description: Requires documentation updates
+    color: "0052cc"
+  - name: emergency
+    description: P0 emergency issue requiring immediate attention
+    color: "b60205"
+  - name: approval-required
+    description: Requires explicit approval before proceeding
+    color: "e4e669"
+  - name: blocked
+    description: Issue is blocked by external dependency
+    color: "e11d21"
+  - name: scope-creep
+    description: Issue has grown beyond original scope
+    color: "f9a825"
+  - name: tech-debt
+    description: Technical debt requiring future attention
+    color: "e6b800"
+  - name: active
+    description: Currently active working branch
+    color: "7B61FF"
+  - name: reviewed
+    description: Issue has been reviewed and findings resolved
+    color: "2EA44F"
+  - name: pending
+    description: Review findings not yet resolved
+    color: "D93F0B"
+  - name: security-finding
+    description: A code review, audit, pen test, or similar revealed a security finding
+    color: "e36209"
+  - name: assigned
+    description: Issue is assigned to a branch
+    color: "bfd4f2"
+
+# Project fields configuration
+fields:
+  # Required fields - must exist, error if missing
+  required:
+    - name: Status
+      type: SINGLE_SELECT
+      options:
+        - Backlog
+        - In progress
+        - In review
+        - Done
+
+  # Optional fields - create if missing
+  create_if_missing:
+    - name: Priority
+      type: SINGLE_SELECT
+      options:
+        - P0
+        - P1
+        - P2
+    - name: Branch
+      type: TEXT

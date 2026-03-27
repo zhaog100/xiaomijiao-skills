@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git mv:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(gh pmu list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(go test:*)",
+      "Bash(test:*)",
+      "Bash(node:*)",
+      "Bash(gh pmu:*)",
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh pr:*)",
+      "Bash(rm .tmp-pr-body.md)",
+      "Bash(git pull:*)",
+      "Bash(git tag:*)",
+      "Bash(git branch:*)",
+      "Bash(gh release:*)"
+    ],
+    "deny": [
+      "Bash^(rm -rf /:*^)",
+      "Bash^(rm -rf /*:*^)",
+      "Bash^(sudo:*^)",
+      "Bash^(git push --force:*^)",
+      "Bash^(git push -f:*^)",
+      "Bash^(git reset --hard:*^)",
+      "Bash^(git clean -fd:*^)",
+      "Bash^(git filter-branch:*^)",
+      "Bash^(git rebase -i:*^)",
+      "Bash^(git add -i:*^)"
+    ],
+    "ask": []
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/workflow-trigger.js",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  },
+  "spinnerTipsEnabled": true
+}

@@ -1,0 +1,6 @@
+# Minimal valid configuration
+project:
+  number: 13
+  owner: rubrical-works
+repositories:
+  - rubrical-works/gh-pm-test

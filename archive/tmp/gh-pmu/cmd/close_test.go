@@ -1,0 +1,403 @@
+package cmd
+
+import (
+	"bytes"
+	"errors"
+	"os"
+	"strings"
+	"testing"
+
+	"github.com/rubrical-works/gh-pmu/internal/api"
+	"github.com/rubrical-works/gh-pmu/internal/config"
+)
+
+// mockCloseClient implements closeClient for testing
+type mockCloseClient struct {
+	project *api.Project
+	itemID  string
+
+	// Error injection
+	getProjectErr          error
+	getProjectItemIDErr    error
+	setProjectItemFieldErr error
+}
+
+func newMockCloseClient() *mockCloseClient {
+	return &mockCloseClient{
+		project: &api.Project{
+			ID:    "proj-1",
+			Title: "Test Project",
+		},
+		itemID: "item-123",
+	}
+}
+
+func (m *mockCloseClient) GetProject(owner string, number int) (*api.Project, error) {
+	if m.getProjectErr != nil {
+		return nil, m.getProjectErr
+	}
+	return m.project, nil
+}
+
+func (m *mockCloseClient) GetProjectItemIDForIssue(projectID, owner, repo string, number int) (string, error) {
+	if m.getProjectItemIDErr != nil {
+		return "", m.getProjectItemIDErr
+	}
+	return m.itemID, nil
+}
+
+func (m *mockCloseClient) SetProjectItemField(projectID, itemID, fieldName, value string) error {
+	return m.setProjectItemFieldErr
+}
+
+// ============================================================================
+// updateStatusToDoneWithDeps Tests
+// ============================================================================
+
+func TestUpdateStatusToDoneWithDeps_Success(t *testing.T) {
+	mock := newMockCloseClient()
+	cfg := &config.Config{
+		Project:      config.Project{Owner: "test-org", Number: 1},
+		Repositories: []string{"test-org/test-repo"},
+		Fields: map[string]config.Field{
+			"status": {
+				Field:  "Status",
+				Values: map[string]string{"done": "Done"},
+			},
+		},
+	}
+
+	// Create a temp file to capture output
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "", cfg, mock, stdout)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	// Read output
+	_, _ = stdout.Seek(0, 0)
+	buf := new(bytes.Buffer)
+	_, _ = buf.ReadFrom(stdout)
+	output := buf.String()
+
+	if !strings.Contains(output, "#42") {
+		t.Error("expected issue number in output")
+	}
+	if !strings.Contains(output, "Done") {
+		t.Error("expected 'Done' status in output")
+	}
+}
+
+func TestUpdateStatusToDoneWithDeps_WithRepoOverride(t *testing.T) {
+	mock := newMockCloseClient()
+	cfg := &config.Config{
+		Project: config.Project{Owner: "test-org", Number: 1},
+		Fields: map[string]config.Field{
+			"status": {
+				Field:  "Status",
+				Values: map[string]string{"done": "Done"},
+			},
+		},
+	}
+
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "other-org/other-repo", cfg, mock, stdout)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+func TestUpdateStatusToDoneWithDeps_InvalidRepoFormat(t *testing.T) {
+	mock := newMockCloseClient()
+	cfg := &config.Config{
+		Project: config.Project{Owner: "test-org", Number: 1},
+	}
+
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "invalid-format", cfg, mock, stdout)
+	if err == nil {
+		t.Fatal("expected error for invalid repo format")
+	}
+	if !strings.Contains(err.Error(), "invalid --repo format") {
+		t.Errorf("expected 'invalid --repo format' error, got: %v", err)
+	}
+}
+
+func TestUpdateStatusToDoneWithDeps_NoRepoConfigured(t *testing.T) {
+	mock := newMockCloseClient()
+	cfg := &config.Config{
+		Project:      config.Project{Owner: "test-org", Number: 1},
+		Repositories: []string{},
+	}
+
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "", cfg, mock, stdout)
+	if err == nil {
+		t.Fatal("expected error when no repo configured")
+	}
+	if !strings.Contains(err.Error(), "no repository specified") {
+		t.Errorf("expected 'no repository specified' error, got: %v", err)
+	}
+}
+
+func TestUpdateStatusToDoneWithDeps_GetProjectError(t *testing.T) {
+	mock := newMockCloseClient()
+	mock.getProjectErr = errors.New("project not found")
+
+	cfg := &config.Config{
+		Project:      config.Project{Owner: "test-org", Number: 1},
+		Repositories: []string{"test-org/test-repo"},
+	}
+
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "", cfg, mock, stdout)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	if !strings.Contains(err.Error(), "failed to get project") {
+		t.Errorf("expected 'failed to get project' error, got: %v", err)
+	}
+}
+
+func TestUpdateStatusToDoneWithDeps_IssueNotInProject(t *testing.T) {
+	mock := newMockCloseClient()
+	mock.getProjectItemIDErr = errors.New("issue not found in project")
+
+	cfg := &config.Config{
+		Project:      config.Project{Owner: "test-org", Number: 1},
+		Repositories: []string{"test-org/test-repo"},
+	}
+
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "", cfg, mock, stdout)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	if !strings.Contains(err.Error(), "failed to find issue in project") {
+		t.Errorf("expected 'failed to find issue in project' error, got: %v", err)
+	}
+}
+
+func TestUpdateStatusToDoneWithDeps_SetFieldError(t *testing.T) {
+	mock := newMockCloseClient()
+	mock.setProjectItemFieldErr = errors.New("API error")
+
+	cfg := &config.Config{
+		Project:      config.Project{Owner: "test-org", Number: 1},
+		Repositories: []string{"test-org/test-repo"},
+		Fields: map[string]config.Field{
+			"status": {
+				Field:  "Status",
+				Values: map[string]string{"done": "Done"},
+			},
+		},
+	}
+
+	stdout, _ := os.CreateTemp("", "stdout")
+	defer os.Remove(stdout.Name())
+
+	err := updateStatusToDoneWithDeps(42, "", cfg, mock, stdout)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+	if !strings.Contains(err.Error(), "failed to update status") {
+		t.Errorf("expected 'failed to update status' error, got: %v", err)
+	}
+}
+
+func TestNormalizeCloseReason(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		expected  string
+		expectErr bool
+	}{
+		// not_planned variations
+		{
+			name:     "underscore not_planned",
+			input:    "not_planned",
+			expected: "not planned",
+		},
+		{
+			name:     "space not planned",
+			input:    "not planned",
+			expected: "not planned",
+		},
+		{
+			name:     "uppercase NOT_PLANNED",
+			input:    "NOT_PLANNED",
+			expected: "not planned",
+		},
+		{
+			name:     "mixed case Not_Planned",
+			input:    "Not_Planned",
+			expected: "not planned",
+		},
+		{
+			name:     "notplanned no separator",
+			input:    "notplanned",
+			expected: "not planned",
+		},
+
+		// completed variations
+		{
+			name:     "completed",
+			input:    "completed",
+			expected: "completed",
+		},
+		{
+			name:     "COMPLETED uppercase",
+			input:    "COMPLETED",
+			expected: "completed",
+		},
+		{
+			name:     "complete shorthand",
+			input:    "complete",
+			expected: "completed",
+		},
+		{
+			name:     "done alias",
+			input:    "done",
+			expected: "completed",
+		},
+
+		// empty
+		{
+			name:     "empty string",
+			input:    "",
+			expected: "",
+		},
+		{
+			name:     "whitespace only",
+			input:    "  ",
+			expected: "",
+		},
+
+		// invalid
+		{
+			name:      "invalid reason",
+			input:     "invalid",
+			expectErr: true,
+		},
+		{
+			name:      "wontfix invalid",
+			input:     "wontfix",
+			expectErr: true,
+		},
+		{
+			name:      "cancelled invalid",
+			input:     "cancelled",
+			expectErr: true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result, err := normalizeCloseReason(tt.input)
+
+			if tt.expectErr {
+				if err == nil {
+					t.Errorf("expected error for input %q, got nil", tt.input)
+				}
+				return
+			}
+
+			if err != nil {
+				t.Errorf("unexpected error for input %q: %v", tt.input, err)
+				return
+			}
+
+			if result != tt.expected {
+				t.Errorf("normalizeCloseReason(%q) = %q, want %q", tt.input, result, tt.expected)
+			}
+		})
+	}
+}
+
+func TestNewCloseCommand(t *testing.T) {
+	cmd := newCloseCommand()
+
+	// Verify command basics
+	if cmd.Use != "close <issue-number>" {
+		t.Errorf("unexpected Use: %s", cmd.Use)
+	}
+
+	if cmd.Short == "" {
+		t.Error("Short description should not be empty")
+	}
+
+	// Verify flags exist
+	flags := []struct {
+		name      string
+		shorthand string
+	}{
+		{"reason", "r"},
+		{"comment", "c"},
+		{"update-status", ""},
+	}
+
+	for _, f := range flags {
+		flag := cmd.Flags().Lookup(f.name)
+		if flag == nil {
+			t.Errorf("flag --%s not found", f.name)
+			continue
+		}
+		if f.shorthand != "" && flag.Shorthand != f.shorthand {
+			t.Errorf("flag --%s shorthand = %q, want %q", f.name, flag.Shorthand, f.shorthand)
+		}
+	}
+}
+
+func TestNewCloseCommand_RequiresArg(t *testing.T) {
+	cmd := newCloseCommand()
+
+	// Command requires exactly 1 argument
+	err := cmd.Args(cmd, []string{})
+	if err == nil {
+		t.Error("expected error when no arguments provided")
+	}
+
+	err = cmd.Args(cmd, []string{"123"})
+	if err != nil {
+		t.Errorf("unexpected error with one argument: %v", err)
+	}
+
+	err = cmd.Args(cmd, []string{"123", "456"})
+	if err == nil {
+		t.Error("expected error when too many arguments provided")
+	}
+}
+
+func TestRunClose_InvalidIssueNumber(t *testing.T) {
+	cmd := newCloseCommand()
+	opts := &closeOptions{}
+
+	err := runClose(cmd, []string{"not-a-number"}, opts)
+	if err == nil {
+		t.Error("expected error for non-numeric issue number")
+	}
+}
+
+func TestRunClose_InvalidReason(t *testing.T) {
+	cmd := newCloseCommand()
+	opts := &closeOptions{
+		reason: "invalid_reason",
+	}
+
+	err := runClose(cmd, []string{"123"}, opts)
+	if err == nil {
+		t.Error("expected error for invalid close reason")
+	}
+}

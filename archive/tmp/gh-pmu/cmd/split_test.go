@@ -1,0 +1,520 @@
+package cmd
+
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"strings"
+	"testing"
+
+	"github.com/rubrical-works/gh-pmu/internal/api"
+)
+
+// mockSplitClient implements splitClient for testing
+type mockSplitClient struct {
+	issue         *api.Issue
+	createdIssues []*api.Issue
+	createIndex   int
+
+	// Error injection
+	getIssueErr    error
+	createIssueErr error
+	addSubIssueErr error
+}
+
+func newMockSplitClient() *mockSplitClient {
+	return &mockSplitClient{
+		issue: &api.Issue{
+			ID:     "issue-1",
+			Number: 42,
+			Title:  "Parent Issue",
+			Body:   "- [ ] Task 1\n- [ ] Task 2\n- [x] Done task",
+		},
+		createdIssues: []*api.Issue{},
+	}
+}
+
+func (m *mockSplitClient) GetIssue(owner, repo string, number int) (*api.Issue, error) {
+	if m.getIssueErr != nil {
+		return nil, m.getIssueErr
+	}
+	return m.issue, nil
+}
+
+func (m *mockSplitClient) CreateIssue(owner, repo, title, body string, labels []string) (*api.Issue, error) {
+	if m.createIssueErr != nil {
+		return nil, m.createIssueErr
+	}
+	if m.createIndex < len(m.createdIssues) {
+		issue := m.createdIssues[m.createIndex]
+		m.createIndex++
+		return issue, nil
+	}
+	return &api.Issue{
+		ID:     "new-issue",
+		Number: 100 + m.createIndex,
+		Title:  title,
+	}, nil
+}
+
+func (m *mockSplitClient) AddSubIssue(parentID, issueID string) error {
+	return m.addSubIssueErr
+}
+
+// ============================================================================
+// runSplitWithDeps Tests
+// ============================================================================
+
+func TestRunSplitWithDeps_DryRun(t *testing.T) {
+	mock := newMockSplitClient()
+	mock.issue = &api.Issue{
+		Number: 42,
+		Title:  "Parent Issue",
+		Body:   "- [ ] Task 1\n- [ ] Task 2",
+	}
+
+	cmd := newSplitCommand()
+	var buf bytes.Buffer
+	cmd.SetOut(&buf)
+
+	opts := &splitOptions{from: "body", dryRun: true}
+	args := []string{"42"}
+	err := runSplitWithDeps(cmd, args, opts, mock, "owner", "repo", 42)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	output := buf.String()
+	if !strings.Contains(output, "Would create") {
+		t.Error("expected 'Would create' in dry-run output")
+	}
+}
+
+func TestRunSplitWithDeps_GetIssueError(t *testing.T) {
+	mock := newMockSplitClient()
+	mock.getIssueErr = errors.New("issue not found")
+
+	cmd := newSplitCommand()
+	opts := &splitOptions{from: "body"}
+	args := []string{"42"}
+	err := runSplitWithDeps(cmd, args, opts, mock, "owner", "repo", 42)
+
+	if err == nil {
+		t.Fatal("expected error, got nil")
+	}
+	if !strings.Contains(err.Error(), "failed to get issue") {
+		t.Errorf("expected 'failed to get issue' error, got: %v", err)
+	}
+}
+
+func TestRunSplitWithDeps_NoTasks(t *testing.T) {
+	mock := newMockSplitClient()
+	mock.issue = &api.Issue{
+		Number: 42,
+		Title:  "Empty Issue",
+		Body:   "No checklist items here",
+	}
+
+	cmd := newSplitCommand()
+	var buf bytes.Buffer
+	cmd.SetOut(&buf)
+
+	opts := &splitOptions{from: "body"}
+	args := []string{"42"}
+	err := runSplitWithDeps(cmd, args, opts, mock, "owner", "repo", 42)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	output := buf.String()
+	if !strings.Contains(output, "No tasks found") {
+		t.Error("expected 'No tasks found' in output")
+	}
+}
+
+func TestRunSplitWithDeps_NoSource(t *testing.T) {
+	mock := newMockSplitClient()
+
+	cmd := newSplitCommand()
+	opts := &splitOptions{}
+	args := []string{"42"} // No --from and no task arguments
+	err := runSplitWithDeps(cmd, args, opts, mock, "owner", "repo", 42)
+
+	if err == nil {
+		t.Fatal("expected error for no source, got nil")
+	}
+	if !strings.Contains(err.Error(), "no tasks specified") {
+		t.Errorf("expected 'no tasks specified' error, got: %v", err)
+	}
+}
+
+func TestRunSplitWithDeps_WithTaskArgs(t *testing.T) {
+	mock := newMockSplitClient()
+	mock.issue = &api.Issue{
+		ID:     "issue-42",
+		Number: 42,
+		Title:  "Parent Issue",
+	}
+	mock.createdIssues = []*api.Issue{
+		{ID: "new-1", Number: 43, Title: "Task 1"},
+		{ID: "new-2", Number: 44, Title: "Task 2"},
+	}
+
+	cmd := newSplitCommand()
+	var buf bytes.Buffer
+	cmd.SetOut(&buf)
+
+	opts := &splitOptions{}
+	args := []string{"42", "Task 1", "Task 2"}
+	err := runSplitWithDeps(cmd, args, opts, mock, "owner", "repo", 42)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+
+	output := buf.String()
+	if !strings.Contains(output, "Created sub-issue") {
+		t.Error("expected 'Created sub-issue' in output")
+	}
+}
+
+func TestRunSplitWithDeps_JSONOutput(t *testing.T) {
+	mock := newMockSplitClient()
+	mock.issue = &api.Issue{
+		Number: 42,
+		Title:  "Parent Issue",
+		Body:   "- [ ] Task 1",
+	}
+
+	cmd := newSplitCommand()
+	var buf bytes.Buffer
+	cmd.SetOut(&buf)
+
+	opts := &splitOptions{from: "body", dryRun: true, json: true}
+	args := []string{"42"}
+	err := runSplitWithDeps(cmd, args, opts, mock, "owner", "repo", 42)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+func TestSplitCommand(t *testing.T) {
+	t.Run("has correct command structure", func(t *testing.T) {
+		cmd := newSplitCommand()
+
+		if cmd.Use != "split <issue> [tasks...]" {
+			t.Errorf("expected Use to be 'split <issue> [tasks...]', got %s", cmd.Use)
+		}
+
+		if cmd.Short == "" {
+			t.Error("expected Short description to be set")
+		}
+	})
+
+	t.Run("has required flags", func(t *testing.T) {
+		cmd := newSplitCommand()
+
+		// Check --from flag
+		fromFlag := cmd.Flags().Lookup("from")
+		if fromFlag == nil {
+			t.Error("expected --from flag")
+		}
+
+		// Check --dry-run flag
+		dryRunFlag := cmd.Flags().Lookup("dry-run")
+		if dryRunFlag == nil {
+			t.Error("expected --dry-run flag")
+		}
+
+		// Check --json flag
+		jsonFlag := cmd.Flags().Lookup("json")
+		if jsonFlag == nil {
+			t.Error("expected --json flag")
+		}
+	})
+
+	t.Run("command is registered in root", func(t *testing.T) {
+		root := NewRootCommand()
+		buf := new(bytes.Buffer)
+		root.SetOut(buf)
+		root.SetArgs([]string{"split", "--help"})
+		err := root.Execute()
+		if err != nil {
+			t.Errorf("split command not registered: %v", err)
+		}
+	})
+}
+
+func TestSplitOptions(t *testing.T) {
+	t.Run("default options", func(t *testing.T) {
+		opts := &splitOptions{}
+
+		if opts.from != "" {
+			t.Error("from should be empty by default")
+		}
+		if opts.dryRun {
+			t.Error("dryRun should be false by default")
+		}
+		if opts.json {
+			t.Error("json should be false by default")
+		}
+	})
+}
+
+func TestParseChecklist(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    string
+		expected []string
+	}{
+		{
+			name: "simple checklist",
+			input: `# Epic Title
+
+Some description here.
+
+## Tasks
+- [ ] Task one
+- [ ] Task two
+- [ ] Task three
+`,
+			expected: []string{"Task one", "Task two", "Task three"},
+		},
+		{
+			name: "mixed checked and unchecked",
+			input: `- [x] Completed task
+- [ ] Pending task
+- [ ] Another pending
+`,
+			expected: []string{"Pending task", "Another pending"},
+		},
+		{
+			name: "with nested content",
+			input: `- [ ] Main task
+  - Some notes
+  - More notes
+- [ ] Second task
+`,
+			expected: []string{"Main task", "Second task"},
+		},
+		{
+			name:     "no checklist items",
+			input:    "Just some text without any checklist",
+			expected: []string{},
+		},
+		{
+			name: "checklist with extra whitespace",
+			input: `- [ ]   Task with leading space
+- [ ]	Task with tab
+`,
+			expected: []string{"Task with leading space", "Task with tab"},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := parseChecklist(tt.input)
+
+			if len(result) != len(tt.expected) {
+				t.Errorf("expected %d items, got %d", len(tt.expected), len(result))
+				t.Errorf("got: %v", result)
+				return
+			}
+
+			for i, expected := range tt.expected {
+				if result[i] != expected {
+					t.Errorf("item %d: expected %q, got %q", i, expected, result[i])
+				}
+			}
+		})
+	}
+}
+
+func TestOutputSplitJSON(t *testing.T) {
+	t.Run("includes parent issue info", func(t *testing.T) {
+		cmd := newSplitCommand()
+		buf := new(bytes.Buffer)
+		cmd.SetOut(buf)
+
+		parent := &api.Issue{
+			Number: 123,
+			Title:  "Parent Epic",
+			URL:    "https://github.com/owner/repo/issues/123",
+		}
+		tasks := []string{"Task 1", "Task 2", "Task 3"}
+
+		// Note: outputSplitJSON writes to os.Stdout
+		err := outputSplitJSON(cmd, parent, tasks, "dry-run")
+		if err != nil {
+			t.Fatalf("outputSplitJSON failed: %v", err)
+		}
+	})
+
+	t.Run("handles nil tasks", func(t *testing.T) {
+		cmd := newSplitCommand()
+
+		parent := &api.Issue{
+			Number: 1,
+			Title:  "No tasks",
+			URL:    "https://github.com/owner/repo/issues/1",
+		}
+
+		err := outputSplitJSON(cmd, parent, nil, "no-tasks")
+		if err != nil {
+			t.Fatalf("outputSplitJSON failed with nil tasks: %v", err)
+		}
+	})
+
+	t.Run("status field is preserved", func(t *testing.T) {
+		cmd := newSplitCommand()
+		parent := &api.Issue{Number: 1, Title: "Test"}
+
+		statuses := []string{"dry-run", "no-tasks", "completed"}
+		for _, status := range statuses {
+			err := outputSplitJSON(cmd, parent, []string{}, status)
+			if err != nil {
+				t.Fatalf("outputSplitJSON failed with status %q: %v", status, err)
+			}
+		}
+	})
+}
+
+func TestOutputSplitJSONCreated(t *testing.T) {
+	t.Run("tracks created vs failed counts", func(t *testing.T) {
+		cmd := newSplitCommand()
+
+		parent := &api.Issue{
+			Number: 100,
+			Title:  "Parent Issue",
+			URL:    "https://github.com/owner/repo/issues/100",
+		}
+
+		created := []api.Issue{
+			{Number: 101, Title: "Sub 1", URL: "https://github.com/owner/repo/issues/101"},
+			{Number: 102, Title: "Sub 2", URL: "https://github.com/owner/repo/issues/102"},
+			{Number: 103, Title: "Sub 3", URL: "https://github.com/owner/repo/issues/103"},
+		}
+		failed := []string{"Failed task 1"}
+
+		err := outputSplitJSONCreated(cmd, parent, created, failed)
+		if err != nil {
+			t.Fatalf("outputSplitJSONCreated failed: %v", err)
+		}
+	})
+
+	t.Run("handles empty created list", func(t *testing.T) {
+		cmd := newSplitCommand()
+		parent := &api.Issue{Number: 1, Title: "Parent"}
+
+		err := outputSplitJSONCreated(cmd, parent, []api.Issue{}, []string{"all", "failed"})
+		if err != nil {
+			t.Fatalf("outputSplitJSONCreated failed with empty created: %v", err)
+		}
+	})
+
+	t.Run("handles empty failed list", func(t *testing.T) {
+		cmd := newSplitCommand()
+		parent := &api.Issue{Number: 1, Title: "Parent"}
+
+		created := []api.Issue{
+			{Number: 2, Title: "Sub", URL: "url"},
+		}
+
+		err := outputSplitJSONCreated(cmd, parent, created, []string{})
+		if err != nil {
+			t.Fatalf("outputSplitJSONCreated failed with empty failed: %v", err)
+		}
+	})
+}
+
+func TestSplitJSONOutput_Structure(t *testing.T) {
+	t.Run("outputSplitJSON produces valid JSON", func(t *testing.T) {
+		// Test the structure by creating expected output manually
+		output := map[string]interface{}{
+			"status": "dry-run",
+			"parent": map[string]interface{}{
+				"number": 123,
+				"title":  "Parent Epic",
+				"url":    "https://github.com/owner/repo/issues/123",
+			},
+			"taskCount": 3,
+			"tasks":     []string{"Task 1", "Task 2", "Task 3"},
+		}
+
+		data, err := json.Marshal(output)
+		if err != nil {
+			t.Fatalf("Failed to marshal output: %v", err)
+		}
+
+		var result map[string]interface{}
+		if err := json.Unmarshal(data, &result); err != nil {
+			t.Fatalf("Failed to unmarshal JSON: %v", err)
+		}
+
+		if result["status"] != "dry-run" {
+			t.Errorf("Expected status 'dry-run', got %v", result["status"])
+		}
+
+		parent, ok := result["parent"].(map[string]interface{})
+		if !ok {
+			t.Fatal("Expected parent to be an object")
+		}
+		if int(parent["number"].(float64)) != 123 {
+			t.Errorf("Expected parent number 123, got %v", parent["number"])
+		}
+		if parent["title"] != "Parent Epic" {
+			t.Errorf("Expected parent title 'Parent Epic', got %v", parent["title"])
+		}
+	})
+
+	t.Run("outputSplitJSONCreated produces valid JSON with counts", func(t *testing.T) {
+		output := map[string]interface{}{
+			"status": "completed",
+			"parent": map[string]interface{}{
+				"number": 100,
+				"title":  "Parent",
+				"url":    "url",
+			},
+			"createdCount": 3,
+			"failedCount":  1,
+			"created": []map[string]interface{}{
+				{"number": 101, "title": "Sub 1", "url": "url1"},
+				{"number": 102, "title": "Sub 2", "url": "url2"},
+				{"number": 103, "title": "Sub 3", "url": "url3"},
+			},
+			"failed": []string{"Failed task"},
+		}
+
+		data, err := json.Marshal(output)
+		if err != nil {
+			t.Fatalf("Failed to marshal output: %v", err)
+		}
+
+		var result map[string]interface{}
+		if err := json.Unmarshal(data, &result); err != nil {
+			t.Fatalf("Failed to unmarshal JSON: %v", err)
+		}
+
+		if int(result["createdCount"].(float64)) != 3 {
+			t.Errorf("Expected createdCount 3, got %v", result["createdCount"])
+		}
+		if int(result["failedCount"].(float64)) != 1 {
+			t.Errorf("Expected failedCount 1, got %v", result["failedCount"])
+		}
+
+		created, ok := result["created"].([]interface{})
+		if !ok {
+			t.Fatal("Expected created to be an array")
+		}
+		if len(created) != 3 {
+			t.Errorf("Expected 3 created items, got %d", len(created))
+		}
+
+		failed, ok := result["failed"].([]interface{})
+		if !ok {
+			t.Fatal("Expected failed to be an array")
+		}
+		if len(failed) != 1 {
+			t.Errorf("Expected 1 failed item, got %d", len(failed))
+		}
+	})
+}

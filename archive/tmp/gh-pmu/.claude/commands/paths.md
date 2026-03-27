@@ -1,0 +1,87 @@
+---
+version: "v0.70.0"
+description: Collaborative path analysis for proposals and enhancements (project)
+argument-hint: "#issue"
+copyright: "Rubrical Works (c) 2026"
+---
+<!-- EXTENSIBLE -->
+# /paths
+Turn-based collaborative scenario path discovery on proposals and enhancements.
+**Extension Points:** See `.claude/metadata/extension-points.json` or run `/extensions list --command paths`
+---
+## Prerequisites
+- `gh pmu` extension installed
+- `.gh-pmu.json` configured
+---
+## Arguments
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `#issue` | Yes | Issue number (`#N` or `N`) |
+| `--quick` | No | First 3 categories only |
+| `--dry-run` | No | Non-interactive summary |
+| `--categories IDs` | No | Comma-separated: `nominal`, `alternative`, `exception`, `edge`, `corner`, `negative` |
+| `--from-code [path]` | No | Delegate to `code-path-discovery` skill |
+---
+## Execution Instructions
+**REQUIRED:** Generate TodoWrite todos. Include extensions. Track progress. Post-compaction: re-read spec.
+---
+## Workflow
+
+<!-- USER-EXTENSION-START: pre-paths -->
+<!-- USER-EXTENSION-END: pre-paths -->
+
+### Step 1: Setup (Preamble Script)
+```bash
+node ./.claude/scripts/shared/paths-preamble.js $ISSUE [--quick] [--dry-run] [--categories IDs] [--from-code path]
+```
+If `ok: false`: report error -> **STOP**.
+Extract `context`: issue data, config (categories), flags, proposalFile, partial/resumeFrom.
+If enhancement: display `context.config.fromCodeHint`.
+### Step 2: Load Content
+**`--from-code`:** Validate path, delegate to skill (Step 2b).
+**Otherwise:** Read `context.proposalFile`. Fall back to issue body. Empty: STOP.
+#### Step 2b: Code Paths
+Validate path, scan source files, warn >50. Invoke skill. Zero candidates: AskUserQuestion manual/stop.
+### Step 3: Check Existing / Partial Analysis
+Search for `## Path Analysis`. Use `context.partial`.
+Partial: resume. Full: load as starting point. Not found: empty.
+### Step 4: Turn-Based Discovery (or Dry-Run)
+**Dry-run:** Generate all candidates, display grouped summary -> Step 7 -> STOP.
+**Per category:**
+**4a:** Progress breadcrumb. **4b:** AI generates 2-5 candidates. **4c:** User validates (AskUserQuestion, multiSelect, "Skip" option). **4d:** User adds or generates more. **4e:** Buffer confirmed.
+
+<!-- USER-EXTENSION-START: post-category -->
+<!-- USER-EXTENSION-END: post-category -->
+
+**Interruption:** Write partial with marker.
+### Step 5: Consolidate and Confirm
+Display grouped list. AskUserQuestion: write/review/discard. Discard or no paths: STOP.
+### Step 6: Write Path Analysis
+File exists: append/update `## Path Analysis`. No file: issue comment. Quick: note in footer. Write failure: STOP.
+
+<!-- USER-EXTENSION-START: post-paths -->
+<!-- USER-EXTENSION-END: post-paths -->
+
+### Step 7: Report
+```
+Path Analysis complete for Issue #$ISSUE: $TITLE
+  {category}: N paths
+  Total: N paths
+  Written to: [path or "issue comment"]
+```
+**STOP.**
+---
+## Error Handling
+| Situation | Response |
+|-----------|----------|
+| Issue not found | STOP |
+| Not proposal/enhancement | STOP |
+| Issue closed | Warn, ask |
+| Proposal not found | Fall back to body |
+| Body empty | STOP |
+| No paths | STOP |
+| File write fails | STOP |
+| `--from-code` path/files issues | STOP |
+| Flag conflict / invalid categories | STOP |
+---
+**End of /paths Command**

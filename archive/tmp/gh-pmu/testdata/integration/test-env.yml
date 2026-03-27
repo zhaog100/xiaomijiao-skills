@@ -1,0 +1,31 @@
+# Integration test environment configuration
+# DO NOT USE FOR REAL WORK - This project is for automated testing only
+# Shares environment with E2E tests (test/e2e/) — both use project #41
+
+github:
+  # Test repository
+  repo: rubrical-works/gh-pmu-e2e-test
+
+  # Test project
+  project:
+    owner: rubrical-works
+    number: 41
+    id: PVT_kwHOAATLPs4BM2I6
+    url: https://github.com/users/rubrical-works/projects/41
+
+  # Custom fields added to test project
+  fields:
+    - name: Priority
+      type: SINGLE_SELECT
+      options: [P0, P1, P2]
+    - name: Size
+      type: SINGLE_SELECT
+      options: [XS, S, M, L, XL]
+
+# Instructions for running integration tests:
+# 1. Set environment variables:
+#    TEST_PROJECT_OWNER=rubrical-works
+#    TEST_PROJECT_NUMBER=41
+#    TEST_REPO_OWNER=rubrical-works
+#    TEST_REPO_NAME=gh-pmu-e2e-test
+# 2. Run: go test -tags=integration ./cmd/...
