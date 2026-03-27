@@ -14,6 +14,7 @@ _精心维护的记忆，提炼后的精华_
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
+| **OpenClaw** | ⏳ 待升级 | 2026.3.24 可用，升级后需重启 Gateway |
 | pygal #579 | 🔍 PR 等审核 | OHLC K线图，维护者无Python能力，已请推荐reviewer |
 | vllm-omni #2080 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
 | GeneralsGameCode #2485 | 🔍 待确认 | 仓库权限问题，gh无法查询 |
@@ -107,13 +108,14 @@ _精心维护的记忆，提炼后的精华_
 - **ClawHub slug** — 被占用时用 sjykj-前缀
 - **ClawHub 限流** — 每小时 5 个新 slug
 
-### 系统运维教训（2026-03-24 新增）⭐⭐⭐⭐
+### 系统运维教训（2026-03-24 新增，2026-03-27 补充）⭐⭐⭐⭐
 
 - **OpenClaw 升级后必须重启 Gateway** — 否则插件文件与内存不一致
 - **QMD bun 全局安装** — OpenClaw 升级可能破坏 better-sqlite3，用 `bun install -g @tobilu/qmd` 修复
 - **定期 openclaw doctor --repair** — 清理孤立 session 和旧状态目录
 - **磁盘告警线 70%** — 超过立即清理（今日从80%降至60%）
 - **Git push 前先 pull** — 避免 rebase 冲突，`git pull --rebase` + `GIT_EDITOR=true`
+- **WeChat 投递依赖活跃会话**（2026-03-27 新增）— 微信投递必须接收者最近有消息交互，否则报错"无法确定使用哪个账号"。解决方案：让任一微信账号给机器人发消息激活会话
 
 ### 2026-03-23 新进展
 
