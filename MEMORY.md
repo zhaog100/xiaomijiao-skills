@@ -19,8 +19,8 @@ _精心维护的记忆，提炼后的精华_
 | **微信/飞书插件** | ❌ 已移除 | TypeScript编译失败 |
 | **workspace结构** | ✅ 已整理 | 散落文件132→54 |
 | **docs/知识库** | ✅ 已整理 | guides/下3个子目录 |
-| **Git Secret #5** | ⚠️ 仍开放 | GitHub PAT泄露告警 |
-| **QMD向量** | ⚠️ 不可用 | 缺llama_cpp/numpy |
+| **Git Secret Scanning** | ✅ 已解决 | 5个告警全部resolved |
+| **QMD向量** | ✅ 已安装 | llama_cpp/numpy已安装，23,118文档 |
 
 | 项目 | 状态 | 详情 |
 |------|------|------|
