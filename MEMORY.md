@@ -204,3 +204,102 @@ _精心维护的记忆，提炼后的精华_
 - ✅ **此策略为最高优先级，覆盖所有 bounty 开发流程**
 - ✅ **持续开发直到所有高价值任务完成，无需中途请示**
 
+
+---
+
+## 🔧 双 Gateway 架构配置（2026-03-26 官家指令）⭐⭐⭐⭐⭐
+
+> "双 Gateway 是唯一正确的选择，单 Gateway 会经常搞混角色"
+
+### 架构设计
+| 实例 | 工作区 | QQ Bot AppID | 微信 Bot | Gateway 端口 | 用途 |
+|------|--------|-------------|---------|-------------|------|
+| **小米辣** | `/home/zhaog/.openclaw-xiaomila/workspace` | 102911630 | 无 | 18789 | PM+Dev 双代理 |
+| **小米椒** | `/home/zhaog/.openclaw-xiaomijiao/workspace` | 1903665913 | b2ed46104463-im-bot | 18790 | 新媒体运营 |
+
+### 启动命令
+```bash
+# 启动小米辣 Gateway
+cd /home/zhaog/.openclaw-xiaomila && nohup openclaw gateway > /tmp/xiaomila-gw.log 2>&1 &
+
+# 启动小米椒 Gateway
+cd /home/zhaog/.openclaw-xiaomijiao && nohup openclaw gateway > /tmp/xiaomijiao-gw.log 2>&1 &
+```
+
+### 配置原则
+1. **工作区隔离** - 各自独立，互不干扰
+2. **配置隔离** - 各自 openclaw.json，不共享
+3. **记忆隔离** - 各自 MEMORY.md，不混淆
+4. **身份隔离** - 各自 SOUL.md，角色清晰
+5. **插件独立** - 各自 extensions 目录
+
+### 教训总结
+- 单 Gateway + 多 Agent 会导致角色混淆、配置混乱
+- 双 Gateway 资源占用多一倍，但长期稳定
+- 一次配置，不再折腾
+
+_版本：v6.1 | 2026-03-26 18:19 | 双 Gateway 架构确认_
+
+---
+
+## 🧹 目录合并清理（2026-03-26 18:21）⭐⭐⭐⭐⭐
+
+### 清理目标
+- ❌ 删除 `/home/zhaog/.openclaw-media/` (旧小米椒数据目录)
+- ✅ 合并到 `/home/zhaog/.openclaw-xiaomijiao/`
+
+### 合并内容
+| 数据类型 | 源路径 | 目标路径 | 状态 |
+|----------|--------|---------|------|
+| 微信 Bot 账号 | `.openclaw-media/.openclaw/openclaw-weixin/accounts/` | `.openclaw-xiaomijiao/.openclaw/openclaw-weixin/accounts/` | ✅ |
+| QQ Bot 会话 | `.openclaw-media/.openclaw/qqbot/sessions/` | `.openclaw-xiaomijiao/.openclaw/qqbot/sessions/` | ✅ |
+| QMD 配置 | `.openclaw-media/.config/qmd/` | `.openclaw-xiaomijiao/.config/qmd/` | ✅ |
+| 会话文件 | `.openclaw-media/.openclaw/agents/main/sessions/` | `/tmp/xiaomijiao-sessions-backup/` | ✅ 备份 |
+| 记忆数据库 | `.openclaw-media/.openclaw/memory/main.sqlite` | `/tmp/xiaomijiao-memory-backup.sqlite` | ✅ 备份 |
+
+### 清理后目录结构
+```
+/home/zhaog/.openclaw/           # 主实例 (全局配置)
+/home/zhaog/.openclaw-xiaomila/  # 小米辣 (PM+Dev)
+/home/zhaog/.openclaw-xiaomijiao/ # 小米椒 (新媒体运营)
+```
+
+### 教训
+- 旧目录 `.openclaw-media` 是历史遗留，应及时清理
+- 合并前先备份重要数据 (会话/记忆数据库)
+- 双 Gateway 架构下，每个实例独立管理自己的 `.openclaw/` 目录
+
+_版本：v6.2 | 2026-03-26 18:22 | 目录合并清理完成_
+
+---
+
+## 📌 /home/zhaog/.openclaw/ 目录处理决定（2026-03-26 18:26）⭐⭐⭐⭐
+
+### 目录状态
+- **位置**: `/home/zhaog/.openclaw/`
+- **用途**: 历史主实例目录
+- **当前使用者**: 无（已被双 Gateway 替代）
+- **包含内容**: 旧会话数据、全局插件、secrets、skills
+
+### 处理决定
+> "先保留，等完全没有问题了，再清理" - 官家指令
+
+### 保留原因
+1. **全局资源** - secrets/、skills/ 可能被引用
+2. **观察期** - 确认双 Gateway 长期稳定
+3. **回滚保障** - 如有问题可快速恢复
+
+### 清理条件（需全部满足）
+- [ ] 双 Gateway 稳定运行 7 天以上
+- [ ] 确认无进程引用该目录
+- [ ] 备份所有 secrets 和全局配置
+- [ ] 官家明确同意清理
+
+### 观察清单
+| 检查项 | 频率 | 状态 |
+|--------|------|------|
+| Gateway 进程 | 每日 | ⏳ 观察中 |
+| 会话文件更新 | 每日 | ⏳ 观察中 |
+| 插件加载 | 每日 | ⏳ 观察中 |
+
+_版本：v6.3 | 2026-03-26 18:26 | 主实例目录保留决定_
