@@ -47,3 +47,4 @@ __pycache__/
 *.temp
 /tmp/
 data/bounty-queue/queue.json.bak
+package-lock.json

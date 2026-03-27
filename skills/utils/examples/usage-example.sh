@@ -81,7 +81,7 @@ cat << 'EOF'
 #!/bin/bash
 
 # 1. 加载错误处理库
-source /home/zhaog/.openclaw-xiaomila/workspace/skills/utils/error-handler.sh
+source /home/zhaog/.openclaw/workspace/skills/utils/error-handler.sh
 
 # 2. 使用日志函数
 log_info "技能启动"
