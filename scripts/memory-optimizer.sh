@@ -4,7 +4,7 @@
 
 set -e
 
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw-xiaomila/workspace"
 MEMORY_FILE="$WORKSPACE/MEMORY.md"
 MEMORY_DIR="$WORKSPACE/memory"
 BACKUP_DIR="$WORKSPACE/backups/memory"

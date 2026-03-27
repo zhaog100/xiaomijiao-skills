@@ -84,8 +84,8 @@ fi
 echo ""
 echo "🔌 [6/6] 插件安全配置"
 echo "-------------------------------------------"
-if [ -f /home/zhaog/.openclaw/openclaw.json ]; then
-    whitelist=$(cat /home/zhaog/.openclaw/openclaw.json | jq -r '.plugins.allow[]' 2>/dev/null | tr '\n' ' ')
+if [ -f /home/zhaog/.openclaw-xiaomila/openclaw.json ]; then
+    whitelist=$(cat /home/zhaog/.openclaw-xiaomila/openclaw.json | jq -r '.plugins.allow[]' 2>/dev/null | tr '\n' ' ')
     if [ -n "$whitelist" ]; then
         echo "  ✅ 白名单: $whitelist"
     else
@@ -140,6 +140,6 @@ echo "sudo aide --check"
 echo "sudo ufw status verbose"
 echo ""
 echo "完整报告:"
-echo "  /home/zhaog/.openclaw/workspace/memory/"
+echo "  /home/zhaog/.openclaw-xiaomila/workspace/memory/"
 echo "  2026-03-09-security-final-report.md"
 echo "========================================="

@@ -8,7 +8,7 @@ set -e
 API_KEY="changeme"  # 在 ZAP GUI 中获取：Tools → Options → API
 BASE_URL="http://127.0.0.1:8090"
 TARGET="http://127.0.0.1:18789"
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw-xiaomila/workspace"
 LOGS_DIR="$WORKSPACE/logs"
 
 # 颜色

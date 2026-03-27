@@ -4,7 +4,7 @@
 # 功能：自动备份 + 清理旧备份
 
 # 配置
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw-xiaomila/workspace"
 BACKUP_DIR="/home/zhaog/backups"
 KEEP_COUNT=4  # 保留最近4个备份（1个月）
 DATE=$(date +%Y%m%d-%H%M%S)

@@ -2,7 +2,7 @@
 # 夜间持续监控脚本（23:00 - 07:00）
 # 每 30 分钟检查一次新任务
 
-LOG_FILE="/home/zhaog/.openclaw/workspace/skills/github-bounty-hunter/logs/night_monitor.log"
+LOG_FILE="/home/zhaog/.openclaw-xiaomila/workspace/skills/github-bounty-hunter/logs/night_monitor.log"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 log() {

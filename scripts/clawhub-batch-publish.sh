@@ -8,8 +8,8 @@ echo "🌾 === 小米辣 ClawHub 批量发布助手 ==="
 echo ""
 
 # 配置区
-SKILLS_DIR="/home/zhaog/.openclaw/workspace/skills"
-OUTPUT_DIR="/home/zhaog/.openclaw/workspace/output"
+SKILLS_DIR="/home/zhaog/.openclaw-xiaomila/workspace/skills"
+OUTPUT_DIR="/home/zhaog/.openclaw-xiaomila/workspace/output"
 PUBLISH_LOG="$OUTPUT_DIR/publish-log-$(date +%Y%m%d-%H%M%S).md"
 
 # 颜色定义

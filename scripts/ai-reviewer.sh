@@ -4,7 +4,7 @@
 
 set -e
 
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw-xiaomila/workspace"
 LOG_FILE="$WORKSPACE/logs/ai-reviewer.log"
 REVIEW_FILE="$WORKSPACE/memory/review-$(date +%Y-%m-%d).md"
 
@@ -60,7 +60,7 @@ import os
 import sys
 from datetime import datetime
 
-WORKSPACE = "/home/zhaog/.openclaw/workspace"
+WORKSPACE = "/home/zhaog/.openclaw-xiaomila/workspace"
 REVIEW_FILE = f"{WORKSPACE}/memory/review-{datetime.now().strftime('%Y-%m-%d')}.md"
 
 # 获取今日记忆文件

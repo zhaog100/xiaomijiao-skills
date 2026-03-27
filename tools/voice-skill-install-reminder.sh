@@ -2,7 +2,7 @@
 # 语音技能安装提醒脚本
 # 执行时间：2026-03-10 09:00
 
-LOG_FILE="/home/zhaog/.openclaw/workspace/logs/voice-reminder.log"
+LOG_FILE="/home/zhaog/.openclaw-xiaomila/workspace/logs/voice-reminder.log"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 
 echo "[$TIMESTAMP] 开始发送语音技能安装提醒..." >> "$LOG_FILE"
