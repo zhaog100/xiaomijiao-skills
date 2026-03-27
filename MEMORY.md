@@ -244,6 +244,31 @@ _版本：v6.1 | 2026-03-26 18:19 | 双 Gateway 架构确认_
 
 ---
 
+## 📌 今日重要状态（2026-03-27 晚间）⭐⭐⭐
+
+### 系统状态
+- OpenClaw：2026.3.23-2（**待升级**到2026.3.24，需手动重启Gateway）
+- 磁盘：34%使用，188G可用 ✅
+- Git：bounty-1501分支，**工作区干净**，全部已提交
+
+### WeChat 投递问题（持续）
+- 根因：2个微信账号均无活跃会话
+- 状态：cron任务报错"无法确定使用哪个账号"
+- 解决：官家发微信消息给机器人激活会话后自动恢复
+- 影响的cron：healthcheck:security-audit-weixin、healthcheck:update-check-weixin、daily-review:night-weixin
+
+### Bounty 队列状态（2026-03-27）
+- 总任务：119个
+- 高优先级(score≥50)：**46个**
+- top任务：[90] GraciasAi #12, [105] #14, [85] S.P.L.U.T-tg #872, [80] InkkSlinger #3
+
+### QMD 状态
+- QMD CLI：`/home/zhaog/.local/bin/qmd`（可用，版本命令失败）
+- 向量索引：未生成（需执行qmd embed）
+- 待执行：`bun install -g @tobilu/qmd`
+
+---
+
 ## 📌 Git 仓库清理与 .gitignore（2026-03-27）⭐⭐⭐⭐
 
 ### 问题
