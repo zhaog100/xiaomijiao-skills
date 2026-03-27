@@ -1,84 +1,49 @@
-# Git 忽略文件配置（精简版 v3.0）
-# 最后更新：2026-03-20
-
-# ===== 依赖和构建 =====
+# Dependencies
 node_modules/
-package-lock.json
-bun.lock
-__pycache__/
-*.pyc
-*.pyo
-.node_modules/
-venv/
 
-# ===== 临时文件 =====
-*.tmp
-*.bak
-*.swp
-*~
-.vector-search-status.md
-.cache/
+# Bounty scan data (historical, large volume)
+data/bounty-tasks/
+data/bounty-projects/
 
-# ===== 敏感配置（secrets/ 必须忽略！）=====
-.clawhub/
-.clawtasks/
-.moltbook/
+# OpenClaw runtime
 .openclaw/
-secrets/
-.env
-.env.local
-*.env
-!*.env.example
+agents/*/.openclaw/
 
-# ===== 日志 =====
-logs/*.log
-!logs/.gitkeep
-*.log
-skills/*/logs/*.log
-skills/*/monitor.pid
-
-# ===== 技能数据 =====
-skills/*/data/*.json
-
-# ===== 记忆归档（旧日志不跟踪，日常日志跟踪）=====
-memory/archive/
-memory/*.json
-memory/emergent_*.json
-memory/heartbeat-state.json
-
-# ===== 历史报告文档（仅 archive 子目录）=====
-docs/archive/*GUIDE.md
-docs/archive/*报告.md
-docs/archive/*REPORT*.md
-docs/archive/*COMPLETE*.md
-docs/archive/*PLAN*.md
-docs/archive/*STATUS*.md
-docs/archive/*CHECK*.md
-docs/archive/*CONFIGURED.md
-docs/archive/*SETUP.md
-docs/archive/*SUMMARY.md
-docs/archive/*TODO*.md
-
-# ===== 媒体文件（GIF 和音频由 Git 忽略，图片由 LFS 管理）=====
-*.gif
-*.mp3
-*.wav
-*.silk
-
-# ===== 临时测试文件 =====
-test-*.sh
-*-test.sh
-
-# ===== 青龙面板 =====
-qinglong/
-
-# ===== 子模块/外部项目（不跟踪）=====
-memu-engine-for-OpenClaw
-qmd
+# Backups
 backups/
 
-# ===== Bounty Tasks 备份文件（每小时生成）=====
-data/bounty-tasks/bounty-tasks-*.json
-data/bounty-projects/
-GeneralsGameCode/
-data/bounty-projects/
+# Audio/voice files
+*.silk
+*.wav
+*.mp3
+*.ogg
+
+# Logs
+*.log
+logs/*.log
+
+# Build outputs
+*.tar.gz
+*.zip
+output/*.tar.gz
+output/*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# ClawHub metadata
+.clawhub/
+
+# PID files
+*.pid
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+data/bounty-queue/queue.json.bak

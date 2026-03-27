@@ -15,7 +15,7 @@
 
 set -euo pipefail
 
-WORKSPACE="/home/zhaog/.openclaw/workspace"
+WORKSPACE="/home/zhaog/.openclaw-xiaomila/workspace"
 MEDIA_DIR="$WORKSPACE/agents/xiaomijiao"
 MEMORY_DIR="$MEDIA_DIR/memory"
 INTEL_DIR="$MEDIA_DIR/intel"

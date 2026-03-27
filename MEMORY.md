@@ -244,6 +244,26 @@ _版本：v6.1 | 2026-03-26 18:19 | 双 Gateway 架构确认_
 
 ---
 
+## 📌 Git 仓库清理与 .gitignore（2026-03-27）⭐⭐⭐⭐
+
+### 问题
+- `data/bounty-tasks/` 下 500+ 个历史扫描 JSON 文件被 git 跟踪
+- `node_modules/` 被 git 跟踪
+- `.mili_comm/`、`.learnings/`、`.session-processed/` 等旧目录需清理
+
+### 解决方案
+- 创建 `.gitignore` 文件，包含：node_modules/、data/bounty-tasks/、*.log、*.sqlite、sessions/
+- 所有历史扫描数据不再纳入版本控制
+
+### Git 推送规则（2026-03-27 确认）
+- **origin**（公共技能）：skills/ 目录 + SKILL.md + 技能脚本
+- **xiaomila**（个人工作区）：memory/ + docs/ + intel/ + 配置 + .gitignore + MEMORY.md + SOUL.md + AGENTS.md
+- **口诀**：技能推 origin，个人推 xiaomila；同一文件不同时推两仓库
+
+_版本：v6.4 | 2026-03-27 | Git 清理与推送规则确认_
+
+---
+
 ## 🧹 目录合并清理（2026-03-26 18:21）⭐⭐⭐⭐⭐
 
 ### 清理目标
